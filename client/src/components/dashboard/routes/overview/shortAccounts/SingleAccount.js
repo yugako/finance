@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 export default ({accountName, lastUpdated, amount}) => {
 	return (
 		<div className='accounts-overview__account border p-3 mb-2 bg-dark text-light'>

@@ -1,16 +1,16 @@
 import React from 'react';
-import {NavLink as Link} from 'react-router-dom';
 
 import './shortBudgets.scss';
+import OverviewTitle from "../components/OverviewTitle";
 import SingleBudget from './SingleBudget.js';
 export default () => {
 
 	return (
 		<div className='budgets-overview border-bottom mb-5'>
-			<div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3'>
-				<h4>Budgets</h4>
-				<Link className="btn btn-sm btn-outline-secondary" to='/budgets'>Edit</Link>
-			</div>
+			<OverviewTitle
+				title='Budgets'
+				link='/budgets'
+			/>
 			
 			<SingleBudget 
 				budgetName='Eating' 
