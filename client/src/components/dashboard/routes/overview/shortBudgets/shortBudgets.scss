@@ -1,0 +1,12 @@
+.budgets-overview {
+	&__item {
+		i {
+			flex: 0 0 4%;
+			font-size: 30px;
+		}
+
+		&-content {
+			flex: 0 0 96%;
+		}
+	}
+} 

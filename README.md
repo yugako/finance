@@ -1,2 +1,2 @@
-# finance
-Personal finance management system
+# mern-trainee
+Trainee MERN App
