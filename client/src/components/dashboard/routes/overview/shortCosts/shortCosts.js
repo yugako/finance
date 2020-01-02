@@ -1,39 +1,39 @@
 import React from 'react';
 
-import './SingleIncome.scss';
+import './SingleCost.scss';
 import OverviewTitle from "../components/OverviewTitle";
-import SingleIncome from "./SingleIncome";
+import SingleCost from "./SingleCost";
 
 export default () => {
     return(
-        <div className='income-overview mb-5'>
+        <div className='cost-overview mb-5'>
             <OverviewTitle
-                title='Income'
-                link='/income'
+                title='Costs'
+                link='/costs'
             />
 
-            <SingleIncome
-                title={'Finance incomes'}
+            <SingleCost
+                title={'Finance costs'}
                 amount={'750'}
                 source={'Wallet'}
                 date={'12.02.19'}
                 icon='fas fa-university'
             />
-            <SingleIncome
+            <SingleCost
                 title={'Other'}
                 amount={'5302'}
                 source={'Wallet'}
                 date={'09.02.19'}
                 icon={'fas fa-money-bill-wave'}
             />
-            <SingleIncome
+            <SingleCost
                 title={'One job'}
                 amount={'3000'}
                 source={'Wallet'}
                 date={'50000'}
                 icon={'fas fa-wallet'}
             />
-            <SingleIncome
+            <SingleCost
                 title={'Salary'}
                 amount={'12000'}
                 source={'Wallet'}

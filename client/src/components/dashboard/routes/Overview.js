@@ -4,6 +4,7 @@ import ShortBalance from './overview/shortBalance/shortBalance.js'
 import ShortAccounts from './overview/shortAccounts/shortAccounts.js'
 import ShortBudgets from './overview/shortBudgets/shortBudgets.js'
 import ShortIncome from './overview/shortIncome/shortIncome.js'
+import ShortCosts from './overview/shortCosts/shortCosts.js'
 
 const Overview = () => {
 	return (
@@ -26,6 +27,7 @@ const Overview = () => {
           <ShortAccounts />
           <ShortBudgets />
           <ShortIncome />
+          <ShortCosts />
     </main>
 	);	
 }
