@@ -1,22 +1,31 @@
- 
-import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, NavLink as Link} from 'react-router-dom';
+ import React, { Component } from 'react';
 
-import Dashboard from './components/dashboard/Dashboard.js';
-import SignIn from './components/auth/SignIn.js';
+import 'materialize-css/dist/css/materialize.min.css';
+import M from "materialize-css";
 
-const login = true;
+import NavMenu from './components/NavMenu';
+import AppView from './views/AppView';
+
+
 class App extends Component {
     constructor(props) {
         super(props);
     }
+    componentDidMount() {
+        // Auto initialize all the things!
+        M.AutoInit();
+    }
+
     render() {
         return (
-            <div className="container-fluid">
-                {login 
-                    ? <Dashboard />
-                    : <SignIn />
-                }
+            <div className='finance-app blue-grey lighten-5'>
+                <div className='finance-app__nav'>
+                    <NavMenu />
+                </div>
+          
+                <div className='finance-app__view'>
+                    <AppView />
+                </div>
             </div>
         );
     }
