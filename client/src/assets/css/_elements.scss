@@ -1,0 +1,14 @@
+.button {
+    background-color: $primary;
+    box-shadow: 0 5px 10px rgba($dark, 0.1);
+    color: $light;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 30px;
+    transition: all 0.3s;
+    &:hover {
+        background-color: darken($primary, 15%);
+        transition: all 0.3s;
+    }
+}
+

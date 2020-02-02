@@ -1,0 +1,53 @@
+.home {
+    &-footer {
+        text-align: center;
+        padding-bottom: 85px;
+        background-image: url('../images/footer-bg.png');
+        &__cta {
+            max-width: 1140px;
+            padding: 50px 20px;
+            margin: auto;
+            margin-bottom: 70px;
+            background-color: $light;
+            text-align: center;
+            box-shadow: 10px 20px 60px rgba($dark, 0.06);
+            border-radius: 15px;
+            border-top: 7px solid $primary;
+            h4 {
+                font-size: 24px;
+                color: $dark;
+                margin-bottom: 20px;
+                max-width: 400px;
+                margin: auto;
+                margin-bottom: 15px;
+            }
+
+            p {
+                color: $text-secondary;
+                font-size: 16px;
+                font-weight: 400;
+                max-width: 400px;
+                margin: auto;
+                margin-bottom: 20px;
+            }
+        }
+        &__logo {
+            padding-bottom: 70px;
+        }
+        &__copyright {
+            text-align: center;
+            color: $light;
+            font-size: 16px;
+            a {
+                transition: all 0.3s ease-in;
+                color: $primary;
+                text-decoration: none;
+                &:hover {
+                    transition: all 0.3s ease-in;
+                    color: darken($primary, 15%)
+                }
+            }
+        }
+    }
+}
+    

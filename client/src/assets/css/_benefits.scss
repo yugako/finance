@@ -1,0 +1,72 @@
+.home {
+    &-benefits {
+        background-image: url('../images/main-bg.png');
+        margin-bottom: 160px;
+        &__title {
+            font-size: 34px;
+            color: $dark;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        &__item {
+            text-align: left;
+            opacity: 0.6;
+            border-radius: 15px;
+            background-color: $light;
+            transition: all 0.5s;
+            padding: 40px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 50px rgba($dark, 0.1);
+            i {
+                position: relative;
+                z-index: 10;
+                margin-left: 20px;
+                margin-bottom: 5px;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    z-index: -1;
+                    background-color: $light;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    transition: all 0.5s;
+                }
+                transition: all 0.5s;
+            }
+            &:hover {
+                transition: all 0.5s;
+                opacity: 1;
+                box-shadow: 0 10px 50px rgba($dark, 0.15);
+                i {
+                    z-index: 2;
+                    color: $primary;
+                    transition: all 0.5s;
+                    &::after {
+                        content: '';
+                        transition: all 0.5s;
+                        position: absolute;
+                        background-color: lighten($primary, 50%);
+                    }
+                }
+            }
+
+            h4 {
+                font-size: 24px;
+                color: $dark;
+                margin-bottom: 10px;
+                line-height: 10px;
+            }
+
+            p {
+                color: $text-secondary;
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+    }
+}

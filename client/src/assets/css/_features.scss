@@ -1,0 +1,25 @@
+.home {
+    &-features {
+        margin-bottom: 120px;
+        &__title {
+            font-size: 34px;
+            color: $dark;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        &__item {
+            text-align: center;
+            h4 {
+                font-size: 24px;
+                color: $dark;
+                margin-bottom: 20px;
+            }
+
+            p {
+                color: $text-secondary;
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+    }
+}

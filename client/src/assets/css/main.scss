@@ -1,0 +1,29 @@
+@import './vars';
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: $ff;
+}
+
+button {
+    cursor: pointer;
+    &:focus, &:active {
+        outline: none;
+    } 
+}
+
+a {
+    text-decoration: none;
+}
+
+@import './elements';
+
+@import './menu';
+@import './header';
+@import './logo';
+@import './features';
+@import './benefits';
+@import './footer';

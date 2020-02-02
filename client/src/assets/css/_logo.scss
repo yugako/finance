@@ -1,0 +1,10 @@
+.home {
+    &-logo {
+        color: $light;
+        font-size: 20px;
+        font-weight: bold;
+        span {
+            color: $primary;
+        }
+    }
+}
