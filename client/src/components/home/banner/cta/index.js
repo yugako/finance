@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 import Button from '../../../elements/Button';
 
@@ -20,7 +21,10 @@ const CTA = () => {
                             BeepB lets you take control of your complete ecommerce
                             warehouse and understand how you’re business is holding up.
                         </p>
-                        <Button text='Get Started' />
+                        <NavLink to='/register'>
+                            <Button text='Get Started' />
+                        </NavLink>
+                        
                     </div>    
                 </div>
             </div>    

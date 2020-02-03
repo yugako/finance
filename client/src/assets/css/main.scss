@@ -21,9 +21,12 @@ a {
 
 @import './elements';
 
-@import './menu';
-@import './header';
-@import './logo';
-@import './features';
-@import './benefits';
-@import './footer';
+@import './home/menu';
+@import './home/header';
+@import './home/logo';
+@import './home/features';
+@import './home/benefits';
+@import './home/footer';
+
+
+@import './dashboard/dashboard';

@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import Button from '../../elements/Button';
 
 const Menu = () => {
@@ -12,7 +13,10 @@ const Menu = () => {
                     <a className='home-menu__link' href="#benefits">Benefits</a>
                 </li>
             </ul>
-            <Button classes='home-menu__button signin' text='Sign In' />
+            <NavLink to='/register'>
+                <Button classes='home-menu__button signin' text='Sign In' />
+            </NavLink>
+            
         </nav>
     );
 }
