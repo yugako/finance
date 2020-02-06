@@ -1,8 +1,9 @@
 import React from 'react';
+import TopBar from '../../../components/dashboard/top-bar'; 
 
 const Overview = () => {
     return (
-        <h1>Overview</h1>
+        <TopBar title='Overview' />
     );
 }
  
