@@ -1,29 +1,22 @@
 {
   "name": "mern-trainee",
   "version": "1.0.0",
-  "description": "Trainee MERN App",
+  "description": "Finance tracking App",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yugako/mern-trainee.git"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [
     "mern",
     "react",
     "node"
   ],
-  "author": "George Gasyuk",
+  "author": "George Hasiuk",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yugako/mern-trainee/issues"
-  },
-  "homepage": "https://github.com/yugako/mern-trainee#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.2.4",
