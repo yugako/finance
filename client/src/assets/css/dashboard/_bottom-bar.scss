@@ -1,0 +1,15 @@
+.dashboard-bottom-bar {
+    margin-top: auto;
+    color: $text-primary;
+    @include sm-size-max {
+        margin-top: 10px;
+    }
+    &__help {
+        background-color: $light;
+        padding: 6px 12px;
+        border-radius: 10px;
+        i {
+            margin-right: 10px;
+        }
+    }
+}

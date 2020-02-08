@@ -7,6 +7,12 @@ const TopBar = ({title}) => {
                 {title}
             </div>
             <div className="dashboard-top-bar__options d-flex justify-content-end align-items-center">
+                <div className="dashboard-top-bar__options-new">
+                    <img src={require('../../../assets/images/add.png')} alt="+"/>
+                </div>
+                <div className="dashboard-top-bar__options-search">
+                   <img src={require('../../../assets/images/search.png')} alt="Find"/>
+                </div>
                 <div className="dashboard-top-bar__options-badges">
                     <i class="fas fa-bell"></i>
                     <span className='number'>4</span>

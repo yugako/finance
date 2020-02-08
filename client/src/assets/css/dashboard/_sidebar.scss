@@ -1,0 +1,47 @@
+.dashboard {
+    &-sidebar {
+        padding: 28px 37px;
+        background-color: #dce1ee;
+        box-shadow: inset -10px 0 30px 10px rgba(85, 99, 159, 0.02);
+        flex-basis: 15%;
+        max-width: 15%;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        height: 100vh;top: 0;
+
+        $s: &;
+
+        &__header {
+            .toggle-menu {
+                font-size: 24px;
+                color: $text-primary;
+                margin-top: -20px;
+                cursor: pointer;
+                @include sm-size-min {
+                    display: none;
+                }
+            }
+        }
+
+        @include xl-size-max {
+            flex-basis: 20%;
+            max-width: 20%;
+        }
+
+        @include lg-size-max {
+            max-width: 25%;
+            flex-basis: 25%;
+        }
+
+        @include md-size-max {
+            max-width: 35%;
+            flex-basis: 35%;
+        }
+
+        @include sm-size-max {
+            max-width: 100%;
+            flex-basis: 100%;
+        }
+    }
+}
