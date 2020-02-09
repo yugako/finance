@@ -11,11 +11,13 @@ const router = Router();
 router.post(
 	'/register',
 	[
-		check('name', 'Incorrect name. Min 3 symbols').isLength({min: 3}),
+		check('first_name', 'Incorrect name. Min 2 symbols').isLength({min: 2}),
+		check('last_name', 'Incorrect name. Min 2 symbols').isLength({min: 2}),
 		check('email', 'Incorrect mail').isEmail(),
 		check('password', 'Incorrect password. Min 6 symbols').isLength({min: 6}),
 	], 
 	async (req, res) => {
+		
 		try {
 		const errors = validationResult(req);
 
@@ -26,7 +28,7 @@ router.post(
 			});
 		}
 
-		const {name, email, password} = req.body;
+		const {first_name, last_name, email, password} = req.body;
 
 		const candidate = await User.findOne({email});
 
@@ -35,7 +37,7 @@ router.post(
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 12);
-		const user = new User({name, email, password: hashedPassword});
+		const user = new User({first_name, last_name, email, password: hashedPassword});
 
 		await user.save();
 

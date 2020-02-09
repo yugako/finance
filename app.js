@@ -3,8 +3,9 @@ const config = require('config');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 5000;
 
+const PORT = process.env.PORT || 5000;
+app.use(express.json({extended: true}));
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -25,6 +26,7 @@ async function start() {
 			useUnifiedTopology: true,
 			useCreateIndex: true,
 		});
+		app.listen(PORT, () => console.log(`Server was running on port ${PORT}`));
 		
 	} catch (e) {
 		console.log('Server error', e.message);
@@ -32,6 +34,5 @@ async function start() {
 	}
 }
 
-app.listen(PORT, () => console.log(`Server was running on port ${PORT}`));
-// start();
+start();
 

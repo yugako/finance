@@ -9,6 +9,9 @@
         font-weight: 500;
         letter-spacing: -0.06px;
         margin-bottom: 20px;
+        @include md-size-max {
+            text-align: center;
+        }
     }
     img {
         max-width: 100%;
@@ -28,8 +31,14 @@
         box-shadow: 0 1px 3px rgba($dark, 0.2), 0 2px 1px -1px rgba($dark, 0.12), 0 1px 1px rgba($dark, 0.14);
         cursor: pointer;
         padding: 13px 16px;
+        display: block;
         width: 100%;
         max-width: 450px;
+        @include md-size-max {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
             
     }
 
@@ -56,7 +65,11 @@
 
     .form-group {
         width: 100%;
-        max-width: 450px;   
+        max-width: 450px;
+        @include md-size-max {
+            margin-left: auto;
+            margin-right: auto;
+        }   
     }
 
     &-cta {
@@ -67,6 +80,10 @@
         letter-spacing: -0.05px;
         margin-top: 10px;
         max-width: 450px;
+        @include md-size-max {
+            margin-left: auto;
+            margin-right: auto;
+        }
         a {
             margin-left: 5px;
             color: $primary;

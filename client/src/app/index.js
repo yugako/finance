@@ -1,32 +1,29 @@
-import React, { Component } from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter} from 'react-router-dom';
 
-import Home from './home';
-import Login from './login';
-import Register from './register';
-import Dashboard from './dashboard';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-    }
+import { useAuth } from '../hooks/auth.hook';
 
-    render() {
-        return (
-            <div className='finance-app'>
-                <Switch>
-                    <Route 
-                        path="/" exact 
-                        component={Home}
-                    />
-                    <Route path="/login" component={Login}/>
-                    <Route path="/register" component={Register}/>
-                    <Route path="/dashboard" component={Dashboard}/>
-                    <Route render={() => <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>} />
-                </Switch>
-            </div>
-        );
-    }
+import {AuthContext} from '../context/AuthContext';
+import { useRoutes } from './router';
+
+const App = () => {
+    const {token, login, logout, userId} = useAuth();
+    const isAuthenticated = !!token;
+    const router = useRoutes(isAuthenticated);
+
+    return (
+        <AuthContext.Provider value={{
+            token, login, logout, userId, isAuthenticated
+        }}>
+            <BrowserRouter>
+                <div className='finance-app'>
+                    {router}
+                </div> 
+            </BrowserRouter>
+        </AuthContext.Provider>
+        
+    );
 }
-
+ 
 export default App;
