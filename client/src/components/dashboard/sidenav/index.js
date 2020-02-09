@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 
 import DashboardLogo from '../logo';
 import BottomBar from './bottom-bar';
 
 const SideNav = () => {
+    let [isOpen, setOpen] = useState(true);
+
+    const toggleMenuHandler = () => {
+        console.log('clicked');
+        
+        setOpen(isOpen = !isOpen);
+    }
     return (
         <aside className='dashboard-sidebar'>
             <div className="dashboard-sidebar__header d-flex justify-content-between align-items-center">
                 <DashboardLogo />
-                <i class="toggle-menu fas fa-bars"></i>
+                <i onClick={toggleMenuHandler} class="toggle-menu fas fa-bars"></i>
             </div>
-            <div className="dashboard-sidebar__content">
+            <div className={`dashboard-sidebar__content ${isOpen ? 'open' : 'closed'}`}>
                 <nav className="dashboard-nav">
                     <NavLink to='/dashboard'>
                         <i class="fas fa-th-large"></i>

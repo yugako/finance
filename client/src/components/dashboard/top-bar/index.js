@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { AuthContext } from '../../../context/AuthContext';
 
 const TopBar = ({title}) => {
+    const auth =  useContext(AuthContext);
+
     return (
         <div className='dashboard-top-bar d-flex justify-content-between align-items-center'>
             <div className="dashboard-top-bar__title">
@@ -25,7 +28,7 @@ const TopBar = ({title}) => {
                             <a href="#">Edit profile</a>
                         </li>
                         <li>
-                            <a href="#">Log Out</a>
+                            <span onClick={auth.logout}>Log Out</span>
                         </li>
                     </ul>
 

@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react';
-
 import {NavLink} from 'react-router-dom';
-
-import Pig from '../../assets/images/pig.svg';
 
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
 import { AuthContext } from '../../context/AuthContext';
+
+import Pig from '../../assets/images/pig.svg';
+
 const Login = () => {
 
     const {loading, error, request, clearError} = useHttp();
@@ -19,7 +19,6 @@ const Login = () => {
     });
 
     useEffect(() => {
-        console.log(error);
         message(error);
         clearError();
     }, [error, message, clearError]);
@@ -63,7 +62,7 @@ const Login = () => {
                                 <label for="input" class="control-label">Password</label>
                                 <i class="bar"></i>
                             </div>
-                            <input type="submit"  className='submit' value="Sign Up"/>
+                            <input type="submit" disabled={loading}  className='submit' value="Sign Up"/>
                         </form>
                         <div className="login-cta d-flex justify-content-between">
                             <div className="go-auth">

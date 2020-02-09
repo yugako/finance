@@ -1,5 +1,7 @@
 .dashboard-top-bar {
+    flex-wrap: wrap;
     &__options {
+       
         &-user {
             color: $text-primary;
             position: relative;
@@ -51,7 +53,7 @@
                 overflow: hidden;
                 margin: 0;
                 padding: 0;
-                a {
+                a, span {
                     display: block;
                     margin-bottom: 5px;
                     color: $text-primary;
