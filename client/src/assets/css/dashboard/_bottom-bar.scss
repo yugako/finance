@@ -8,8 +8,15 @@
         background-color: $light;
         padding: 6px 12px;
         border-radius: 10px;
+        a {
+            color: $text-primary;
+        }
         i {
             margin-right: 10px;
         }
+    }
+
+    &__close {
+        cursor: pointer;
     }
 }

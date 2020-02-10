@@ -9,7 +9,7 @@ const TopBar = ({title}) => {
             <div className="dashboard-top-bar__title">
                 {title}
             </div>
-            <div className="dashboard-top-bar__options d-flex justify-content-end align-items-center">
+            <div className="dashboard-top-bar__options d-flex justify-content-between justify-md-content-end align-items-center">
                 <div className="dashboard-top-bar__options-new">
                     <img src={require('../../../assets/images/add.png')} alt="+"/>
                 </div>

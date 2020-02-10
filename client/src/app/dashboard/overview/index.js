@@ -10,13 +10,8 @@ const Overview = () => {
         <section className='dashboard-overview'>
             <TopBar title='Overview' />
             <OverviewBalances />
-            <div className="row mt-5">
-                <div className="col-12 col-lg-4">
-                    <OverviewDebitCards />
-                </div>
-                <div className="col-12 col-lg-8">
-                    <OverviewActivity />
-                </div>
+            <div className="mt-5">
+                <OverviewActivity />
             </div>
         </section>
        

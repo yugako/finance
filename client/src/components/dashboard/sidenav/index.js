@@ -20,7 +20,7 @@ const SideNav = () => {
             </div>
             <div className={`dashboard-sidebar__content ${isOpen ? 'open' : 'closed'}`}>
                 <nav className="dashboard-nav">
-                    <NavLink to='/dashboard'>
+                    <NavLink exact to='/dashboard'>
                         <i class="fas fa-th-large"></i>
                         Overview
                     </NavLink>

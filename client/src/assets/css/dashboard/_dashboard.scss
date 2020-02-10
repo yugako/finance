@@ -3,13 +3,16 @@
     min-height: 100vh;
     @include sm-size-max {
         flex-wrap: wrap;
-        height: 50vh;
+        min-height: initial;
     }
     
     &-main {
         padding: 34px 48px;
         background-color: #edeff2;
         flex: 1;
+        @include sm-size-max {
+            padding: 20px;
+        }
     }
 
     &-logo {

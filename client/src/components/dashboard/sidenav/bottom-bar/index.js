@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {NavLink} from 'react-router-dom';
+import {AuthContext} from '../../../../context/AuthContext';
 
 const BottomBar = () => {
+
+    const auth =  useContext(AuthContext);
     return (
         <div className='dashboard-bottom-bar d-flex justify-content-between align-items-center'>
             <div className="dashboard-bottom-bar__help">
                 <i class="far fa-comment-dots"></i>
-                Help
+                <NavLink to='/dashboard/help'>Help</NavLink>
+                
             </div>
-            <div className='dashboard-bottom-bar__close'>
+            <div className='dashboard-bottom-bar__close' onClick={auth.logout}>
                 <i class="fas fa-door-open"></i>
             </div>
         </div>

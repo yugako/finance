@@ -9,6 +9,7 @@ import Balances from './balances';
 import Debits from './debits';
 import History from './history';
 import Settings from './settings';
+import Help from './help';
 
 import SideNav from '../../components/dashboard/sidenav';
 const Dashboard = () => {
@@ -40,6 +41,10 @@ const Dashboard = () => {
                     <Route 
                         path="/dashboard/settings" exact 
                         component={Settings}
+                    />
+                    <Route 
+                        path="/dashboard/help" exact 
+                        component={Help}
                     />
                     <Route render={() => <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>} />
                 </Switch>

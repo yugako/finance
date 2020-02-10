@@ -6,7 +6,7 @@ const ActivitySingle = ({icon, title, date, amount, currency, account}) => {
            <div className="activity-icon">
                 <i class={icon}></i>
            </div>
-           <div className="activity-content d-flex justify-content-between align-items-center">
+           <div className="activity-content d-flex justify-content-start flex-wrap justify-content-sm-between align-items-center">
                 <div className="activity-content__info">
                     <div className="activity-content__title">
                         {title}

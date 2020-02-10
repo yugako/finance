@@ -1,7 +1,9 @@
 .dashboard-top-bar {
     flex-wrap: wrap;
     &__options {
-       
+        @include sm-size-max {
+            width: 100%;
+        }
         &-user {
             color: $text-primary;
             position: relative;
@@ -45,7 +47,7 @@
                 border-radius: 10px;
                 background-color: $light;
                 top: 100%;
-                left: 50%;
+                left: 0;
                 transform: translateX(-50%);
                 height: 0;
                 max-height: 0;
@@ -68,6 +70,8 @@
                         color: $primary;
                     }
                 }
+
+                
             }
             
         }
@@ -109,6 +113,10 @@
         font-family: $ff;
         font-size: 24px;
         font-weight: 700;
+        @include sm-size-max {
+            margin-bottom: 20px;
+            display: block;
+        }
     } 
         
 }

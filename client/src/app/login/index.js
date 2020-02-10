@@ -62,7 +62,7 @@ const Login = () => {
                                 <label for="input" class="control-label">Password</label>
                                 <i class="bar"></i>
                             </div>
-                            <input type="submit" disabled={loading}  className='submit' value="Sign Up"/>
+                            <input type="submit" disabled={loading}  className='submit' value="Sign In"/>
                         </form>
                         <div className="login-cta d-flex justify-content-between">
                             <div className="go-auth">
