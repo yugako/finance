@@ -7,9 +7,7 @@ const OverwiewDebitCards = () => {
                 <div className="debits-overview__title">
                     debit cards
                 </div>
-                <div className="debits-overview__img">
-                    <img src={require('../../../../assets/images/visa.png')} alt=""/>
-                </div>
+                
             </div>
         </NavLink>
     );
