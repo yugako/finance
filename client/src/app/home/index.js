@@ -10,7 +10,7 @@ const Home = () => {
         <>  
             <HomeBanner />
             <main className='home-main'>
-                <Features />
+                {/* <Features /> */}
                 <HomeBenefits />
             </main>
             <HomeFooter />

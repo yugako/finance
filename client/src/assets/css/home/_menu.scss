@@ -16,7 +16,7 @@
             margin-left: 40px;
             @media screen and (max-width: 474px) {
                 margin-left: 0;
-                margin: 5px 20px;
+                margin: 5px 15px;
             }
         }
         &__link {
@@ -31,6 +31,9 @@
         }
         &__button {
             margin-left: 40px;
+            @include xs-size-max {
+                margin-left: 15px;
+            }
         }
     }
 }

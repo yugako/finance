@@ -3,6 +3,9 @@
         text-align: center;
         padding-bottom: 85px;
         background-image: url('../images/footer_bg.svg');
+        @include xs-size-max {
+            background-size: cover;
+        }
         &__cta {
             max-width: 1140px;
             padding: 50px 20px;
@@ -10,9 +13,20 @@
             margin-bottom: 70px;
             background-color: $light;
             text-align: center;
-            box-shadow: 10px 20px 60px rgba($dark, 0.06);
+            box-shadow: 10px 20px 60px rgba($dark, 0.15);
             border-radius: 15px;
             border-top: 7px solid $primary;
+            @include lg-size-max {
+                max-width: 750px;
+            }
+            @include md-size-max {
+                max-width: 570px;
+                padding: 20px;
+            }
+            @include xs-size-max {
+                max-width: 320px;
+                padding: 20px;
+            }
             h4 {
                 font-size: 24px;
                 color: $dark;
@@ -29,6 +43,22 @@
                 max-width: 400px;
                 margin: auto;
                 margin-bottom: 20px;
+            }
+
+            a {
+                background-color: $primary;
+                box-shadow: 0 5px 10px rgba($dark, 0.1);
+                color: $light;
+                border: none;
+                border-radius: 10px;
+                padding: 13px 45px;
+                transition: all 0.3s;
+                margin-top: 15px;
+                display: inline-block;
+                &:hover {
+                    background-color: darken($primary, 15%);
+                    transition: all 0.3s;
+    }
             }
         }
         &__logo {

@@ -2,7 +2,6 @@ import React from 'react';
 
 import TopBar from '../../../components/dashboard/top-bar'; 
 import OverviewBalances from './oBalances';
-import OverviewDebitCards from './oDebitCard';
 import OverviewActivity from './oActivity';
 
 const Overview = () => {

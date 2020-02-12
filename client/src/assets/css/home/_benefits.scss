@@ -1,6 +1,13 @@
 .home {
     &-benefits {
+        margin-top: 80px;
         margin-bottom: 160px;
+        @include lg-size-max {
+            margin-bottom: 80px;
+        }
+        @include xs-size-max {
+            margin-bottom: 40px;
+        }
         &__title {
             font-size: 34px;
             color: $dark;
@@ -8,63 +15,35 @@
             margin-bottom: 40px;
         }
         &__item {
-            text-align: left;
-            opacity: 0.6;
-            border-radius: 15px;
-            background-color: $light;
-            transition: all 0.5s;
-            padding: 40px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            box-shadow: 0 10px 50px rgba($dark, 0.1);
-            i {
-                position: relative;
-                z-index: 10;
-                margin-left: 20px;
-                margin-bottom: 5px;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50%;
-                    z-index: -1;
-                    background-color: $light;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    transition: all 0.5s;
-                }
-                transition: all 0.5s;
+            margin-bottom: 60px;
+            @include xs-size-max {
+                margin-bottom: 40px;
             }
-            &:hover {
-                transition: all 0.5s;
-                opacity: 1;
-                box-shadow: 0 10px 50px rgba($dark, 0.15);
-                i {
-                    z-index: 2;
-                    color: $primary;
-                    transition: all 0.5s;
-                    &::after {
-                        content: '';
-                        transition: all 0.5s;
-                        position: absolute;
-                        background-color: lighten($primary, 50%);
-                    }
-                }
+            .row-reverse {
+                flex-direction: row-reverse;
+            }
+            .img-wrapper {
+                text-align: center;
             }
 
             h4 {
-                font-size: 24px;
+                font-size: 28px;
                 color: $dark;
-                margin-bottom: 10px;
-                line-height: 10px;
+                margin-bottom: 0;
             }
 
             p {
-                color: $text-secondary;
+                color: rgba(#000, 0.8);
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: 500;
+                line-height: 1.4;
+                letter-spacing: 0.9px;
+            }
+            &-img {
+                max-width: 100%;
+                text-align: center;
+                max-height: 300px;
+                height: auto;
             }
         }
     }
