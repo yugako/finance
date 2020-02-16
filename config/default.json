@@ -1,5 +1,6 @@
 {
 	"port": 5000,
 	"mongoURI": "mongodb+srv://geoga:infut34@finance-halct.gcp.mongodb.net/finance?retryWrites=true&w=majority",
-	"jwtSecret": "geoga"
+	"jwtSecret": "geoga",
+	"baseUrl": "http://localhost:5000"
 }

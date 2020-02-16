@@ -126,24 +126,58 @@ select {
     }
 }
 
-.debits-overview {
-    min-height: 230px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: flex;
-    padding: 24px;
-    align-items: flex-end;
-    padding-bottom: 72px;
-    justify-content: space-between;
-    cursor: pointer;
-    &__title {
-        text-shadow: 0 1px 1px rgba($dark, 0.5);
-        color: $light;
+.dropdown {
+    position: absolute;
+    width: 100%;
+    min-width: 150px;
+    list-style: none;
+    border-radius: 10px;
+    background-color: $light;
+    transition: all 0.5s;
+    overflow: hidden;
+    a, span {
+        display: block;
+        margin-bottom: 5px;
+        color: $text-primary;
+        font-size: 1rem;
         font-family: $ff;
-        font-size: 15px;
         font-weight: 600;
-        text-transform: uppercase;
+        padding: 7px 10px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.5s;
+        &:hover {
+            color: $primary;
+        }
     }
+}
+
+.submit {
+    color: $light;
+    font-family: $ff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.25px;
+    line-height: 16px;
+    text-transform: uppercase;
+    border: none;
+    background-color: $primary;
+    box-shadow: 0 1px 3px rgba($dark, 0.2), 0 2px 1px -1px rgba($dark, 0.12), 0 1px 1px rgba($dark, 0.14);
+    cursor: pointer;
+    padding: 13px 16px;
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 20px;
+    @include md-size-max {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &:focus, &:active {
+        outline: none;
+    }
+    
+        
 }
 
 @import './elements';
