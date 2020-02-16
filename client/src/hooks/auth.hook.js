@@ -14,13 +14,13 @@ export const useAuth = () => {
     /**
      * Login handler
      */
-    const login = useCallback((jwtToken, id, keep_logged = false) => {
+    const login = useCallback((jwtToken, id, keep_logged = false, firstName, lastName) => {
         setToken(jwtToken);
         setUserId(id);
 
         if (keep_logged) {
             localStorage.setItem(storageName, JSON.stringify({
-                userId: id, token: jwtToken
+                userId: id, token: jwtToken, userFullName: `${firstName} ${lastName}`,
             }));
         } else {
             sessionStorage.setItem(storageName, JSON.stringify({

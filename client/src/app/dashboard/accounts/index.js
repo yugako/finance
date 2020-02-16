@@ -1,11 +1,11 @@
 import React, { useState, useContext, useCallback, useEffect } from 'react';
-import TopBar from '../../../components/dashboard/top-bar'; 
+
 import { useHttp } from '../../../hooks/http.hook';
 import { AuthContext } from '../../../context/AuthContext';
 import Loader from '../../../components/elements/Loader';
+import AccountList from './accountList';
 
-
-const Balances = () => {
+const Accounts = () => {
     const [accounts, setAccounts] = useState();
     const {loading, request} = useHttp();
 
@@ -35,24 +35,10 @@ const Balances = () => {
     return (
         
         <>  
-            {!loading && accounts &&
-                <div>
-                    <TopBar title='Accounts' />
-                    {console.log(accounts)}
-                    {
-                        accounts.map(account => {
-                            return (
-                                <p key={account.name}>{account.name}</p>
-                            );
-                        })
-                    }
-                   
-                </div>
-            }
-            
+            { !loading && accounts && <AccountList accounts={accounts} /> }         
         </>
         
     );
 }
  
-export default Balances;
+export default Accounts;

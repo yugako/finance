@@ -1,8 +1,8 @@
 import React, {useState, useContext} from 'react';
-import TopBar from '../../../../components/dashboard/top-bar'; 
 import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
+import TopBar from '../../../../components/dashboard/top-bar';
 
 const AddAccount = () => {
     const history = useHistory();
@@ -25,8 +25,7 @@ const AddAccount = () => {
 
     return (
         <div className='add-account'>
-            <TopBar title='Add Account' />
-            
+            <TopBar title='Add account' />            
             <form onSubmit={submitHandler}>
                 <div className="form-group">
                     <input 

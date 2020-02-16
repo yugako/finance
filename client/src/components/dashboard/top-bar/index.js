@@ -1,8 +1,24 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import {NavLink} from 'react-router-dom';
+
 const TopBar = ({title}) => {
     const auth =  useContext(AuthContext);
+    const [fullName, setFullName] = useState('user');
+
+    const getFullName = () => {
+        let data = null;
+        
+        if(localStorage.getItem('userData')) {
+            data = JSON.parse(localStorage.getItem('userData'));
+            setFullName(data.userFullName);
+        }
+    }
+
+    useEffect(() => {
+        getFullName();
+    }, [getFullName]);
+   
 
     return (
         <div className='dashboard-top-bar d-flex justify-content-between align-items-center'>
@@ -29,6 +45,7 @@ const TopBar = ({title}) => {
                     <img src="https://www.unicef.org/montenegro/sites/unicef.org.montenegro/files/styles/hero_desktop/public/Nadja%20mlada%20reporterka%20UNICEFova%20volonterka.jpg?itok=vcOwP46I" alt="User"/>
                     <i class="arrow fas fa-angle-down"></i>
                     <ul className='dashboard-top-bar__options-user-dropdown dropdown'>
+                        <span>Hello, {fullName}</span>
                         <li>
                             <NavLink to="/dashboard/edit-profile">Edit profile</NavLink>
                         </li>

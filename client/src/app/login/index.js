@@ -40,7 +40,7 @@ const Login = () => {
                 ...form
             });
 
-            auth.login(data.token, data.userId, form.keep_logged);
+            auth.login(data.token, data.userId, form.keep_logged, data.userFirstName, data.userLastName);
             
         } catch (error) {
             

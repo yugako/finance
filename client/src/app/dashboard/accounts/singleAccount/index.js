@@ -1,10 +1,10 @@
 import React, { useState, useCallback, useContext, useEffect } from 'react';
 
-import TopBar from '../../../../components/dashboard/top-bar'; 
 import { useParams } from 'react-router-dom';
 import { useHttp } from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 import Loader from '../../../../components/elements/Loader';
+import TopBar from '../../../../components/dashboard/top-bar';
 
 const SingleAccount = () => {
     const {request, loading} = useHttp();
@@ -34,14 +34,7 @@ const SingleAccount = () => {
 
     return (
         <>
-            {!loading && account &&
-                <div>
-                    <TopBar title='Single Account' />
-                    {account.name}
-                </div>
-                
-            }
-            
+            {!loading && account && <TopBar title={`Account ${account.name}`} /> }
         </>
         
     );
