@@ -9,10 +9,10 @@ const Home = () => {
     return (
         <>  
             <HomeBanner />
-            <main className='home-main'>
+            {/* <main className='home-main'>
                 <Features />
                 <HomeBenefits />
-            </main>
+            </main> */}
             <HomeFooter />
         </>
     );

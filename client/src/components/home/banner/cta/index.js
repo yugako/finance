@@ -15,11 +15,10 @@ const CTA = () => {
                 <div className="col-12 col-lg-6">
                     <div className="home-header__cta-text">
                         <h1>
-                           Manage your money easily.
+                        Track your money, save money.
                         </h1>
                         <p>
-                            BeepB lets you take control of your complete ecommerce
-                            warehouse and understand how you’re business is holding up.
+                            It's that simple. Welcome to the easiest tool to see how many chicken sandwiches you bought.
                         </p>
                         <NavLink to='/register'>
                             <Button text='Get Started' />
