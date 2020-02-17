@@ -1,12 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const BalancesCard = ({title, money, currency}) => {
+const BalancesCard = ({title, link, money, currency}) => {
     return (
         <div className='balances-card'>
             <div className="balances-card__main">
                 <div className="balances-card__header d-flex justify-content-between align-items-center">
                     <div className="balances-card__title">
-                        {title}
+                        <NavLink to={`/dashboard/accounts/${link}`}>{title}</NavLink>
                     </div>
                     <div className="balances-card__options">
                         <i class="fas fa-ellipsis-h"></i>
@@ -15,7 +16,10 @@ const BalancesCard = ({title, money, currency}) => {
                 <div className="balances-card__content d-flex justify-content-between align-items-center">
                     <h2 className="balances-card__money">
                         {money}
-                        <span className='currency'>{currency}</span>
+                        
+                        <span className='currency'>
+                            {currency}
+                        </span>
                     </h2>
                     <div className="balances-card__progress">
                        <div className="balances-card__progress-percent">

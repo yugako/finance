@@ -10,7 +10,7 @@ const router = Router();
  */
 router.post('/create', auth, async (req, res) => {
     try {
-        const {name} = req.body;
+        const {name, accountType, accountCurrency, balance} = req.body;
 
         const existing =  await Account.findOne({name});
 
@@ -21,7 +21,11 @@ router.post('/create', auth, async (req, res) => {
         }
 
         const account = new Account({
-            name, owner: req.user.userId
+            name, 
+            owner: req.user.userId,
+            accountType,
+            accountCurrency,
+            balance,
         });
 
         await account.save();

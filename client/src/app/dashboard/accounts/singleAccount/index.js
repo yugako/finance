@@ -34,7 +34,12 @@ const SingleAccount = () => {
 
     return (
         <>
-            {!loading && account && <TopBar title={`Account ${account.name}`} /> }
+            {!loading && account && 
+                <section>
+                    <TopBar title={`Account: ${account.name}`} />
+                     
+                </section>
+            }
         </>
         
     );

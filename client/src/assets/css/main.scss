@@ -74,11 +74,19 @@ select {
         padding-bottom: 0;
     }
     &__title {
-        color: $text-secondary;
-        font-family: $ff;
-        font-size: 14px;
-        font-weight: 600;
-        text-transform: uppercase;
+        a {
+            color: $text-secondary;
+            font-family: $ff;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            &:hover {
+                color: $text-primary;
+                transition: color 0.3s;
+            }
+        }
+        
     }
     &__options {
         i {
@@ -129,7 +137,7 @@ select {
 .dropdown {
     position: absolute;
     width: 100%;
-    min-width: 150px;
+    min-width: 200px;
     list-style: none;
     border-radius: 10px;
     background-color: $light;

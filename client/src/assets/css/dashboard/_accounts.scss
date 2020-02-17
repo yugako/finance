@@ -21,3 +21,18 @@
         }
     }
 }
+
+.add-account {
+    &__form {
+        background-color: $light;
+        padding: 40px;
+        margin-top: 40px;
+        border-radius: 10px;
+        max-width: 576px;
+        width: 100%;
+        .submit {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+}

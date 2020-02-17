@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, useCallback} from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import {NavLink} from 'react-router-dom';
 
@@ -6,14 +6,14 @@ const TopBar = ({title}) => {
     const auth =  useContext(AuthContext);
     const [fullName, setFullName] = useState('user');
 
-    const getFullName = () => {
+    const getFullName = useCallback(() => {
         let data = null;
         
         if(localStorage.getItem('userData')) {
             data = JSON.parse(localStorage.getItem('userData'));
             setFullName(data.userFullName);
         }
-    }
+    }, []);
 
     useEffect(() => {
         getFullName();

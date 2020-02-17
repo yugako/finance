@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 
-
 import Pig from '../../assets/images/pig.svg';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
@@ -19,13 +18,16 @@ const Register = () => {
     });
 
     useEffect(() => {
-        console.log(error);
         // message(error);
         clearError();
     }, [error, message, clearError]);
 
     const changeHandler = event => {
-        setForm({...form, [event.target.name]: event.target.value})
+        if(event.target.type === 'checkbox') {
+            setForm({...form, [event.target.name]: event.target.checked});
+        } else {
+            setForm({...form, [event.target.name]: event.target.value});
+        }
     }
 
     const registerHandler = async (e) => {
@@ -43,10 +45,7 @@ const Register = () => {
                 terms: '',
             });
             
-        } catch (error) {
-        }
-
-
+        } catch (error) {}
     }
 
     return (
