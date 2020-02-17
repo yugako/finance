@@ -1,17 +1,13 @@
 import React from 'react';
-
-import Button from '../../../elements/Button';
+import { NavLink } from 'react-router-dom';
 
 const FooterCTA = () => {
     return (
         <div className="home-footer__cta">
             <h4>
-                Get started with the mobile app!
+                Ready to get started?
             </h4>
-            <p>
-                Donec facilisis tortor ut augue lacinia, at viverra est semper. Sed sapien metus, scelerisque nec pharetra id, tempor a tortor.
-            </p>
-            <Button text='Get Started' />
+            <NavLink to='/register'>Try for free</NavLink>
         </div>
     );
 }

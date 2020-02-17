@@ -24,17 +24,13 @@ const SideNav = () => {
                         <i class="fas fa-th-large"></i>
                         Overview
                     </NavLink>
+                    <NavLink to='/dashboard/accounts'>
+                        <i class="fas fa-wallet"></i>
+                        Accounts
+                    </NavLink>
                     <NavLink to='/dashboard/activity'>
                         <i class="fas fa-chart-line"></i>
                         Activity
-                    </NavLink>
-                    <NavLink to='/dashboard/balances'>
-                        <i class="fas fa-wallet"></i>
-                        Balances
-                    </NavLink>
-                    <NavLink to='/dashboard/cards'>
-                        <i class="far fa-credit-card"></i>
-                        Debit Cards
                     </NavLink>
                     <NavLink to='/dashboard/history'>
                         <i class="fas fa-history"></i>

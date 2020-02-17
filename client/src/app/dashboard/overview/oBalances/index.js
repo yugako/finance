@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState, useContext, useCallback, useEffect } from 'react';
 import BalancesCard from './obCard';
+
+import { useHttp } from '../../../../hooks/http.hook';
+import { AuthContext } from '../../../../context/AuthContext';
+import Loader from '../../../../components/elements/Loader';
 
 const options = [
     { value: 'current_week', label: 'Current Week' },
@@ -8,41 +12,66 @@ const options = [
 ];
 
 const OverviewBalances = () => {
+    const [accounts, setAccounts] = useState();
+    const { loading, request } = useHttp();
+
+    const { token } = useContext(AuthContext);
+
+    const fetchAccounts = useCallback(async () => {
+        try {
+            const accountsList = await request('/api/account', 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+            setAccounts(accountsList);
+        } catch (e) {
+
+        }
+    }, [token, request]);
+
+    useEffect(() => {
+        fetchAccounts()
+    }, [fetchAccounts]);
+
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
+
     return (
-        <div className='dashboard-overview__balances'>
-            <div className="dashboard-overview__balances-header d-flex justify-content-between align-items-center">
-                <div className="dashboard-overview__balances-title">
-                    Balances
+        <>
+            { !loading && accounts && 
+                <div className='dashboard-overview__balances'>
+                    <div className="dashboard-overview__balances-header d-flex justify-content-between align-items-center">
+                        <div className="dashboard-overview__balances-title">
+                            Balances
+                        </div>
+                        <div className="dashboard-overview__balances-period">
+                            <i class="far fa-calendar"></i>
+                            <select name="period" id="period">
+                                {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="row">
+                        {accounts.map(account => {
+                            return (
+                                <div className="col-12 col-lg-4" key={account._id}>
+                                    <BalancesCard
+                                        title={account.name}
+                                        money='2,560.50'
+                                        currency='EUR' />
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-                <div className="dashboard-overview__balances-period">
-                    <i class="far fa-calendar"></i>
-                    <select name="period" id="period">
-                        {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
-                    </select>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-12 col-lg-4">
-                    <BalancesCard 
-                        title='RO73 BUCU 0623 0545 0883 EUR' 
-                        money='2,560.50'
-                        currency='EUR' />
-                </div>
-                <div className="col-12 col-lg-4">
-                    <BalancesCard 
-                        title='RO73 BUCU 0623 0545 0883 EUR' 
-                        money='2,560.50'
-                        currency='EUR' />
-                </div>
-                <div className="col-12 col-lg-4">
-                    <BalancesCard 
-                        title='RO73 BUCU 0623 0545 0883 EUR' 
-                        money='2,560.50'
-                        currency='EUR' />
-                </div>
-            </div>
-        </div>
+            }
+        </> 
+        
     );
 }
- 
+
+    
+
 export default OverviewBalances;

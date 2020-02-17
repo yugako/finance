@@ -1,15 +1,18 @@
 import React from 'react';
-import {NavLink, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
 // Routes
 
 import Overview from './overview';
 import Activity from './activity';
-import Balances from './balances';
-import Debits from './debits';
+import Accounts from './accounts';
 import History from './history';
 import Settings from './settings';
 import Help from './help';
+
+
+import AddAccount from './accounts/addAccount';
+import SingleAccount from './accounts/singleAccount';
 
 import SideNav from '../../components/dashboard/sidenav';
 const Dashboard = () => {
@@ -18,6 +21,9 @@ const Dashboard = () => {
             <SideNav />
             <main class='dashboard-main'>
                 <Switch>
+                    {/*
+                        Main routes
+                    */}
                     <Route 
                         path="/dashboard" exact 
                         component={Overview}
@@ -27,12 +33,8 @@ const Dashboard = () => {
                         component={Activity}
                     />
                     <Route 
-                        path="/dashboard/balances" exact 
-                        component={Balances}
-                    />
-                    <Route 
-                        path="/dashboard/cards" exact 
-                        component={Debits}
+                        path="/dashboard/accounts" exact 
+                        component={Accounts}
                     />
                     <Route 
                         path="/dashboard/history" exact 
@@ -45,6 +47,15 @@ const Dashboard = () => {
                     <Route 
                         path="/dashboard/help" exact 
                         component={Help}
+                    />
+                    {/* Additional routes */}
+                    <Route 
+                        path="/dashboard/accounts/add" exact 
+                        component={AddAccount}
+                    />
+                    <Route 
+                        path="/dashboard/accounts/:id" exact 
+                        component={SingleAccount}
                     />
                     <Route render={() => <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>} />
                 </Switch>

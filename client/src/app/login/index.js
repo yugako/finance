@@ -16,6 +16,7 @@ const Login = () => {
     const [form, setForm] = useState({
         email: '',
         password: '',
+        keep_logged: '',
     });
 
     useEffect(() => {
@@ -23,8 +24,13 @@ const Login = () => {
         clearError();
     }, [error, message, clearError]);
 
+
     const changeHandler = event => {
-        setForm({...form, [event.target.name]: event.target.value})
+        if(event.target.type === 'checkbox') {
+            setForm({...form, [event.target.name]: event.target.checked});
+        } else {
+            setForm({...form, [event.target.name]: event.target.value});
+        }
     }
 
     const loginHandler = async (e) => {
@@ -34,7 +40,7 @@ const Login = () => {
                 ...form
             });
 
-            auth.login(data.token, data.userId);
+            auth.login(data.token, data.userId, form.keep_logged, data.userFirstName, data.userLastName);
             
         } catch (error) {
             
@@ -52,15 +58,22 @@ const Login = () => {
                                 Sign in
                         </div>
                         <form onSubmit={loginHandler}>
-                            <div class="form-group">
-                                <input name='email'  onChange={changeHandler} required type="email"/>
-                                <label for="input" class="control-label">Email address</label>
-                                <i class="bar"></i>
+                            <div className="form-group">
+                                <input name='email' value={form.email}  onChange={changeHandler} required type="email"/>
+                                <label htmlFor="input" className="control-label">Email address</label>
+                                <i className="bar"></i>
                             </div>
-                            <div class="form-group">
-                                <input name='password' onChange={changeHandler} required type="password"/>
-                                <label for="input" class="control-label">Password</label>
-                                <i class="bar"></i>
+                            <div className="form-group">
+                                <input name='password' value={form.password} onChange={changeHandler} required type="password"/>
+                                <label htmlFor="input" className="control-label">Password</label>
+                                <i className="bar"></i>
+                            </div>
+                            <div className="checkbox terms-label">
+                                <label>
+                                    <input onChange={changeHandler} name='keep_logged' type="checkbox"/>
+                                    <i className="helper"></i>
+                                    Keep logged in?
+                                </label>
                             </div>
                             <input type="submit" disabled={loading}  className='submit' value="Sign In"/>
                         </form>

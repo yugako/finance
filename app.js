@@ -10,7 +10,7 @@ app.use(express.json({extended: true}));
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/api/auth', require('./routes/auth.routes'));
-
+app.use('/api/account', require('./routes/account.routes'));
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

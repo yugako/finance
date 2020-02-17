@@ -1,8 +1,24 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { AuthContext } from '../../../context/AuthContext';
+import {NavLink} from 'react-router-dom';
 
 const TopBar = ({title}) => {
     const auth =  useContext(AuthContext);
+    const [fullName, setFullName] = useState('user');
+
+    const getFullName = () => {
+        let data = null;
+        
+        if(localStorage.getItem('userData')) {
+            data = JSON.parse(localStorage.getItem('userData'));
+            setFullName(data.userFullName);
+        }
+    }
+
+    useEffect(() => {
+        getFullName();
+    }, [getFullName]);
+   
 
     return (
         <div className='dashboard-top-bar d-flex justify-content-between align-items-center'>
@@ -12,6 +28,11 @@ const TopBar = ({title}) => {
             <div className="dashboard-top-bar__options d-flex justify-content-between justify-md-content-end align-items-center">
                 <div className="dashboard-top-bar__options-new">
                     <img src={require('../../../assets/images/add.png')} alt="+"/>
+                    <ul className='dashboard-top-bar__options-new-dropdown dropdown'>
+                        <li>
+                            <NavLink to="/dashboard/accounts/add">Add account</NavLink>
+                        </li>
+                    </ul>
                 </div>
                 <div className="dashboard-top-bar__options-search">
                    <img src={require('../../../assets/images/search.png')} alt="Find"/>
@@ -23,9 +44,10 @@ const TopBar = ({title}) => {
                 <div className="dashboard-top-bar__options-user d-flex align-items-center">
                     <img src="https://www.unicef.org/montenegro/sites/unicef.org.montenegro/files/styles/hero_desktop/public/Nadja%20mlada%20reporterka%20UNICEFova%20volonterka.jpg?itok=vcOwP46I" alt="User"/>
                     <i class="arrow fas fa-angle-down"></i>
-                    <ul className='dashboard-top-bar__options-user-dropdown'>
+                    <ul className='dashboard-top-bar__options-user-dropdown dropdown'>
+                        <span>Hello, {fullName}</span>
                         <li>
-                            <a href="#">Edit profile</a>
+                            <NavLink to="/dashboard/edit-profile">Edit profile</NavLink>
                         </li>
                         <li>
                             <span onClick={auth.logout}>Log Out</span>

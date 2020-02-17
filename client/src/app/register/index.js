@@ -20,7 +20,7 @@ const Register = () => {
 
     useEffect(() => {
         console.log(error);
-        message(error);
+        // message(error);
         clearError();
     }, [error, message, clearError]);
 
@@ -41,13 +41,12 @@ const Register = () => {
                 email: '',
                 password: '',
                 terms: '',
-            })
-
-            console.log(message(data.message));
+            });
             
         } catch (error) {
-            
         }
+
+
     }
 
     return (
@@ -62,34 +61,34 @@ const Register = () => {
                                 Sign up 
                         </div>
                         <form onSubmit={registerHandler}>
-                            <div class="form-group">
-                                <input onChange={changeHandler} name='first_name' required type="text"/>
-                                <label for="input" class="control-label">First Name</label>
-                                <i class="bar"></i>
+                            <div className="form-group">
+                                <input onChange={changeHandler} value={form.first_name} name='first_name' required type="text"/>
+                                <label htmlFor="input" className="control-label">First Name</label>
+                                <i className="bar"></i>
                             </div>
-                            <div class="form-group">
-                                <input onChange={changeHandler} name='last_name' required type="text"/>
-                                <label for="input" class="control-label">Last Name</label>
-                                <i class="bar"></i>
+                            <div className="form-group">
+                                <input onChange={changeHandler} value={form.last_name} name='last_name' required type="text"/>
+                                <label htmlFor="input" className="control-label">Last Name</label>
+                                <i className="bar"></i>
                             </div>
-                            <div class="form-group">
-                                <input onChange={changeHandler} name='email' required type="email"/>
-                                <label for="input" class="control-label">Email address</label>
-                                <i class="bar"></i>
+                            <div className="form-group">
+                                <input onChange={changeHandler} value={form.email} name='email' required type="email"/>
+                                <label htmlFor="input" className="control-label">Email address</label>
+                                <i className="bar"></i>
                             </div>
-                            <div class="form-group">
-                                <input onChange={changeHandler} name='password' required type="password"/>
+                            <div className="form-group">
+                                <input onChange={changeHandler} value={form.password} name='password' required type="password"/>
                                 <label 
-                                    for="input" class="control-label">
+                                    htmlFor="input" className="control-label">
                                     Password
                                 </label>
-                                <i class="bar"></i>
+                                <i className="bar"></i>
                             </div>
 
-                            <div class="checkbox terms-label">
+                            <div className="checkbox terms-label">
                                 <label>
                                     <input required name='terms' type="checkbox"/>
-                                    <i class="helper"></i>
+                                    <i className="helper"></i>
                                     I have read the 
                                     <NavLink to='/terms'>
                                         Terms and Conditions.

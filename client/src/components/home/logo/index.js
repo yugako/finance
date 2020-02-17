@@ -1,11 +1,11 @@
 import React from 'react';
-
+import {NavLink} from 'react-router-dom';
 const Logo = () => {
     return (
-        <a href='#' className='home-logo'>
+        <NavLink to='/' className='home-logo'>
             wallet
             <span>.on</span>
-        </a>
+        </NavLink>
     );
 }
  

@@ -18,6 +18,7 @@ export const useHttp = () => {
             const data = await response.json();
 
             if (!response.ok) {
+                
                 throw new Error(data.message || 'Smth went wrong');
             }
 
@@ -25,9 +26,7 @@ export const useHttp = () => {
 
             return data;
 
-        } catch (error) {
-            console.log(error.message);
-            
+        } catch (error) {            
             setLoading(false);
             setError(error.message);
             throw error;

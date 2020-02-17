@@ -25,7 +25,7 @@ const Features = () => {
         <section className='home-features' id='features'>
             <div className="container">
                 <h2 className='home-features__title'>
-                    Everything you’ll ever need.
+                    Be involved in your financial decisions
                 </h2>
                 <div className="row">
                     {featuresData.map(feature => {

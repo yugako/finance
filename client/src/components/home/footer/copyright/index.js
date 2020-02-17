@@ -4,7 +4,7 @@ const FooterCopyright = () => {
     return (
         <div className="home-footer__copyright">
             <div className="container">
-                <p>Powered by <a href="hasiuk.netlify.com">George</a></p>
+                <p>Powered by <a href="https://hasiuk.netlify.com">George</a></p>
             </div>
         </div>
     );
