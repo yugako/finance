@@ -10,9 +10,9 @@ const router = Router();
  */
 router.post('/create', auth, async (req, res) => {
     try {
-        const {name, accountType, accountCurrency, balance} = req.body;
+        const {acountName, accountType, accountCurrency, balance} = req.body;
 
-        const existing =  await Account.findOne({name});
+        const existing =  await Account.findOne({acountName});
 
         if(existing) {
             return res.json({
@@ -21,7 +21,7 @@ router.post('/create', auth, async (req, res) => {
         }
 
         const account = new Account({
-            name, 
+            acountName, 
             owner: req.user.userId,
             accountType,
             accountCurrency,
@@ -30,7 +30,7 @@ router.post('/create', auth, async (req, res) => {
 
         await account.save();
 
-        res.status.json({account});
+        res.status(200).json({account});
 
 
 	} catch(e) {

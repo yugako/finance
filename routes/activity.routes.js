@@ -14,17 +14,19 @@ router.post('/create', auth, async (req, res) => {
 
         const activity = new Activity({
             activityName, 
+            activityType, activitySpendings, accountType, activityDate,
             owner: req.user.userId,
-            activityType, activitySpendings, accountType, activityDate
+            
         });
 
         await activity.save();
 
-        res.status.json({activity});
+        console.log(res.status);
+        res.status(200).json({activity});
 
 
 	} catch(e) {
-        console.log(e);
+        console.log(e.message);
 		res.status(500).json({message: 'Smth went wrong! Try again.'})
 	}
 });
@@ -32,7 +34,7 @@ router.post('/create', auth, async (req, res) => {
 /**
  * Get all activities
  */
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, async (req, res, next) => {
     try {
 		const activities = await Activity.find({
             owner: req.user.userId
@@ -48,7 +50,7 @@ router.get('/', auth, async (req, res) => {
 /**
  * Get activity by id
  */
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', auth, async (req, res, next) => {
     try {
 		const activity = await Activity.findById(req.params.id);
         res.json(activity);

@@ -58,7 +58,7 @@ const OverviewBalances = () => {
                             return (
                                 <div className="col-12 col-lg-4" key={account._id}>
                                     <BalancesCard
-                                        title={account.name}
+                                        title={account.acountName}
                                         link={account._id}
                                         money={account.balance}
                                         currency={account.accountCurrency} />

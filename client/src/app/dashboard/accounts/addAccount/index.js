@@ -52,7 +52,7 @@ const AddAccount = () => {
     const auth = useContext(AuthContext);
 
     const [account, setAccount] = useState({
-        name: '',
+        acountName: '',
         accountType: '',
         accountCurrency: '',
         balance: 0
@@ -73,7 +73,7 @@ const AddAccount = () => {
             });
 
             setAccount({
-                name: '',
+                acountName: '',
                 accountType: '',
                 accountCurrency: '',
                 balance: 0
@@ -91,8 +91,8 @@ const AddAccount = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="form-group">
-                            <input name='name' required type="text"
-                                value={account.name}
+                            <input name='acountName' required type="text"
+                                value={account.acountName}
                                 onChange={changeHandler} />
                             <label htmlFor="input" className="control-label">
                                 Account name

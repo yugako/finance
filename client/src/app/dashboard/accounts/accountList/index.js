@@ -14,7 +14,7 @@ const AccountList = ({accounts}) => {
                                 <div className='dashboard-accounts__item' >
                                     <NavLink to={`/dashboard/accounts/${account._id}`}>
                                         <h5 className='dashboard-accounts__item-title'>
-                                            {account.name}
+                                            {account.acountName}
                                         </h5>
                                     </NavLink>
                                 </div>

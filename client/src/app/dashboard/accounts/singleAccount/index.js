@@ -36,7 +36,7 @@ const SingleAccount = () => {
         <>
             {!loading && account && 
                 <section>
-                    <TopBar title={`Account: ${account.name}`} />
+                    <TopBar title={`Account: ${account.acountName}`} />
                      
                 </section>
             }
