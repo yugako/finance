@@ -10,9 +10,12 @@ import History from './history';
 import Settings from './settings';
 import Help from './help';
 
-
+/** Account */
 import AddAccount from './accounts/addAccount';
 import SingleAccount from './accounts/singleAccount';
+
+/** Activity */
+import AddActivity from './activity/addActivity';
 
 import SideNav from '../../components/dashboard/sidenav';
 const Dashboard = () => {
@@ -48,7 +51,7 @@ const Dashboard = () => {
                         path="/dashboard/help" exact 
                         component={Help}
                     />
-                    {/* Additional routes */}
+                    {/* Account routes */}
                     <Route 
                         path="/dashboard/accounts/add" exact 
                         component={AddAccount}
@@ -57,6 +60,13 @@ const Dashboard = () => {
                         path="/dashboard/accounts/:id" exact 
                         component={SingleAccount}
                     />
+
+                    {/* Activity routes */}
+                    <Route 
+                        path="/dashboard/activity/add" exact 
+                        component={AddActivity}
+                    />
+
                     <Route render={() => <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>} />
                 </Switch>
             </main> 

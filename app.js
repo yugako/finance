@@ -6,11 +6,14 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 app.use(express.json({extended: true}));
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/account', require('./routes/account.routes'));
+app.use('/api/activity', require('./routes/activity.routes'));
+
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
@@ -19,6 +22,7 @@ app.get('*', (req, res) => {
 });
 
 
+/** Start server */
 async function start() {
 	try {
 		await mongoose.connect(config.get('mongoURI'), {

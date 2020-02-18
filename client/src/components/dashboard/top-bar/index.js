@@ -32,6 +32,9 @@ const TopBar = ({title}) => {
                         <li>
                             <NavLink to="/dashboard/accounts/add">Add account</NavLink>
                         </li>
+                        <li>
+                            <NavLink to="/dashboard/activity/add">Add activity</NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="dashboard-top-bar__options-search">
