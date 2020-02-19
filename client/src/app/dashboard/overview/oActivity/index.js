@@ -1,50 +1,37 @@
-import React from 'react';
+import React, { useState, useContext, useCallback, useEffect } from 'react';
+
+import { useHttp } from '../../../../hooks/http.hook';
+import { AuthContext } from '../../../../context/AuthContext';
+import Loader from '../../../../components/elements/Loader';
+
 import ActivitySingle from '../../../../components/dashboard/activitySingle';
 
-const activities = [
-    {
-        icon: 'fas fa-utensils',
-        title: 'Serv Einsten Pub - Piata Mica',
-        date: '26 July 2019, 11:08 PM',
-        amount: ' +2313.5', 
-        currency: 'EUR', 
-        account: 'RO41 BUCU 0623 4675 6450 RON',
-    },
-    {
-        icon: 'fas fa-pizza-slice',
-        title: 'Fast Food Yummy Yang',
-        date: '27 July 2019, 3:39 PM',
-        amount: '-26', 
-        currency: 'EUR', 
-        account: 'DE89 3704 0044 0532 0130 00',
-    },
-    {
-        icon: 'fas fa-money-bill',
-        title: 'Conversion from EUR to RON',
-        date: '28 July 2019',
-        amount: '+400', 
-        currency: 'EUR', 
-        account: 'RO73 BUCU 0623 0545 0883',
-    },
-    {
-        icon: 'fas fa-utensils',
-        title: 'Rc146 Rompetrol Sibi',
-        date: '30 July 2019, 3:39 PM',
-        amount: '-450', 
-        currency: 'EUR', 
-        account: 'DE89 3704 0044 0532 0130 00',
-    },
-    {
-        icon: 'fas fa-drumstick-bite',
-        title: 'Fast Food Yummy Yang',
-        date: '31 July 2019, 3:39 PM',
-        amount: '-38', 
-        currency: 'EUR', 
-        account: 'RO73 BUCU 0623 0545 0883',
-    },
-]
-
 const OverviewActivity = () => {
+    const [activities, setActivities] = useState();
+    const { loading, request } = useHttp();
+
+    const { token } = useContext(AuthContext);
+
+    const fetchActivities = useCallback(async () => {
+        try {
+            const activitiesList = await request('/api/activity', 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+            setActivities(activitiesList);
+        } catch (e) {
+
+        }
+    }, [token, request]);
+
+    useEffect(() => {
+        fetchActivities()
+    }, [fetchActivities]);
+
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
     return (
         <div className='dashboard-overview__activity'>
             <div className="dashboard-overview__activity-header d-flex justify-content-between">
@@ -56,16 +43,13 @@ const OverviewActivity = () => {
                 </div>
             </div>
             <div className="dashboard-overview__activity-list">
-                {activities.map(
-                    activity => 
+                {!loading && activities && activities.map( activity => 
                     <ActivitySingle
-                        icon={activity.icon} 
-                        title={activity.title} 
-                        date={activity.date}
-                        amount={activity.amount}
-                        currency={activity.currency}
-                        account={activity.account} 
-                        key={activity.title} 
+                        title={activity.activityName} 
+                        date={activity.activityDate}
+                        amount={activity.activitySpendings}
+                        account={activity.accountName} 
+                        key={activity._id} 
                     />
                 )}
             </div>

@@ -52,7 +52,9 @@ const AddActivity = () => {
     const history = useHistory();
     const auth = useContext(AuthContext);
     const {token} = useContext(AuthContext);
+    const {loading,request} = useHttp();
 
+    const [accounts, setAccounts] = useState(null);
     const [activity, setActivity] = useState({
         activityName: '',
         activityType: '',
@@ -60,11 +62,6 @@ const AddActivity = () => {
         accountName: '',
         activityDate: '',
     });
-
-    const [accounts, setAccounts] = useState(null);
-
-    const {request} = useHttp();
-
 
     const changeHandler = event => {
         setActivity({...activity, [event.target.name]: event.target.value});
@@ -78,6 +75,7 @@ const AddActivity = () => {
             });
 
             setAccounts(data);
+
         } catch (e) {}
     }, [token, request]);
 
@@ -135,11 +133,13 @@ const AddActivity = () => {
                     </div>
                     <div className="col-12 col-lg-6">
                         <div class="form-group">
-                            <select name='accountName' onChange={changeHandler} >
-                                {accounts && accounts.map((option,index) => {
-                                    return <option key={index} value={option.accountName}>{option.accountName}</option>
-                                })}
-                            </select>
+                            {!loading && accounts && 
+                                <select defaultValue={{label: 'Choose', value: accounts[0].acountName}} name='accountName' onChange={changeHandler} >
+                                    {accounts.map((option,index) => {
+                                        return <option key={index} value={option.acountName}>{option.acountName}</option>
+                                    })}
+                                </select>
+                            }
                             <label for="select" class="control-label">Account type</label><i class="bar"></i>
                         </div>
                     </div>
