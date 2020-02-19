@@ -10,11 +10,11 @@ const router = Router();
  */
 router.post('/create', auth, async (req, res) => {
     try {
-        const {activityName, activityType, activitySpendings, accountType, activityDate} = req.body;
+        const {activityName, activityType, activitySpendings, accountName, activityDate} = req.body;
 
         const activity = new Activity({
             activityName, 
-            activityType, activitySpendings, accountType, activityDate,
+            activityType, activitySpendings, accountName, activityDate,
             owner: req.user.userId,
             
         });

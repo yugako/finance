@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect, useCallback} from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {useHttp} from '../../../../hooks/http.hook';
@@ -51,14 +51,18 @@ const activityTypeOptions = [
 const AddActivity = () => {
     const history = useHistory();
     const auth = useContext(AuthContext);
+    const {token} = useContext(AuthContext);
 
     const [activity, setActivity] = useState({
         activityName: '',
         activityType: '',
         activitySpendings: '',
-        accountType: '',
+        accountName: '',
         activityDate: '',
     });
+
+    const [accounts, setAccounts] = useState(null);
+
     const {request} = useHttp();
 
 
@@ -66,6 +70,20 @@ const AddActivity = () => {
         setActivity({...activity, [event.target.name]: event.target.value});
         console.log(activity);
     }
+
+    const fetchAccounts = useCallback(async () => {
+        try {
+            const data = await request('/api/account', 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+
+            setAccounts(data);
+        } catch (e) {}
+    }, [token, request]);
+
+    useEffect(() => {
+        fetchAccounts();
+    }, [fetchAccounts]);
 
     const submitHandler = async e => {
         e.preventDefault();
@@ -79,7 +97,7 @@ const AddActivity = () => {
                 activityName: '',
                 activityType: '',
                 activitySpendings: '',
-                accountType: '',
+                accountName: '',
                 activityDate: '', 
             });
 
@@ -117,9 +135,9 @@ const AddActivity = () => {
                     </div>
                     <div className="col-12 col-lg-6">
                         <div class="form-group">
-                            <select value={activity.accountType} name='accountType' onChange={changeHandler} >
-                                {accountTypeOptions.map((option,index) => {
-                                    return <option key={index} value={option.value}>{option.label}</option>
+                            <select name='accountName' onChange={changeHandler} >
+                                {accounts && accounts.map((option,index) => {
+                                    return <option key={index} value={option.accountName}>{option.accountName}</option>
                                 })}
                             </select>
                             <label for="select" class="control-label">Account type</label><i class="bar"></i>
