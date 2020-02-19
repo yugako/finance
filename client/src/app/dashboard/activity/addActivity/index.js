@@ -76,6 +76,11 @@ const AddActivity = () => {
 
             setAccounts(data);
 
+            setActivity({
+                ...activity, 
+                accountName: data[0].acountName,
+                activityType: activityTypeOptions[0].value
+            });
         } catch (e) {}
     }, [token, request]);
 
@@ -132,25 +137,25 @@ const AddActivity = () => {
                         </div>
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div class="form-group">
+                        <div className="form-group">
                             {!loading && accounts && 
-                                <select defaultValue={{label: 'Choose', value: accounts[0].acountName}} name='accountName' onChange={changeHandler} >
+                                <select value='' name='accountName' onChange={changeHandler}>
                                     {accounts.map((option,index) => {
                                         return <option key={index} value={option.acountName}>{option.acountName}</option>
                                     })}
                                 </select>
                             }
-                            <label for="select" class="control-label">Account type</label><i class="bar"></i>
+                            <label htmlFor="select" className="control-label">Account type</label><i className="bar"></i>
                         </div>
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div class="form-group">
-                            <select value={activity.activityType} name='activityType' onChange={changeHandler} >
+                        <div className="form-group">
+                            <select value={activityTypeOptions[0].value} name='activityType' onChange={changeHandler} >
                                 {activityTypeOptions.map((option, index) => {
                                     return <option key={index} value={option.value}>{option.label}</option>
                                 })}
                             </select>
-                            <label for="select" class="control-label">Activity type</label><i class="bar"></i>
+                            <label htmlFor="select" className="control-label">Activity type</label><i className="bar"></i>
                         </div>
                     </div>
                     <div className="col-12">

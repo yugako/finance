@@ -1,6 +1,9 @@
 @import './vars';
 @import './mixins';
 
+:root {
+    --text-primary: #565682;
+}
 body {
     margin: 0;
     padding: 0;

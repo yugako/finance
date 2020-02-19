@@ -5,7 +5,7 @@
             width: 100%;
         }
         &-user {
-            color: $text-primary;
+            color: var(--text-primary);
             position: relative;
             padding: 5px;
             cursor: pointer;
@@ -55,7 +55,7 @@
         }
         &-badges {
             font-size: 26px;
-            color: $text-primary;
+            color: var(--text-primary);
             position: relative;
             margin-right: 20px;
             cursor: pointer;
