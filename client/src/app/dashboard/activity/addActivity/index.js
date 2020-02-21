@@ -139,7 +139,7 @@ const AddActivity = () => {
                     <div className="col-12 col-lg-6">
                         <div className="form-group">
                             {!loading && accounts && 
-                                <select value='' name='accountName' onChange={changeHandler}>
+                                <select value={accounts[0].accountName} name='accountName' onChange={changeHandler}>
                                     {accounts.map((option,index) => {
                                         return <option key={index} value={option.acountName}>{option.acountName}</option>
                                     })}
