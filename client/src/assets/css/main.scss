@@ -3,6 +3,17 @@
 
 :root {
     --text-primary: #565682;
+    --text-secondary: #9191af;
+
+    --primary: #14b45c;
+    --primary-dark: #124127;
+    --secondary: #e35f4b;
+
+    --light: #ffffff;
+    --dark: #212145;
+    --light-grey: #c7cfe4;
+
+    --primary-font: 'Lato', sans-serif;
 }
 body {
     margin: 0;
@@ -191,7 +202,6 @@ select {
         
 }
 
-@import './elements';
 
 @import './home/menu';
 @import './home/header';
@@ -203,4 +213,3 @@ select {
 
 @import './dashboard/dashboard';
 @import './material_fields';
-@import './auth/auth';

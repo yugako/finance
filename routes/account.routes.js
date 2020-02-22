@@ -67,4 +67,18 @@ router.get('/:id', auth, async (req, res) => {
 	}
 });
 
+/**
+*   Update account
+*/
+
+router.put('/:id', auth, async(req, res) => {
+        try {
+            const account = await Account.findByIdAndUpdate(req.params.id, req.body);
+
+            res.json(account);
+        } catch {
+             res.status(500).json({message: 'Smth went wrong! Try again.'})
+        }
+})
+
 module.exports = router;

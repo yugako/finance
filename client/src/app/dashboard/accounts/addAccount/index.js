@@ -55,13 +55,18 @@ const AddAccount = () => {
         acountName: '',
         accountType: '',
         accountCurrency: '',
-        balance: 0
+        balance: 0,
     });
     const {request} = useHttp();
 
 
     const changeHandler = event => {
-        setAccount({...account, [event.target.name]: event.target.value});
+        if(event.target.type === 'number') {
+            setAccount({...account, [event.target.name]: +event.target.value});
+        } else {
+            setAccount({...account, [event.target.name]: event.target.value});
+        }
+        
     }
 
     const submitHandler = async e => {

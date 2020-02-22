@@ -1,0 +1,19 @@
+.message {
+    &-wrapper {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+    &-list {
+  
+    }
+    &-item {
+        background-color: var(--secondary);
+        font-family: var(--primary-font);
+        color: var(--light);
+        margin-bottom: 10px;
+        padding: 10px;
+        list-style: none;
+    }
+}

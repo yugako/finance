@@ -57,7 +57,7 @@ const AddActivity = () => {
     const [accounts, setAccounts] = useState(null);
     const [activity, setActivity] = useState({
         activityName: '',
-        activityType: '',
+        activityType: activityTypeOptions[0].value,
         activitySpendings: '',
         accountName: '',
         activityDate: '',
@@ -79,7 +79,6 @@ const AddActivity = () => {
             setActivity({
                 ...activity, 
                 accountName: data[0].acountName,
-                activityType: activityTypeOptions[0].value
             });
         } catch (e) {}
     }, [token, request]);
@@ -92,7 +91,15 @@ const AddActivity = () => {
         e.preventDefault();
 
         try {
+            const currentAccount = accounts.find(account => activity.accountName === account.acountName);
+
+            currentAccount.balance = parseFloat(currentAccount.balance) + parseFloat(activity.activitySpendings);
+
             const data = await request('/api/activity/create', 'POST', {...activity}, {
+                Authorization: `Bearer ${auth.token}`
+            });
+
+            const update = await request(`/api/account/${currentAccount._id}`, 'PUT', currentAccount, {
                 Authorization: `Bearer ${auth.token}`
             });
 
@@ -127,7 +134,7 @@ const AddActivity = () => {
                     </div>
                     <div className="col-12">
                         <div className="form-group">
-                            <input name='activitySpendings' required type="text"
+                            <input name='activitySpendings' required type="number"
                                 value={activity.activitySpendings}
                                 onChange={changeHandler} />
                             <label htmlFor="input" className="control-label">
@@ -150,7 +157,7 @@ const AddActivity = () => {
                     </div>
                     <div className="col-12 col-lg-6">
                         <div className="form-group">
-                            <select value={activityTypeOptions[0].value} name='activityType' onChange={changeHandler} >
+                            <select value={activity.activityType} name='activityType' onChange={changeHandler} >
                                 {activityTypeOptions.map((option, index) => {
                                     return <option key={index} value={option.value}>{option.label}</option>
                                 })}

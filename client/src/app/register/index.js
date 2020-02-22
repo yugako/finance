@@ -3,11 +3,12 @@ import {NavLink} from 'react-router-dom';
 
 import Pig from '../../assets/images/pig.svg';
 import { useHttp } from '../../hooks/http.hook';
-import { useMessage } from '../../hooks/message.hook';
+import Message from '../../components/elements/Message';
 
+import './index.scss';
 const Register = () => {
     const {loading, error, request, clearError} = useHttp();
-    const message = useMessage();
+    const [localError, setLocalError] = useState([]);
 
     const [form, setForm] = useState({
         first_name: '',
@@ -18,9 +19,10 @@ const Register = () => {
     });
 
     useEffect(() => {
-        // message(error);
-        clearError();
-    }, [error, message, clearError]);
+        setLocalError(JSON.parse(error));
+
+        // clearError();
+    }, [error, clearError]);
 
     const changeHandler = event => {
         if(event.target.type === 'checkbox') {
@@ -42,14 +44,16 @@ const Register = () => {
                 last_name: '',
                 email: '',
                 password: '',
-                terms: '',
+                terms: false,
             });
             
-        } catch (error) {}
+        } catch (error) {
+        }
     }
 
     return (
         <section className='register'>
+            {!loading && localError ? <Message message={localError} />: null}
             <div className="container-fluid">
                 <div className="row align-items-center">
                     <div className="col-12 col-lg-6 h-100">

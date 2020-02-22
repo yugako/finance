@@ -11,8 +11,8 @@ const router = Router();
 router.post(
 	'/register',
 	[
-		check('first_name', 'Incorrect name. Min 2 symbols').isLength({min: 2}),
-		check('last_name', 'Incorrect name. Min 2 symbols').isLength({min: 2}),
+		check('first_name', 'Incorrect first name. Min 2 symbols').isLength({min: 2}),
+		check('last_name', 'Incorrect last name. Min 2 symbols').isLength({min: 2}),
 		check('email', 'Incorrect mail').isEmail(),
 		check('password', 'Incorrect password. Min 6 symbols').isLength({min: 6}),
 	], 
@@ -73,7 +73,7 @@ router.post(
 		const user = await User.findOne({email});
 
 		if (!user) {
-			return res.status(400).json({message: 'User not found'});
+			return res.status(400).json({message: 'User with entered email was not found'});
 		}
 
 		const isMatch = await bcrypt.compare(password, user.password);

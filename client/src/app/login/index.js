@@ -7,11 +7,15 @@ import { AuthContext } from '../../context/AuthContext';
 
 import Pig from '../../assets/images/pig.svg';
 
+import Message from '../../components/elements/Message';
+
+import './index.scss';
 const Login = () => {
 
     const {loading, error, request, clearError} = useHttp();
     const auth =  useContext(AuthContext);
     const message = useMessage();
+    const [localError, setLocalError] = useState([]);
 
     const [form, setForm] = useState({
         email: '',
@@ -20,9 +24,10 @@ const Login = () => {
     });
 
     useEffect(() => {
-        message(error);
-        clearError();
-    }, [error, message, clearError]);
+        // console.log(JSON.parse(error));
+        setLocalError(error);
+       
+    }, [error]);
 
 
     const changeHandler = event => {
@@ -48,6 +53,8 @@ const Login = () => {
     }
     return (
         <section className='login'>
+                    {!loading && localError ? <Message message={localError} />: null}
+
             <div className="container-fluid">
                 <div className="row align-items-center">
                     <div className="col-12 col-lg-6 h-100">
