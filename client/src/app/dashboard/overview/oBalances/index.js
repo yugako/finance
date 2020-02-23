@@ -5,6 +5,8 @@ import { useHttp } from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 import Loader from '../../../../components/elements/Loader';
 
+import './index.scss';
+
 const options = [
     { value: 'current_week', label: 'Current Week' },
     { value: 'current_month', label: 'Current Month' },
@@ -39,15 +41,12 @@ const OverviewBalances = () => {
     const accountActivity = (accountName, accountBalance) => {
         const current = !loading && activities && activities.filter(activity =>  activity.accountName === accountName);
 
-
         const data = !loading && current && current.map(c => {
             return {
                 date: new Date(c.activityDate).getTime(),
                 currentBalance: parseFloat(accountBalance) - c.activitySpendings
             };
         }).sort((a,b) => a.date - b.date).reverse();
-
-
 
         return data;
     }
@@ -70,12 +69,12 @@ const OverviewBalances = () => {
                         <div className="dashboard-overview__balances-title">
                             Balances
                         </div>
-                        <div className="dashboard-overview__balances-period">
-                            <i class="far fa-calendar"></i>
+                        {/* <div className="dashboard-overview__balances-period">
+                            <i className="far fa-calendar"></i>
                             <select name="period" id="period">
                                 {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
                             </select>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="row">
                         {accounts.map(account => {

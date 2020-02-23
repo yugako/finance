@@ -7,7 +7,6 @@ import './index.scss';
 const BalancesCard = ({title, link, money, currency, datas}) => {
     return (
         <div className='balances-card'>
-            {console.log(datas)}
             <div className="balances-card__main">
                 <div className="balances-card__header d-flex justify-content-between align-items-center">
                     <div className="balances-card__title">

@@ -1,0 +1,25 @@
+.dashboard-overview {
+    &__balances {
+        margin-top: 30px;
+        &-title {
+            color: var(--text-secondary);
+            font-family: var(--primary-font);
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        &-period {
+            position: relative;
+            i {
+                position: absolute;
+                z-index: 5;
+                top: 50%;
+                left: 20px;
+                transform: translateY(-50%);
+                color: var(--text-secondary);
+                font-weight: 600;
+            }
+        }   
+    }
+}

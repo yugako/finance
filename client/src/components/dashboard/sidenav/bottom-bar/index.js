@@ -2,6 +2,8 @@ import React, {useContext} from 'react';
 import {NavLink} from 'react-router-dom';
 import {AuthContext} from '../../../../context/AuthContext';
 
+import './index.scss';
+
 const BottomBar = () => {
 
     const auth =  useContext(AuthContext);

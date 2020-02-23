@@ -1,9 +1,9 @@
 import React from 'react';
+import './index.scss';
 
-const ActivitySingle = ({icon, title, date, amount, currency, account}) => {
+const ActivitySingle = ({title, date, amount, account}) => {
     return (
         <div className='activity d-flex align-items-center'>
-           
            <div className="activity-content d-flex justify-content-start flex-wrap justify-content-sm-between align-items-center">
                 <div className="activity-content__info">
                     <div className="activity-content__title">

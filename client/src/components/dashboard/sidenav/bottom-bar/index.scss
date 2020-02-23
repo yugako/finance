@@ -1,15 +1,15 @@
 .dashboard-bottom-bar {
     margin-top: auto;
-    color: $text-primary;
-    @include sm-size-max {
+    color: var(--text-primary);
+    @media screen and (max-width: 767px) {
         margin-top: 10px;
     }
     &__help {
-        background-color: $light;
+        background-color: var(--light);
         padding: 6px 12px;
         border-radius: 10px;
         a {
-            color: $text-primary;
+            color: var(--text-primary);
         }
         i {
             margin-right: 10px;

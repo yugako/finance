@@ -3,8 +3,10 @@ import React, { useState, useContext, useCallback, useEffect } from 'react';
 import { useHttp } from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 import Loader from '../../../../components/elements/Loader';
+import ActivitySingle from './oActivitySingle';
 
-import ActivitySingle from '../../../../components/dashboard/activitySingle';
+import './index.scss';
+
 
 const OverviewActivity = () => {
     const [activities, setActivities] = useState();
@@ -53,9 +55,9 @@ const OverviewActivity = () => {
                     />
                 )}
             </div>
-            <button className="dashboard-overview__activity-more">
+            {/* <button className="dashboard-overview__activity-more">
                 Load More
-            </button>
+            </button> */}
             
             
         </div>

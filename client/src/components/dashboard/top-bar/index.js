@@ -2,6 +2,8 @@ import React, {useContext, useState, useEffect, useCallback} from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import {NavLink} from 'react-router-dom';
 
+import './index.scss';
+
 const TopBar = ({title}) => {
     const auth =  useContext(AuthContext);
     const [fullName, setFullName] = useState('user');

@@ -24,7 +24,7 @@ export const useAuth = () => {
             }));
         } else {
             sessionStorage.setItem(storageName, JSON.stringify({
-                userId: id, token: jwtToken
+                userId: id, token: jwtToken, userFullName: `${firstName} ${lastName}`,
             }));
         }
         
@@ -53,7 +53,7 @@ export const useAuth = () => {
         }
 
         if (data && data.token) {
-            login(data.token, data.userId);
+            login(data.token, data.userId, data.userFirstName, data.userLastName);
         }
 
         setReady(true);
