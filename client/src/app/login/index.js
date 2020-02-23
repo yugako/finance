@@ -24,10 +24,9 @@ const Login = () => {
     });
 
     useEffect(() => {
-        // console.log(JSON.parse(error));
         setLocalError(error);
-       
-    }, [error]);
+       setTimeout(() => clearError(), 5000);
+    }, [error, clearError]);
 
 
     const changeHandler = event => {

@@ -13,6 +13,8 @@ const options = [
 
 const OverviewBalances = () => {
     const [accounts, setAccounts] = useState();
+    const [activities, setActivities] = useState();
+
     const { loading, request } = useHttp();
 
     const { token } = useContext(AuthContext);
@@ -22,14 +24,36 @@ const OverviewBalances = () => {
             const accountsList = await request('/api/account', 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
+
+            const activityList = await request('/api/activity', 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+
             setAccounts(accountsList);
+            setActivities(activityList);
         } catch (e) {
 
         }
     }, [token, request]);
 
+    const accountActivity = (accountName, accountBalance) => {
+        const current = !loading && activities && activities.filter(activity =>  activity.accountName === accountName);
+
+
+        const data = !loading && current && current.map(c => {
+            return {
+                date: new Date(c.activityDate).getTime(),
+                currentBalance: parseFloat(accountBalance) - c.activitySpendings
+            };
+        }).sort((a,b) => a.date - b.date).reverse();
+
+
+
+        return data;
+    }
+
     useEffect(() => {
-        fetchAccounts()
+        fetchAccounts();
     }, [fetchAccounts]);
 
     if (loading) {
@@ -61,7 +85,8 @@ const OverviewBalances = () => {
                                         title={account.acountName}
                                         link={account._id}
                                         money={account.balance}
-                                        currency={account.accountCurrency} />
+                                        currency={account.accountCurrency} 
+                                        datas={accountActivity(account.acountName, account.balance)}/>
                                 </div>
                             );
                         })}

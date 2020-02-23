@@ -4,6 +4,8 @@ import Menu from '../navigation';
 import Logo from '../logo';
 import CTA from './cta';
 
+import './index.scss';
+
 const HomeBanner = () => {
     return (
         <header className='home-header'>

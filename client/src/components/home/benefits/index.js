@@ -7,6 +7,7 @@ import PersonalFinance from '../../../assets/images/personal_finance.svg';
 import Finance from '../../../assets/images/finance.svg';
 import Online from '../../../assets/images/online_transactions.svg';
 
+import './index.scss';
 
 const benefitData = [
     {

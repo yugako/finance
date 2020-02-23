@@ -19,9 +19,11 @@ const Register = () => {
     });
 
     useEffect(() => {
-        setLocalError(JSON.parse(error));
+        setLocalError(error);
 
-        // clearError();
+        setTimeout(() => {
+            clearError();
+        }, 5000);
     }, [error, clearError]);
 
     const changeHandler = event => {
@@ -47,8 +49,7 @@ const Register = () => {
                 terms: false,
             });
             
-        } catch (error) {
-        }
+        } catch (error) { }
     }
 
     return (

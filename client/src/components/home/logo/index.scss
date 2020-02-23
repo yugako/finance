@@ -1,10 +1,10 @@
 .home {
     &-logo {
-        color: $light;
+        color: var(--light);
         font-size: 20px;
         font-weight: bold;
         span {
-            color: $primary;
+            color: var(--primary);
         }
     }
 }

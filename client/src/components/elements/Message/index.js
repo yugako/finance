@@ -2,11 +2,20 @@ import React from 'react';
 import './index.scss';
 
 const Message = ({message}) => {
-    if(Array.isArray(message)) {
+    const isJSON = (message) => {
+        try {
+            JSON.parse(message);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+    
+    if(isJSON(message)) {
         return (
             <div className='message-wrapper'>
                 <ul className='messages-list'>
-                    {message.map(m => <li className='message-item' key={m.msg}>{m.msg}</li>)}
+                    {JSON.parse(message).map(m => <li className='message-item' key={m.msg}>{m.msg}</li>)}
                 </ul>
             </div>
             

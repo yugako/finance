@@ -39,7 +39,7 @@ const OverviewActivity = () => {
                     Activity
                 </div>
                 <div className="dashboard-overview__activity-options">
-                    <i class="fas fa-ellipsis-h"></i>
+                    <i className="fas fa-ellipsis-h"></i>
                 </div>
             </div>
             <div className="dashboard-overview__activity-list">

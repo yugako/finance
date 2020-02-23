@@ -2,8 +2,8 @@
     &-footer {
         text-align: center;
         padding-bottom: 85px;
-        background-image: url('../images/footer_bg.svg');
-        @include xs-size-max {
+        background-image: url('../../../assets/images/footer_bg.svg');
+        @media screen and (max-width: 576px) {
             background-size: cover;
         }
         &__cta {
@@ -11,25 +11,25 @@
             padding: 50px 20px;
             margin: auto;
             margin-bottom: 70px;
-            background-color: $light;
+            background-color: var(--light);
             text-align: center;
-            box-shadow: 10px 20px 60px rgba($dark, 0.15);
+            box-shadow: 10px 20px 60px rgba(var(--dark), 0.15);
             border-radius: 15px;
-            border-top: 7px solid $primary;
-            @include lg-size-max {
+            border-top: 7px solid var(--primary);
+            @media screen and (max-width: 1199px) {
                 max-width: 750px;
             }
-            @include md-size-max {
+            @media screen and (max-width: 991px) {
                 max-width: 570px;
                 padding: 20px;
             }
-            @include xs-size-max {
+            @media screen and (max-width: 576px) {
                 max-width: 320px;
                 padding: 20px;
             }
             h4 {
                 font-size: 24px;
-                color: $dark;
+                color: var(--dark);
                 margin-bottom: 20px;
                 max-width: 400px;
                 margin: auto;
@@ -37,7 +37,7 @@
             }
 
             p {
-                color: $text-secondary;
+                color: var(--text-secondary);
                 font-size: 16px;
                 font-weight: 400;
                 max-width: 400px;
@@ -46,9 +46,9 @@
             }
 
             a {
-                background-color: $primary;
-                box-shadow: 0 5px 10px rgba($dark, 0.1);
-                color: $light;
+                background-color: var(--primary);
+                box-shadow: 0 5px 10px rgba(var(--dark), 0.1);
+                color: var(--light);
                 border: none;
                 border-radius: 10px;
                 padding: 13px 45px;
@@ -56,7 +56,7 @@
                 margin-top: 15px;
                 display: inline-block;
                 &:hover {
-                    background-color: darken($primary, 15%);
+                    opacity: .85;
                     transition: all 0.3s;
     }
             }
@@ -66,15 +66,15 @@
         }
         &__copyright {
             text-align: center;
-            color: $light;
+            color: var(--light);
             font-size: 16px;
             a {
                 transition: all 0.3s ease-in;
-                color: $primary;
+                color: var(--primary);
                 text-decoration: none;
                 &:hover {
                     transition: all 0.3s ease-in;
-                    color: darken($primary, 15%)
+                    color: rgba(var(--primary), 0.8);
                 }
             }
         }

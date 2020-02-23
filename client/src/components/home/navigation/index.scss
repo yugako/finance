@@ -21,17 +21,17 @@
         }
         &__link {
             text-decoration: none;
-            color: $light;
+            color: var(--light);
             font-size: 14px;
             transition: color 0.3s;
             &:hover {
-                color: darken($primary, 15%);
+                color: var(--primary);
                 transition: color 0.3s;
             }
         }
         &__button {
             margin-left: 40px;
-            @include xs-size-max {
+            @media screen and (max-width: 576px) {
                 margin-left: 15px;
             }
         }

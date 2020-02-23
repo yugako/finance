@@ -3,6 +3,8 @@ import {NavLink} from 'react-router-dom';
 
 import Button from '../../../elements/Button';
 
+import './index.scss';
+
 const CTA = () => {
     return ( 
         <div className="home-header__cta">
@@ -15,7 +17,7 @@ const CTA = () => {
                 <div className="col-12 col-lg-6">
                     <div className="home-header__cta-text">
                         <h1>
-                        Track your money, save money.
+                            Track your money, save money.
                         </h1>
                         <p>
                             It's that simple. Welcome to the easiest tool to see how many chicken sandwiches you bought.

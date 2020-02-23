@@ -4,6 +4,8 @@ import FooterCTA from './cta';
 import FooterCopyright from './copyright';
 import Logo from '../logo';
 
+import './index.scss';
+
 const HomeFooter = () => {
     return (
         <footer className='home-footer'>

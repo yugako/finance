@@ -2,6 +2,8 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import Button from '../../elements/Button';
 
+import './index.scss';
+
 const Menu = () => {
     return (
         <nav className='home-menu'>

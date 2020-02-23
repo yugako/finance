@@ -22,7 +22,7 @@ const Dashboard = () => {
     return (
         <div className='dashboard'>
             <SideNav />
-            <main class='dashboard-main'>
+            <main className='dashboard-main'>
                 <Switch>
                     {/*
                         Main routes
