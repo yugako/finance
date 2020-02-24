@@ -2,13 +2,15 @@
     &__activity {
         background-color: var(--light);
         border-radius: 16px;
+        padding-bottom: 24px;
         &-list {
             max-height: 400px;
             overflow: auto;
-            padding-right: 40px;
+            margin-right: 20px;
         }
         &-header {
             padding: 24px;
+            padding-bottom: 0;
         } 
 
         &-title {
@@ -21,7 +23,7 @@
         }
         .activity {
             margin-bottom: 0;
-            padding: 24px;
+            padding: 12px 24px;
         }
         &-options {
             i {
