@@ -4,6 +4,7 @@ import { useHttp } from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 import Loader from '../../../../components/elements/Loader';
 import ActivitySingle from './oActivitySingle';
+import ActivityEmpty from './oActivityEmpty';
 
 import './index.scss';
 
@@ -19,7 +20,12 @@ const OverviewActivity = () => {
             const activitiesList = await request('/api/activity', 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
-            setActivities(activitiesList);
+
+            if(activitiesList.length) {
+                setActivities(activitiesList);
+            } else {
+                setActivities(null);
+            }
         } catch (e) {
 
         }
@@ -45,15 +51,18 @@ const OverviewActivity = () => {
                 </div>
             </div>
             <div className="dashboard-overview__activity-list">
-                {!loading && activities && activities.map( activity => 
-                    <ActivitySingle
-                        title={activity.activityName} 
-                        date={activity.activityDate}
-                        amount={activity.activitySpendings}
-                        account={activity.accountName} 
-                        key={activity._id} 
-                    />
-                )}
+                {!loading && activities 
+                    ? activities.map( activity => 
+                        <ActivitySingle
+                            title={activity.activityName} 
+                            date={activity.activityDate}
+                            amount={activity.activitySpendings}
+                            account={activity.accountName} 
+                            key={activity._id} 
+                        />
+                    )
+                    : <ActivityEmpty />
+                }
             </div>
             {/* <button className="dashboard-overview__activity-more">
                 Load More

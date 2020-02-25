@@ -4,7 +4,7 @@ import BalancesCard from './obCard';
 import { useHttp } from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 import Loader from '../../../../components/elements/Loader';
-
+import AccountPlaceholder from '../../../../components/dashboard/account/placeholder';
 import './index.scss';
 
 const options = [
@@ -30,8 +30,13 @@ const OverviewBalances = () => {
             const activityList = await request('/api/activity', 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
-
-            setAccounts(accountsList);
+            
+            if(accountsList.length) {
+                setAccounts(accountsList);
+            } else {
+                setAccounts(null);
+            }
+            
             setActivities(activityList);
         } catch (e) {
 
@@ -63,21 +68,28 @@ const OverviewBalances = () => {
 
     return (
         <>
-            { !loading && accounts && 
-                <div className='dashboard-overview__balances'>
-                    <div className="dashboard-overview__balances-header d-flex justify-content-between align-items-center">
-                        <div className="dashboard-overview__balances-title">
-                            Balances
-                        </div>
-                        {/* <div className="dashboard-overview__balances-period">
-                            <i className="far fa-calendar"></i>
-                            <select name="period" id="period">
-                                {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
-                            </select>
-                        </div> */}
+           <div className='dashboard-overview__balances'>
+                <div className="dashboard-overview__balances-header d-flex justify-content-between align-items-center flex-wrap">
+                    <div className="dashboard-overview__balances-title">
+                        Balances
                     </div>
-                    <div className="row">
-                        {accounts.map(account => {
+                    {!accounts 
+                        ?  <div className="dashboard-overview__balances-subtitle">
+                                Seems you don't have an account yet. Let's create it.
+                            </div>
+                        : null
+                    }
+                   
+                    {/* <div className="dashboard-overview__balances-period">
+                        <i className="far fa-calendar"></i>
+                        <select name="period" id="period">
+                            {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+                        </select>
+                    </div> */}
+                </div>
+                <div className="row">
+                    {!loading && accounts 
+                        ? accounts.map(account => {
                             return (
                                 <div className="col-12 col-lg-4" key={account._id}>
                                     <BalancesCard
@@ -87,11 +99,15 @@ const OverviewBalances = () => {
                                         currency={account.accountCurrency} 
                                         datas={accountActivity(account.acountName, account.balance)}/>
                                 </div>
-                            );
-                        })}
-                    </div>
+                            )})
+                        : <>
+                                <AccountPlaceholder />
+                                <AccountPlaceholder />
+                                <AccountPlaceholder />
+                          </> 
+                    }
                 </div>
-            }
+            </div>
         </> 
         
     );

@@ -8,17 +8,16 @@ const TopBar = ({title}) => {
     const auth =  useContext(AuthContext);
     const [fullName, setFullName] = useState('user');
 
-    const getFullName = useCallback(() => {
-        let data = null;
-        
-        if(localStorage.getItem('userData')) {
-            data = JSON.parse(localStorage.getItem('userData'));
-            setFullName(data.userFullName);
+    const getFullName = useCallback(() => {    
+        if(localStorage.getItem('userName')) {
+            const data = localStorage.getItem('userName');
+            console.log(data);
+            setFullName(data);
         }
     }, []);
 
     useEffect(() => {
-        getFullName();
+       getFullName();
     }, [getFullName]);
    
 

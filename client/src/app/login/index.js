@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext} from 'react';
 import {NavLink} from 'react-router-dom';
 
 import { useHttp } from '../../hooks/http.hook';
-import { useMessage } from '../../hooks/message.hook';
 import { AuthContext } from '../../context/AuthContext';
 
 import Pig from '../../assets/images/pig.svg';
@@ -14,7 +13,6 @@ const Login = () => {
 
     const {loading, error, request, clearError} = useHttp();
     const auth =  useContext(AuthContext);
-    const message = useMessage();
     const [localError, setLocalError] = useState([]);
 
     const [form, setForm] = useState({
@@ -44,11 +42,12 @@ const Login = () => {
                 ...form
             });
 
-            auth.login(data.token, data.userId, form.keep_logged, data.userFirstName, data.userLastName);
+            auth.login(data.token, data.userId, form.keep_logged);
             
-        } catch (error) {
+            console.log(data);
+            localStorage.setItem('userName', data.userFirstName);
             
-        }
+        } catch (error) {}
     }
     return (
         <section className='login'>

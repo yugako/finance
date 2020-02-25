@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 
 import Pig from '../../assets/images/pig.svg';
 import { useHttp } from '../../hooks/http.hook';
@@ -9,7 +9,8 @@ import './index.scss';
 const Register = () => {
     const {loading, error, request, clearError} = useHttp();
     const [localError, setLocalError] = useState([]);
-
+    const history = useHistory();
+    
     const [form, setForm] = useState({
         first_name: '',
         last_name: '',
@@ -48,6 +49,8 @@ const Register = () => {
                 password: '',
                 terms: false,
             });
+
+            history.push(`/login`);
             
         } catch (error) { }
     }
