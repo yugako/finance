@@ -49,6 +49,8 @@
                 padding: 0;
                 @media screen and (max-width: 576px) {
                     transform: translateX(0);
+                    right: 0;
+                    left: initial;
                 }
             }
             
