@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react';
 import { AuthContext } from '../../../context/AuthContext';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './index.scss';
 
@@ -11,7 +11,6 @@ const TopBar = ({title}) => {
     const getFullName = useCallback(() => {    
         if(localStorage.getItem('userName')) {
             const data = localStorage.getItem('userName');
-            console.log(data);
             setFullName(data);
         }
     }, []);

@@ -10,6 +10,10 @@ export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
         return(
             <Switch>
+                <Route 
+                    path="/" exact 
+                    component={Home}
+                />
                 <Route path="/dashboard" component={Dashboard} />
                 <Redirect to='/dashboard' />
             </Switch>

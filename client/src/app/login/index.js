@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 
 import { useHttp } from '../../hooks/http.hook';
 import { AuthContext } from '../../context/AuthContext';
@@ -12,6 +12,7 @@ import './index.scss';
 const Login = () => {
 
     const {loading, error, request, clearError} = useHttp();
+    const history = useHistory();
     const auth =  useContext(AuthContext);
     const [localError, setLocalError] = useState([]);
 
@@ -43,16 +44,15 @@ const Login = () => {
             });
 
             auth.login(data.token, data.userId, form.keep_logged);
-            
-            console.log(data);
             localStorage.setItem('userName', data.userFirstName);
+
+            history.push('/dashboard');
             
         } catch (error) {}
     }
     return (
         <section className='login'>
-                    {!loading && localError ? <Message message={localError} />: null}
-
+            {!loading && localError ? <Message message={localError} />: null}
             <div className="container-fluid">
                 <div className="row align-items-center">
                     <div className="col-12 col-lg-6 h-100">
