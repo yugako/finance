@@ -24,7 +24,6 @@ const AccountList = ({accounts}) => {
                     })
                 }
             </div>
-
         </section>
     );
 }

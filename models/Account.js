@@ -1,7 +1,7 @@
 const {Schema, model, Types} = require('mongoose');
 
 const schema = new Schema({
-    acountName: {type: String, required: true, unique: true},
+    accountName: {type: String, required: true, unique: true},
     accountType: {type: String, required: true},
     accountCurrency: {type: String, required: true},
     balance: {type: String, required: true},

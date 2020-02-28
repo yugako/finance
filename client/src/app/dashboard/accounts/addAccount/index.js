@@ -3,7 +3,7 @@ import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 import TopBar from '../../../../components/dashboard/top-bar';
-
+import Input from '../../../../components/elements/Forms/input';
 
 const accountTypeOptions = [
     {
@@ -52,13 +52,13 @@ const AddAccount = () => {
     const auth = useContext(AuthContext);
 
     const [account, setAccount] = useState({
-        acountName: '',
-        accountType: '',
-        accountCurrency: '',
+        accountName: '',
+        accountType: accountTypeOptions[0].value,
+        accountCurrency: accountCurrencyOptions[0].value,
         balance: 0,
     });
-    const {request} = useHttp();
 
+    const {request} = useHttp();
 
     const changeHandler = event => {
         if(event.target.type === 'number') {
@@ -66,7 +66,8 @@ const AddAccount = () => {
         } else {
             setAccount({...account, [event.target.name]: event.target.value});
         }
-        
+
+        console.log(account);
     }
 
     const submitHandler = async e => {
@@ -78,7 +79,7 @@ const AddAccount = () => {
             });
 
             setAccount({
-                acountName: '',
+                accountName: '',
                 accountType: '',
                 accountCurrency: '',
                 balance: 0
@@ -95,15 +96,14 @@ const AddAccount = () => {
             <form onSubmit={submitHandler} className='add-account__form'>
                 <div className="row">
                     <div className="col-12">
-                        <div className="form-group">
-                            <input name='acountName' required type="text"
-                                value={account.acountName}
-                                onChange={changeHandler} />
-                            <label htmlFor="input" className="control-label">
-                                Account name
-                            </label>
-                            <i className="bar"></i>
-                        </div>
+                        <Input 
+                            name='accountName'
+                            isRequired='true'
+                            type='text'
+                            value={account.accountName}
+                            changeHandler={changeHandler}
+                            label='Account name'
+                        />
                     </div>
                     <div className="col-12 col-lg-6">
                         <div class="form-group">
@@ -136,11 +136,8 @@ const AddAccount = () => {
                             <i className="bar"></i>
                         </div>
                     </div>
-                    
-                    
-                    <input type="submit"  className='submit' value="Add Account"/>
+                    <input type="submit" className='submit' value="Add Account"/>
                 </div>
-                
             </form>
         </div>
     );

@@ -27,7 +27,6 @@ export const useAuth = () => {
                 userId: id, token: jwtToken
             }));
         }
-        
     }, []);
 
     /**

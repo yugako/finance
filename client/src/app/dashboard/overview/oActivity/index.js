@@ -1,7 +1,9 @@
 import React, { useState, useContext, useCallback, useEffect } from 'react';
+import {NavLink} from 'react-router-dom';
 
 import { useHttp } from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
+
 import Loader from '../../../../components/elements/Loader';
 import ActivitySingle from './oActivitySingle';
 import ActivityEmpty from './oActivityEmpty';
@@ -26,9 +28,7 @@ const OverviewActivity = () => {
             } else {
                 setActivities(null);
             }
-        } catch (e) {
-
-        }
+        } catch (e) {}
     }, [token, request]);
 
     useEffect(() => {
@@ -46,9 +46,6 @@ const OverviewActivity = () => {
                 <div className="dashboard-overview__activity-title">
                     Activity
                 </div>
-                <div className="dashboard-overview__activity-options">
-                    <i className="fas fa-ellipsis-h"></i>
-                </div>
             </div>
             <div className="dashboard-overview__activity-list">
                 {!loading && activities 
@@ -64,10 +61,10 @@ const OverviewActivity = () => {
                     : <ActivityEmpty />
                 }
             </div>
-            {/* <button className="dashboard-overview__activity-more">
-                Load More
-            </button> */}
-            
+            {activities 
+                ? <NavLink className='dashboard-overview__activity-more' to='/dashboard/activity'>View More</NavLink>
+                : null
+            }
             
         </div>
     );

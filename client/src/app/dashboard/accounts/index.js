@@ -33,7 +33,6 @@ const Accounts = () => {
     }
 
     return (
-        
         <>  
             { !loading && accounts && <AccountList accounts={accounts} /> }         
         </>
