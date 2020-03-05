@@ -7,19 +7,22 @@ export const useData = () => {
 	const {loading, request} = useHttp();
 	const {token} = useContext(AuthContext);
 	
-	const fetchData = async () => {
+	const fetchData = async (dataType) => {
     	try {
-	        const accountsList = await request('/api/account', 'GET', null, {
-	            Authorization: `Bearer ${token}`
-	        });
+	        // const accountsList = await request('/api/account', 'GET', null, {
+	        //     Authorization: `Bearer ${token}`
+	        // });
 
-	        const activityList = await request('/api/activity', 'GET', null, {
+	        // const activityList = await request('/api/activity', 'GET', null, {
+         //        Authorization: `Bearer ${token}`
+         //    });
+
+            const data = await request(`/api/${dataType}`, 'GET', null, {
                 Authorization: `Bearer ${token}`
             });
 
-	        return {
-	        	accountsList, activityList
-	       	}
+	        return data;
+	       
 	        
 	    } catch (e) {
 	    	console.log(e);

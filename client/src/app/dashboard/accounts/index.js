@@ -12,6 +12,7 @@ const Accounts = () => {
     const {fetchData} = useData();
 
      const [account, setAccount] = useState();
+     const [activity, setActivity] = useState();
 
     const {token} = useContext(AuthContext);
 
@@ -27,12 +28,13 @@ const Accounts = () => {
     }, [token, request]);
     
     const data = useCallback(async () => {
-        const accountsList = await fetchData();
+        const accountsList = await fetchData('account');
+        const activityList = await fetchData('activity');
 
         setAccount(accountsList);
+        setActivity(activityList);
     }, []);
    
-
     useEffect(() => {
         data();
         fetchAccounts()
@@ -46,7 +48,7 @@ const Accounts = () => {
 
     return (
         
-        <>  {console.log(account)}
+        <>  {console.log(account, activity)}
             { !loading && accounts && <AccountList accounts={accounts} /> }         
         </>
         
