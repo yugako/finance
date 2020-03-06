@@ -1,10 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {NavLink} from 'react-router-dom';
-import { useAPI } from '../../../../../context/DataContext';
+import { useData } from '../../../../../hooks/data.hook';
 import './index.scss';
 
 const ActivityEmpty = () => {
-	const { accounts } = useAPI();
+	const { fetchDataList } = useData();
+	const [accounts, setAccounts] = useState();
+
+	const getAccounts = useCallback(async () => {
+		try {
+			const accounts = await fetchDataList('account');
+
+			setAccounts(accounts);
+		} catch(e) {
+			console.log(e);
+		}
+	});
+
+	useEffect(() => {
+		getAccounts();
+	}, [getAccounts]);
 
 	return (
 		<div className='activity-empty'>

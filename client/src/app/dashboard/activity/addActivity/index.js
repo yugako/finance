@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
-import { useAPI } from '../../../../context/DataContext';
+import { useData } from '../../../../hooks/data.hook';
 
 import TopBar from '../../../../components/dashboard/top-bar';
 import Input from '../../../../components/elements/Forms/input';
@@ -53,7 +53,7 @@ const activityTypeOptions = [
 
 const AddActivity = () => {
     const history = useHistory();
-    const { accounts } = useAPI();
+    const { fetchDataList } = useData();
     
     const auth = useContext(AuthContext);
 
@@ -66,6 +66,18 @@ const AddActivity = () => {
         accountName: '',
         activityDate: '',
     });
+    const [accounts, setAccounts] = useState();
+
+    const getAccounts = useCallback(async () => {
+        try {
+            const accounts = await fetchDataList('account');
+
+            setAccounts(accounts);
+        } catch (e) {
+            console.log(e);
+        }
+        
+    })
 
     const changeHandler = event => setActivity({...activity, [event.target.name]: event.target.value});
 
@@ -73,8 +85,7 @@ const AddActivity = () => {
     const updateData = useCallback(() => {
         if (accounts) {
             setActivity({...activity, accountName: accounts[0].accountName});
-        }
-            
+        }   
     }, [accounts]);
 
     const transformAccountData = (data) => {
@@ -88,7 +99,8 @@ const AddActivity = () => {
 
     useEffect(() => {
         updateData();
-    }, [updateData]);
+        getAccounts();
+    }, [updateData, getAccounts]);
     
 
     const submitHandler = async e => {

@@ -21,14 +21,11 @@ const App = () => {
         <AuthContext.Provider value={{
             token, login, logout, userId, isAuthenticated, ready
         }}>
-            <APIContextProvider>
-                <BrowserRouter>
-                    <div className='finance-app'>
-                        {router}
-                    </div> 
-                </BrowserRouter>
-            </APIContextProvider>
-            
+            <BrowserRouter>
+                <div className='finance-app'>
+                    {router}
+                </div> 
+            </BrowserRouter>
         </AuthContext.Provider>
         
     );

@@ -2,13 +2,15 @@ import React, { useState, useEffect, useCallback} from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 import { useParams } from 'react-router-dom';
-import { useAPI } from '../../../../context/DataContext';
+import { useData } from '../../../../hooks/data.hook';
 
 import TopBar from '../../../../components/dashboard/top-bar';
 
 const SingleAccount = () => {
-    const { accounts, activities } = useAPI();
-    const [account , setAccount] = useState(null);
+    const { fetchDataSingle, fetchDataList } = useData();
+
+    const [ account , setAccount ] = useState(null);
+    const [ activities , setActivities ] = useState(null);
 
     const accountId = useParams().id;
 
@@ -24,16 +26,34 @@ const SingleAccount = () => {
         }).sort((a,b) => a.date - b.date).reverse();
 
         return data;
-    }
+    };
+    
+    const getAccount = useCallback(async () => {
+        try {
+            const accountSingle = await fetchDataSingle('account', accountId);
 
-    const getCurrentAccount = useCallback(() => {
-        const currentAccount = accounts && accounts.filter(a => a._id === accountId)[0];
-        setAccount(currentAccount);
+            setAccount(accountSingle);
+        } catch(e) {
+            console.log(e);
+        }
+        
     });
+
+    const getActivities = useCallback(async () => {
+        try {
+            const activitiesList = await fetchData('activity');
+
+            setActivities(activitiesList);
+        } catch(e) {
+            console.log(e);
+        }
+    });
+
     
     useEffect(() => {
-       getCurrentAccount();
-    }, [getCurrentAccount]);
+       getAccount();
+       getActivities();
+    }, [getAccount, getActivities]);
 
     return (
         <>

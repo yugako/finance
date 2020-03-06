@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
-import { useAPI } from '../../../../context/DataContext';
+import { useData } from '../../../../hooks/data.hook';
 
 import BalancesCard from './obCard';
 import AccountPlaceholder from '../../../../components/dashboard/account/placeholder';
@@ -8,7 +8,36 @@ import AccountPlaceholder from '../../../../components/dashboard/account/placeho
 import './index.scss';
 
 const OverviewBalances = () => {
-    const { accounts, activities } = useAPI();
+    const {fetchDataList} = useData();
+    
+    const [accounts, setAccounts] = useState();
+    const [activities, setActivities] = useState();
+
+    const getAccounts = useCallback(async () => {
+        try {
+            const accounts = await fetchDataList('account');
+
+            setAccounts(accounts);
+        } catch(e) {
+            console.log(e);
+        }
+    });
+
+    const getActivities = useCallback(async () => {
+        try {
+            const activities = await fetchDataList('activity');
+
+            setAccounts(activities);
+        } catch(e) {
+            console.log(e);
+        }
+    });
+
+    useEffect(() => {
+        getAccounts();
+        getActivities();
+    }, [getAccounts, getActivities]);
+
 
     const accountActivity = (accountName, accountBalance) => {
         const current = activities && activities.filter(activity =>  activity.accountName === accountName);

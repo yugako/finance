@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {NavLink} from 'react-router-dom';
 
-import { useAPI } from '../../../../context/DataContext';
+import { useData } from '../../../../hooks/data.hook';
 
 import ActivitySingle from './oActivitySingle';
 import ActivityEmpty from './oActivityEmpty';
@@ -9,7 +9,21 @@ import ActivityEmpty from './oActivityEmpty';
 import './index.scss';
 
 const OverviewActivity = () => {
-    const { activities } = useAPI();
+    const { fetchDataList } = useData();
+    const [activities, setActivities] = useState();
+
+    const getActivities = useCallback(async () => {
+        try {
+            const activities = await fetchDataList('activity');
+        } catch (e) {
+            console.log(e);
+        }
+    });
+
+    useEffect(() => {
+        getActivities();
+    }, [getActivities]);
+
 
     return (
         <div className='dashboard-overview__activity'>
