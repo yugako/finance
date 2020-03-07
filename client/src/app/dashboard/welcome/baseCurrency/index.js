@@ -1,9 +1,10 @@
 import React, {useState, useEffect, useCallback} from 'react';
 
 import {useHttp} from '../../../../hooks/http.hook';
-import Select from '../../../../components/elements/Forms/select';
-
 import WelcomeWrapper from '../../../../components/dashboard/welcome/wrapper';
+import Loader from '../../../../components/elements/Loader';
+
+import './index.scss';
 
 const BaseCurrency = () => {
 	const [currencyList, setCurrencyList] = useState();
@@ -13,7 +14,11 @@ const BaseCurrency = () => {
 		try {
 			const data = await request(`http://localeplanet.com/api/auto/currencymap.json?name=Y`, 'GET', null, {});
 
-			setCurrencyList(JSON.parse(data));
+			const result = Object.keys(data).map(function (key) {
+			   return { ...data[key] };
+			});
+			
+			setCurrencyList(result);
 		} catch (e) {	
 			console.log(e);
 		}
@@ -23,12 +28,25 @@ const BaseCurrency = () => {
 		getCurrencyList();
 	}, [getCurrencyList]);
 
+	if (!currencyList) {
+		return <Loader />
+	}
 
 	return (
 		<WelcomeWrapper>
-			<section>
+			<section class='dashboard-welcome__currency'>
 				{console.log(currencyList)}
+				<div className="form-group">
+		            <select value={currencyList[0].name}  name='currency' >
+		                {currencyList.map((c,index) => {
+		                    return <option key={index} value={c.symbol}>{c.name}</option>
+		                })}
+		            </select>
+		            <label htmlFor="select" className="control-label">Set base currency</label>
+		            <i className="bar"></i>
+		        </div>
 			</section>
+			
 		</WelcomeWrapper>
 		
 	);
