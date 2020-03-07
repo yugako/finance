@@ -18,7 +18,7 @@ const OverviewActivity = () => {
         } catch (e) {
             console.log(e);
         }
-    });
+    }, []);
 
     useEffect(() => {
         getActivities();
@@ -33,7 +33,7 @@ const OverviewActivity = () => {
                 </div>
             </div>
             <div className="dashboard-overview__activity-list">
-                {activities && activities.length
+                {activities
                     ? activities.map( activity => 
                         <ActivitySingle
                             title={activity.activityName} 

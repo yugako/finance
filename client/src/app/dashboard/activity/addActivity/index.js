@@ -77,7 +77,7 @@ const AddActivity = () => {
             console.log(e);
         }
         
-    })
+    }, []);
 
     const changeHandler = event => setActivity({...activity, [event.target.name]: event.target.value});
 

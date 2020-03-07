@@ -15,7 +15,7 @@ const ActivityEmpty = () => {
 		} catch(e) {
 			console.log(e);
 		}
-	});
+	}, []);
 
 	useEffect(() => {
 		getAccounts();

@@ -16,7 +16,7 @@ const Accounts = () => {
         } catch(e) {
 			console.log(e);
         }
-    });
+    }, []);
 
     useEffect(() => {
 		getAccounts();

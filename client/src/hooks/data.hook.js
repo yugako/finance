@@ -39,5 +39,5 @@ export const useData = () => {
 	
 	
 
-    return { fetchData, fetchDataSingle };
+    return { fetchDataList, fetchDataSingle };
 }

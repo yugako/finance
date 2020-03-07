@@ -21,7 +21,7 @@ const OverviewBalances = () => {
         } catch(e) {
             console.log(e);
         }
-    });
+    }, []);
 
     const getActivities = useCallback(async () => {
         try {
@@ -31,7 +31,7 @@ const OverviewBalances = () => {
         } catch(e) {
             console.log(e);
         }
-    });
+    },[]);
 
     useEffect(() => {
         getAccounts();

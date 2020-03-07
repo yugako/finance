@@ -16,7 +16,7 @@ const Activity = () => {
     	} catch(e) {
     		console.log(e);
     	}
-    });
+    }, []);
 
     useEffect(() => {
     	getActivities();
