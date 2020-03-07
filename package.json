@@ -25,7 +25,8 @@
     "express-validator": "^6.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.3",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",

@@ -81,7 +81,7 @@
             left: 50%;
             bottom: -0.0625rem;
             position: absolute;
-            background: $primary;
+            background: var(--primary);
             -webkit-transition: left 0.28s ease, width 0.28s ease;
             transition: left 0.28s ease, width 0.28s ease;
             z-index: 2;
@@ -149,7 +149,7 @@
 .form-group select:focus~.control-label,
 .form-group input:focus~.control-label,
 .form-group textarea:focus~.control-label {
-    color: $primary;
+    color:  var(--primary);
 }
 
 .form-group select:focus~.bar::before,
@@ -215,12 +215,12 @@
 .radio .helper::after {
     -webkit-transform: scale(0);
     transform: scale(0);
-    background-color: $primary;
-    border-color: $primary;
+    background-color:  var(--primary);
+    border-color:  var(--primary);
 }
 
 .radio label:hover .helper {
-    color: $primary;
+    color:  var(--primary);
 }
 
 .radio input:checked~.helper::after {
@@ -229,7 +229,7 @@
 }
 
 .radio input:checked~.helper::before {
-    color: $primary;
+    color:  var(--primary);
 }
 
 .checkbox {
@@ -254,7 +254,7 @@
             position: absolute;
             height: 0;
             width: 0.2rem;
-            background-color: $primary;
+            background-color:  var(--primary);
             display: block;
             -webkit-transform-origin: left top;
             transform-origin: left top;
@@ -283,11 +283,11 @@
 }
 
 .checkbox label:hover .helper {
-    color: $primary;
+    color:  var(--primary);
 }
 
 .checkbox input:checked~.helper {
-    color: $primary;
+    color:  var(--primary);
 }
 
 .checkbox input:checked~.helper::after,

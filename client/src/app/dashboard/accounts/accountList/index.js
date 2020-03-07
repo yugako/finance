@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import TopBar from '../../../../components/dashboard/top-bar';
+import './index.scss';
 
 const AccountList = ({accounts}) => {
     return (
