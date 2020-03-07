@@ -11,6 +11,10 @@ import History from './history';
 import Settings from './settings';
 import Help from './help';
 
+
+import BaseCurrency from './welcome/baseCurrency';
+import BaseBalance from './welcome/baseBalance';
+
 /** Account */
 import AddAccount from './accounts/addAccount';
 import SingleAccount from './accounts/singleAccount';
@@ -56,6 +60,14 @@ const DashboardRoutes = () => {
                         <Route 
                             path="/dashboard/help" exact 
                             component={Help}
+                        />
+                        <Route 
+                            path="/dashboard/welcome/base-currency" exact 
+                            component={BaseCurrency}
+                        />
+                        <Route 
+                            path="/dashboard/welcome/base-balance" exact 
+                            component={BaseBalance}
                         />
                         {/* Account routes */}
                         <Route 
