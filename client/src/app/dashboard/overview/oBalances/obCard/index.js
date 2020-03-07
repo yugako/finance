@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { AreaChart, Area, ResponsiveContainer, } from 'recharts';
 
+
 import './index.scss';
 
 const BalancesCard = ({title, link, money, currency, datas}) => {

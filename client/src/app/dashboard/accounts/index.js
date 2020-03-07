@@ -1,16 +1,33 @@
-import React from 'react';
 
-import { useAPI } from '../../../context/DataContext';
+import React, { useState, useCallback, useEffect } from 'react';
 
+import Loader from '../../../components/elements/Loader';
 import AccountList from './accountList';
 
-const Accounts = () => {
-    const { accounts } = useAPI();
+import { useData } from '../../../hooks/data.hook';
 
-    return ( 
-        <> 
-            { accounts && <AccountList accounts={accounts} /> }
-        </> 
+const Accounts = () => {
+    const [accounts, setAccounts] = useState();
+    const {fetchDataList} = useData();
+
+    const getAccounts = useCallback(async () => {
+        const accountsList = await fetchDataList('account');
+
+        setAccounts(accountsList);
+    }, []);
+
+    useEffect(() => {
+        getAccounts()
+    }, [getAccounts]);
+
+    if(!accounts) {
+        return (
+            <Loader />
+        )
+    }
+
+    return (
+        <AccountList accounts={accounts} />
     );
 }
  
