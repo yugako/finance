@@ -6,6 +6,9 @@ import Loader from '../../../../components/elements/Loader';
 import ActivitySingle from './oActivitySingle';
 import ActivityEmpty from './oActivityEmpty';
 
+import { useData } from '../../../../hooks/data.hook';
+
+
 import './index.scss';
 
 
