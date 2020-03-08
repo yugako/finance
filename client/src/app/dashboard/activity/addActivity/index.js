@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 
 import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
-import { useAPI } from '../../../../context/DataContext';
 
 import { useData } from '../../../../hooks/data.hook';
 
@@ -11,29 +10,6 @@ import TopBar from '../../../../components/dashboard/top-bar';
 import Input from '../../../../components/elements/Forms/input';
 import Select from '../../../../components/elements/Forms/select';
 import Loader from '../../../../components/elements/Loader';
-
-const accountTypeOptions = [
-    {
-        value: 'Checking/Cash',
-        label: 'Checking/Cash',
-    },
-    {
-        value: 'Savings',
-        label: 'Savings',
-    },
-    {
-        value: 'Credit Card',
-        label: 'Credit Card',
-    },
-    {
-        value: 'Investment',
-        label: 'Investment',
-    },
-    {
-        value: 'Other',
-        label: 'Other',
-    }
-];
 
 const activityTypeOptions = [
     {

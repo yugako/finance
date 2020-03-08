@@ -1,14 +1,19 @@
 .add-account {
     &__form {
         background-color: var(--light);
-        padding: 40px;
-        margin-top: 40px;
+        padding: 20px 30px;
         border-radius: 10px;
         max-width: 576px;
         width: 100%;
+        &-title {
+            margin-top: 0px;
+            margin-bottom: 0;
+        }
         .submit {
             width: 100%;
             max-width: 100%;
+            margin-left: 15px;
+            margin-right: 15px;
         }
     }
 }
