@@ -1,42 +1,16 @@
-import React, { useState, useContext, useCallback, useEffect } from 'react';
+import React from 'react';
 
-import { useHttp } from '../../../hooks/http.hook';
-import { AuthContext } from '../../../context/AuthContext';
-import Loader from '../../../components/elements/Loader';
+import { useAPI } from '../../../context/DataContext';
+
 import AccountList from './accountList';
 
 const Accounts = () => {
-    const [accounts, setAccounts] = useState();
-    const {loading, request} = useHttp();
+    const { accounts } = useAPI();
 
-    const {token} = useContext(AuthContext);
-
-    const fetchAccounts = useCallback(async () => {
-        try {
-            const accountsList = await request('/api/account', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-            setAccounts(accountsList);
-        } catch (e) {
-            
-        }
-    }, [token, request]);
-
-    useEffect(() => {
-        fetchAccounts()
-    }, [fetchAccounts]);
-
-    if(loading) {
-        return (
-            <Loader />
-        )
-    }
-
-    return (
-        <>  
-            { !loading && accounts && <AccountList accounts={accounts} /> }         
-        </>
-        
+    return ( 
+        <> 
+            { accounts && <AccountList accounts={accounts} /> }
+        </> 
     );
 }
  

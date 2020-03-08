@@ -4,6 +4,7 @@ import {NavLink, useHistory} from 'react-router-dom';
 import Pig from '../../assets/images/pig.svg';
 import { useHttp } from '../../hooks/http.hook';
 import Message from '../../components/elements/Message';
+import Input from '../../components/elements/Forms/input';
 
 import './index.scss';
 const Register = () => {
@@ -25,6 +26,7 @@ const Register = () => {
         setTimeout(() => {
             clearError();
         }, 5000);
+
     }, [error, clearError]);
 
     const changeHandler = event => {
@@ -68,29 +70,38 @@ const Register = () => {
                                 Sign up 
                         </div>
                         <form onSubmit={registerHandler}>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.first_name} name='first_name' required type="text"/>
-                                <label htmlFor="input" className="control-label">First Name</label>
-                                <i className="bar"></i>
-                            </div>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.last_name} name='last_name' required type="text"/>
-                                <label htmlFor="input" className="control-label">Last Name</label>
-                                <i className="bar"></i>
-                            </div>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.email} name='email' required type="email"/>
-                                <label htmlFor="input" className="control-label">Email address</label>
-                                <i className="bar"></i>
-                            </div>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.password} name='password' required type="password"/>
-                                <label 
-                                    htmlFor="input" className="control-label">
-                                    Password
-                                </label>
-                                <i className="bar"></i>
-                            </div>
+                            <Input 
+                                name='text'
+                                isRequired={true}
+                                type='text'
+                                value={form.first_name}
+                                changeHandler={changeHandler}
+                                label='First Name'
+                            />
+                            <Input 
+                                name='text'
+                                isRequired={true}
+                                type='text'
+                                value={form.last_name}
+                                changeHandler={changeHandler}
+                                label='Last Name'
+                            />
+                            <Input 
+                                name='email'
+                                isRequired={true}
+                                type='email'
+                                value={form.email}
+                                changeHandler={changeHandler}
+                                label='Email address'
+                            />
+                            <Input 
+                                name='password'
+                                isRequired={true}
+                                type='password'
+                                value={form.password}
+                                changeHandler={changeHandler}
+                                label='Password'
+                            />
 
                             <div className="checkbox terms-label">
                                 <label>

@@ -8,8 +8,6 @@ const SideNav = () => {
     let [isOpen, setOpen] = useState(true);
 
     const toggleMenuHandler = () => {
-        console.log('clicked');
-        
         setOpen(isOpen = !isOpen);
     }
     return (
@@ -42,8 +40,6 @@ const SideNav = () => {
                     </NavLink>
                 </nav>
             </div>
-            
-            
             <BottomBar />
         </aside>
         

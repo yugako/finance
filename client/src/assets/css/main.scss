@@ -22,7 +22,7 @@ body {
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: $ff;
+    font-family: var(--primary-font);
 }
 
 button {
@@ -36,94 +36,50 @@ a {
     text-decoration: none;
 }
 
-select {
-    font-size: 16px;
-    font-family: $ff;
-    font-weight: 700;
-    color: $text-secondary;
-    line-height: 1.3;
-    position: relative;
-    padding: .6em 2.2em .5em 2.8em;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    box-shadow: 0 1px 0 1px rgba($dark,.04);
-    border-radius: .5em;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    background-image: url('../images/arrow-down.svg');
-    appearance: none;
-    background-color: $light;
-    
-    background-repeat: no-repeat, repeat;
-    background-position: right 1.5em top 60%, 0 0;
-    background-size: .65em auto, 100%;
-    &::-ms-expand {
-        display: none;
-    }
-    &:hover {
-        border-color: #888;
-    }
-    &:focus {
-        border-color: $text-primary;
-        box-shadow: 0 0 1px 3px rgba($text-primary, .7);
-        box-shadow: 0 0 0 3px -moz-mac-focusring;
-        color: #222;
-        outline: none;
-    }
-    option {
-        font-weight:normal;
-    }
-    &:focus, &:active {
-        outline: none;
-    }
-}
-
 .dropdown {
     position: absolute;
     width: 100%;
     min-width: 200px;
     list-style: none;
     border-radius: 10px;
-    background-color: $light;
+    background-color: var(--light);
     transition: all 0.5s;
     overflow: hidden;
     a, span {
         display: block;
         margin-bottom: 5px;
-        color: $text-primary;
+        color: var(--text-primary);
         font-size: 1rem;
-        font-family: $ff;
+        font-family: var(--primary-font);
         font-weight: 600;
         padding: 7px 10px;
         position: relative;
         z-index: 2;
         transition: all 0.5s;
         &:hover {
-            color: $primary;
+            color: var(--primary);
         }
     }
 }
 
 .submit {
-    color: $light;
-    font-family: $ff;
+    color: var(--light);
+    font-family: var(--primary-font);
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 1.25px;
     line-height: 16px;
     text-transform: uppercase;
     border: none;
-    background-color: $primary;
-    box-shadow: 0 1px 3px rgba($dark, 0.2), 0 2px 1px -1px rgba($dark, 0.12), 0 1px 1px rgba($dark, 0.14);
+    background-color: var(--primary);
+    box-shadow: 0 1px 3px rgba(var(--dark), 0.2), 0 2px 1px -1px rgba(var(--dark), 0.12), 0 1px 1px rgba(var(--dark), 0.14);
     cursor: pointer;
     padding: 13px 16px;
     display: block;
     width: 100%;
     max-width: 450px;
     margin-bottom: 20px;
-    @include md-size-max {
+    @media screen and (max-width: 991px) {
         margin-left: auto;
         margin-right: auto;
     }

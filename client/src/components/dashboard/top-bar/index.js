@@ -1,10 +1,14 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react';
-import { AuthContext } from '../../../context/AuthContext';
 import { NavLink } from 'react-router-dom';
+
+import { AuthContext } from '../../../context/AuthContext';
+import { useAPI } from '../../../context/DataContext';
 
 import './index.scss';
 
 const TopBar = ({title}) => {
+    const { accounts } = useAPI();
+
     const auth =  useContext(AuthContext);
     const [fullName, setFullName] = useState('user');
 
@@ -32,9 +36,13 @@ const TopBar = ({title}) => {
                         <li>
                             <NavLink to="/dashboard/accounts/add">Add account</NavLink>
                         </li>
-                        <li>
-                            <NavLink to="/dashboard/activity/add">Add activity</NavLink>
-                        </li>
+
+                        {accounts && accounts.length ?
+                            <li>
+                                <NavLink to="/dashboard/activity/add">Add activity</NavLink>
+                            </li> : null
+                        }
+                        
                     </ul>
                 </div>
                 <div className="dashboard-top-bar__options-search">

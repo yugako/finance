@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, createContext } from 'react';
+import React, { useState, useContext, useCallback, useEffect, createContext } from 'react';
 
 import { useHttp } from '../hooks/http.hook';
 import { AuthContext } from './AuthContext';
@@ -12,26 +12,28 @@ export const APIContextProvider = ({children}) => {
 	const {loading, request} = useHttp();
 
 	const {token} = useContext(AuthContext);
+	
+	const fetchAccounts = useCallback(async () => {
+    	try {
+	        const accountsList = await request('/api/account', 'GET', null, {
+	            Authorization: `Bearer ${token}`
+	        });
+
+	        const activityList = await request('/api/activity', 'GET', null, {
+                Authorization: `Bearer ${token}`
+            });
+			
+			setAccounts(accountsList);
+	        setActivity(activityList);
+	        
+
+	    } catch (e) {}
+    }, [token]);
+
 
 	useEffect(() => {
-	    const fetchAccounts = async () => {
-	    	try {
-		        const accountsList = await request('/api/account', 'GET', null, {
-		            Authorization: `Bearer ${token}`
-		        });
-
-		        const activityList = await request('/api/activity', 'GET', null, {
-	                Authorization: `Bearer ${token}`
-	            });
-
-		        setAccounts(accountsList);
-		        setActivity(activityList);
-
-		    } catch (e) {}
-	    }
-
 	    fetchAccounts();
-	}, []);
+	}, [fetchAccounts]);
 
 	return (
 	    <APIContext.Provider

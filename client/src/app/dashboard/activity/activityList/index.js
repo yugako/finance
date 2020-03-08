@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TopBar from '../../../../components/dashboard/top-bar';
 import ActivitySingle from '../../overview/oActivity/oActivitySingle';
@@ -22,5 +23,9 @@ const ActivityList = ({activities}) => {
         </section>
     );
 }
+
+ActivityList.propTypes = {
+    activities: PropTypes.array
+};
  
 export default ActivityList;

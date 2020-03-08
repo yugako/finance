@@ -5,8 +5,8 @@ import {AuthContext} from '../../../../context/AuthContext';
 import './index.scss';
 
 const BottomBar = () => {
-
     const auth =  useContext(AuthContext);
+
     return (
         <div className='dashboard-bottom-bar d-flex justify-content-between align-items-center'>
             <div className="dashboard-bottom-bar__help">

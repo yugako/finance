@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import TopBar from '../../../../components/dashboard/top-bar';
 
 const AccountList = ({accounts}) => {
@@ -14,7 +16,7 @@ const AccountList = ({accounts}) => {
                                 <div className='dashboard-accounts__item' >
                                     <NavLink to={`/dashboard/accounts/${account._id}`}>
                                         <h5 className='dashboard-accounts__item-title'>
-                                            {account.acountName}
+                                            {account.accountName}
                                         </h5>
                                     </NavLink>
                                 </div>
@@ -27,5 +29,9 @@ const AccountList = ({accounts}) => {
         </section>
     );
 }
+
+AccountList.propTypes = {
+    accounts: PropTypes.array
+};
  
 export default AccountList;

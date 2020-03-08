@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { NavLink } from 'react-router-dom';
 import { AreaChart, Area, ResponsiveContainer, } from 'recharts';
 
@@ -34,22 +36,34 @@ const BalancesCard = ({title, link, money, currency, datas}) => {
                     </div>
                 </div>
             </div>
-            <div className="balances-card__chart">
-                <ResponsiveContainer width="100%" height={70}>
-                    <AreaChart
-                      data={datas}
-                      margin={{
-                        top: 5, right: 0, left: 0, bottom: 0,
-                      }}
-                    >
-                    <Area type="monotone" dataKey="currentBalance" stroke="#8884d8" fill="#8884d8" />
-                    </AreaChart>
-                </ResponsiveContainer>
-            </div>
+            {datas && datas.length && datas.length > 1
+                ? <div className="balances-card__chart">
+                    <ResponsiveContainer width="100%" height={70}>
+                        <AreaChart
+                          data={datas}
+                          margin={{
+                            top: 5, right: 0, left: 0, bottom: 0,
+                          }}
+                        >
+                        <Area type="monotone" dataKey="currentBalance" stroke="#8884d8" fill="#8884d8" />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+                : null
+            }
+            
             
 
         </div> 
     );
 }
- 
+
+BalancesCard.propTypes = {
+    title: PropTypes.string, 
+    link: PropTypes.string, 
+    money: PropTypes.string, 
+    currency: PropTypes.string, 
+    datas: PropTypes.array
+}
+
 export default BalancesCard;

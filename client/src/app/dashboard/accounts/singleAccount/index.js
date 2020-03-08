@@ -1,39 +1,21 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 import { useParams } from 'react-router-dom';
-import { useHttp } from '../../../../hooks/http.hook';
-import { AuthContext } from '../../../../context/AuthContext';
-import Loader from '../../../../components/elements/Loader';
+import { useAPI } from '../../../../context/DataContext';
+
 import TopBar from '../../../../components/dashboard/top-bar';
 
 const SingleAccount = () => {
-    const {request, loading} = useHttp();
-    const {token} = useContext(AuthContext);
+    const { accounts, activities } = useAPI();
     const [account , setAccount] = useState(null);
-    const [activity , setActivity] = useState(null);
 
     const accountId = useParams().id;
 
-    const getData = useCallback(async () => {
-        try {
-            const accountData = await request(`/api/account/${accountId}`, 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-
-            const activityList = await request('/api/activity', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-
-            setActivity(activityList);
-            setAccount(accountData);
-        } catch (e) {}
-    }, [token, accountId, request]);
-
     const accountActivity = (accountName, accountBalance) => {
-        const current = !loading && activity && activity.filter(a =>  a.accountName === accountName);
+        const current = activities.filter(a =>  a.accountName === accountName);
 
-        const data = !loading && current && current.map(c => {
+        const data = current.map(c => {
             return {
                 sortDate: new Date(c.activityDate).getTime(),
                 displayDate: new Date(c.activityDate).toLocaleDateString(),
@@ -44,22 +26,23 @@ const SingleAccount = () => {
         return data;
     }
 
+    const getCurrentAccount = useCallback(() => {
+        const currentAccount = accounts && accounts.filter(a => a._id === accountId)[0];
+        setAccount(currentAccount);
+    });
+    
     useEffect(() => {
-        getData();
-    }, [getData]);
-
-    if (loading) {
-        return <Loader />;
-    }
+       getCurrentAccount();
+    }, [getCurrentAccount]);
 
     return (
         <>
-            {!loading && account && 
+            { account && 
                 <section>
-                    <TopBar title={`Account: ${account.acountName}`} />
+                    <TopBar title={`Account: ${account.accountName}`} />
                     <ResponsiveContainer width="100%" height={400} >
                         <AreaChart
-                            data={accountActivity(account.acountName, account.balance)}
+                            data={accountActivity(account.accountName, account.balance)}
                             margin={{
                                 top: 10, right: 30, left: 0, bottom: 0,
                             }}

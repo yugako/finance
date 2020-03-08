@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './index.scss';
 
 const ActivitySingle = ({title, date, amount, account}) => {
@@ -23,6 +25,13 @@ const ActivitySingle = ({title, date, amount, account}) => {
            </div>
         </div>
     );
+}
+
+ActivitySingle.propTypes = {
+    title: PropTypes.string,
+    date: PropTypes.string,
+    amount: PropTypes.string,
+    account: PropTypes.string
 }
  
 export default ActivitySingle;

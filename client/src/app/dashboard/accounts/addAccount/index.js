@@ -1,9 +1,12 @@
 import React, {useState, useContext} from 'react';
+import { useHistory } from 'react-router-dom';
+
 import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+
 import TopBar from '../../../../components/dashboard/top-bar';
 import Input from '../../../../components/elements/Forms/input';
+import Select from '../../../../components/elements/Forms/select';
 
 const accountTypeOptions = [
     {
@@ -66,8 +69,6 @@ const AddAccount = () => {
         } else {
             setAccount({...account, [event.target.name]: event.target.value});
         }
-
-        console.log(account);
     }
 
     const submitHandler = async e => {
@@ -87,7 +88,9 @@ const AddAccount = () => {
 
             history.push(`/dashboard/accounts/${data.account._id}`);
 
-        } catch (error) {}
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -106,35 +109,32 @@ const AddAccount = () => {
                         />
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div class="form-group">
-                            <select value={account.accountType} name='accountType' onChange={changeHandler} >
-                                {accountTypeOptions.map((option,index) => {
-                                    return <option key={index} value={option.value}>{option.label}</option>
-                                })}
-                            </select>
-                            <label for="select" class="control-label">Account type</label><i class="bar"></i>
-                        </div>
+                        <Select
+                            name='accountType'
+                            options={accountTypeOptions}
+                            value={account.accountType}
+                            label='Account type'
+                            changeHandler={changeHandler}
+                        />
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div class="form-group">
-                            <select value={account.accountCurrency} name='accountCurrency' onChange={changeHandler} >
-                                {accountCurrencyOptions.map((option, index) => {
-                                    return <option key={index} value={option.value}>{option.label}</option>
-                                })}
-                            </select>
-                            <label for="select" class="control-label">Account currency</label><i class="bar"></i>
-                        </div>
+                        <Select
+                            name='accountCurrency'
+                            options={accountCurrencyOptions}
+                            value={account.accountCurrency}
+                            label='Account currency'
+                            changeHandler={changeHandler}
+                        />
                     </div>
                     <div className="col-12">
-                        <div className="form-group">
-                            <input name='balance' required type="number"
-                                value={account.balance}
-                                onChange={changeHandler} />
-                            <label htmlFor="input" className="control-label">
-                                Balance
-                            </label>
-                            <i className="bar"></i>
-                        </div>
+                        <Input 
+                            name='balance'
+                            isRequired='true'
+                            type='number'
+                            value={account.balance}
+                            changeHandler={changeHandler}
+                            label='Balance'
+                        />
                     </div>
                     <input type="submit" className='submit' value="Add Account"/>
                 </div>

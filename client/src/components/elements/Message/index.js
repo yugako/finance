@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './index.scss';
 
 const Message = ({message}) => {
@@ -18,8 +20,6 @@ const Message = ({message}) => {
                     {JSON.parse(message).map(m => <li className='message-item' key={m.msg}>{m.msg}</li>)}
                 </ul>
             </div>
-            
-            
         )
     } else {
         return (
@@ -28,9 +28,11 @@ const Message = ({message}) => {
             </div>
             
         );
-    }
+    } 
+}
 
-    
+Message.propTypes = {
+    message: PropTypes.string
 }
  
 export default Message;

@@ -3,8 +3,11 @@ import { useHistory } from 'react-router-dom';
 
 import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
-import TopBar from '../../../../components/dashboard/top-bar';
+import { useAPI } from '../../../../context/DataContext';
 
+import TopBar from '../../../../components/dashboard/top-bar';
+import Input from '../../../../components/elements/Forms/input';
+import Select from '../../../../components/elements/Forms/select';
 
 const accountTypeOptions = [
     {
@@ -50,11 +53,12 @@ const activityTypeOptions = [
 
 const AddActivity = () => {
     const history = useHistory();
+    const { accounts } = useAPI();
+    
     const auth = useContext(AuthContext);
-    const {token} = useContext(AuthContext);
+
     const {loading,request} = useHttp();
 
-    const [accounts, setAccounts] = useState(null);
     const [activity, setActivity] = useState({
         activityName: '',
         activityType: activityTypeOptions[0].value,
@@ -63,35 +67,35 @@ const AddActivity = () => {
         activityDate: '',
     });
 
-    const changeHandler = event => {
-        setActivity({...activity, [event.target.name]: event.target.value});
-        console.log(activity);
+    const changeHandler = event => setActivity({...activity, [event.target.name]: event.target.value});
+
+    /* Handle changed data */
+    const updateData = useCallback(() => {
+        if (accounts) {
+            setActivity({...activity, accountName: accounts[0].accountName});
+        }
+            
+    }, [accounts]);
+
+    const transformAccountData = (data) => {
+        return data.map(d => {
+            return {
+                value: d.accountName,
+                label: d.accountName
+            }
+        });
     }
 
-    const fetchAccounts = useCallback(async () => {
-        try {
-            const data = await request('/api/account', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-
-            setAccounts(data);
-
-            setActivity({
-                ...activity, 
-                accountName: data[0].acountName,
-            });
-        } catch (e) {}
-    }, [token, request]);
-
     useEffect(() => {
-        fetchAccounts();
-    }, [fetchAccounts]);
+        updateData();
+    }, [updateData]);
+    
 
     const submitHandler = async e => {
         e.preventDefault();
 
         try {
-            const currentAccount = accounts.find(account => activity.accountName === account.acountName);
+            const currentAccount = accounts.find(account => activity.accountName === account.accountName);
 
             currentAccount.balance = parseFloat(currentAccount.balance) + parseFloat(activity.activitySpendings);
 
@@ -113,7 +117,7 @@ const AddActivity = () => {
 
             history.push(`/dashboard/activity/${data.activity._id}`);
 
-        } catch (error) {}
+        } catch (error) { console.log(error); }
     };
 
     return (
@@ -122,62 +126,56 @@ const AddActivity = () => {
             <form onSubmit={submitHandler} className='add-account__form'>
                 <div className="row">
                     <div className="col-12">
-                        <div className="form-group">
-                            <input name='activityName' required type="text"
-                                value={activity.activityName}
-                                onChange={changeHandler} />
-                            <label htmlFor="input" className="control-label">
-                                Activity name
-                            </label>
-                            <i className="bar"></i>
-                        </div>
+                        <Input 
+                            name='activityName'
+                            isRequired={true}
+                            type='text'
+                            value={activity.activityName}
+                            changeHandler={changeHandler}
+                            label='Activity name'
+                        />
                     </div>
                     <div className="col-12">
-                        <div className="form-group">
-                            <input name='activitySpendings' required type="number"
-                                value={activity.activitySpendings}
-                                onChange={changeHandler} />
-                            <label htmlFor="input" className="control-label">
-                                Spendings
-                            </label>
-                            <i className="bar"></i>
-                        </div>
+                        <Input 
+                            name='activitySpendings'
+                            isRequired={true}
+                            type='number'
+                            value={activity.activitySpendings}
+                            changeHandler={changeHandler}
+                            label='Spendings'
+                        />
+                    </div>
+                    
+                    <div className="col-12 col-lg-6">
+                        {accounts &&
+                            <Select 
+                                name='accountName'
+                                options={transformAccountData(accounts)}
+                                value={accounts[0].accountName}
+                                label='Account type'
+                                changeHandler={changeHandler}
+                            />
+                        }
                     </div>
                     <div className="col-12 col-lg-6">
-                        <div className="form-group">
-                            {!loading && accounts && 
-                                <select value={accounts[0].accountName} name='accountName' onChange={changeHandler}>
-                                    {accounts.map((option,index) => {
-                                        return <option key={index} value={option.acountName}>{option.acountName}</option>
-                                    })}
-                                </select>
-                            }
-                            <label htmlFor="select" className="control-label">Account type</label><i className="bar"></i>
-                        </div>
-                    </div>
-                    <div className="col-12 col-lg-6">
-                        <div className="form-group">
-                            <select value={activity.activityType} name='activityType' onChange={changeHandler} >
-                                {activityTypeOptions.map((option, index) => {
-                                    return <option key={index} value={option.value}>{option.label}</option>
-                                })}
-                            </select>
-                            <label htmlFor="select" className="control-label">Activity type</label><i className="bar"></i>
-                        </div>
+                        <Select 
+                            name='activityType'
+                            options={activityTypeOptions}
+                            value={activity.activityType}
+                            label='Activity type'
+                            changeHandler={changeHandler}
+                        />
                     </div>
                     <div className="col-12">
-                        <div className="form-group">
-                            <input name='activityDate' required type="date"
-                                value={activity.activityDate}
-                                onChange={changeHandler} />
-                            <label htmlFor="input" className="control-label">
-                                Activity date
-                            </label>
-                            <i className="bar"></i>
-                        </div>
+                        <Input 
+                            name='activityDate'
+                            isRequired={true}
+                            type='date'
+                            value={activity.activityDate}
+                            changeHandler={changeHandler}
+                            label='Activity date'
+                        />
                     </div>
-                    
-                    
                     <input type="submit"  className='submit' value="Add Account"/>
                 </div>
                 

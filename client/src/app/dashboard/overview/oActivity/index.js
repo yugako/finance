@@ -1,45 +1,16 @@
-import React, { useState, useContext, useCallback, useEffect } from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-import { useHttp } from '../../../../hooks/http.hook';
-import { AuthContext } from '../../../../context/AuthContext';
+import { useAPI } from '../../../../context/DataContext';
 
-import Loader from '../../../../components/elements/Loader';
 import ActivitySingle from './oActivitySingle';
 import ActivityEmpty from './oActivityEmpty';
 
 import './index.scss';
 
-
 const OverviewActivity = () => {
-    const [activities, setActivities] = useState();
-    const { loading, request } = useHttp();
+    const { activities } = useAPI();
 
-    const { token } = useContext(AuthContext);
-
-    const fetchActivities = useCallback(async () => {
-        try {
-            const activitiesList = await request('/api/activity', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-
-            if(activitiesList.length) {
-                setActivities(activitiesList);
-            } else {
-                setActivities(null);
-            }
-        } catch (e) {}
-    }, [token, request]);
-
-    useEffect(() => {
-        fetchActivities()
-    }, [fetchActivities]);
-
-    if (loading) {
-        return (
-            <Loader />
-        )
-    }
     return (
         <div className='dashboard-overview__activity'>
             <div className="dashboard-overview__activity-header d-flex justify-content-between">
@@ -48,7 +19,7 @@ const OverviewActivity = () => {
                 </div>
             </div>
             <div className="dashboard-overview__activity-list">
-                {!loading && activities 
+                {activities && activities.length
                     ? activities.map( activity => 
                         <ActivitySingle
                             title={activity.activityName} 
@@ -61,7 +32,7 @@ const OverviewActivity = () => {
                     : <ActivityEmpty />
                 }
             </div>
-            {activities 
+            {activities && activities.length
                 ? <NavLink className='dashboard-overview__activity-more' to='/dashboard/activity'>View More</NavLink>
                 : null
             }

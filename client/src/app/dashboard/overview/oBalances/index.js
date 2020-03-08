@@ -30,7 +30,7 @@ const OverviewBalances = () => {
                     <div className="dashboard-overview__balances-title">
                         Balances
                     </div>
-                    {!accounts 
+                    {accounts && !accounts.length
                         ?  <div className="dashboard-overview__balances-subtitle">
                                 Seems you don't have an account yet. Let's create it.
                             </div>
@@ -38,16 +38,16 @@ const OverviewBalances = () => {
                     }
                 </div>
                 <div className="row">
-                    {accounts 
+                    {accounts && accounts.length
                         ? accounts.map(account => {
                             return (
                                 <div className="col-12 col-lg-4" key={account._id}>
                                     <BalancesCard
-                                        title={account.acountName}
+                                        title={account.accountName}
                                         link={account._id}
                                         money={account.balance}
                                         currency={account.accountCurrency} 
-                                        datas={accountActivity(account.acountName, account.balance)}/>
+                                        datas={accountActivity(account.accountName, account.balance)}/>
                                 </div>
                             )})
                         : <>
