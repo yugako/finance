@@ -17,9 +17,9 @@ const SingleAccount = () => {
     const accountId = useParams().id;
 
     const accountActivity = (accountName, accountBalance) => {
-        const current = activities.filter(a =>  a.accountName === accountName);
+        const current = activities && activities.filter(a =>  a.accountName === accountName);
 
-        const data = current.map(c => {
+        const data = current && current.map(c => {
             return {
                 sortDate: new Date(c.activityDate).getTime(),
                 displayDate: new Date(c.activityDate).toLocaleDateString(),

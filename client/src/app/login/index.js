@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext, useCallback} from 'react';
 import {NavLink, useHistory} from 'react-router-dom';
 
 import { useHttp } from '../../hooks/http.hook';
 import { AuthContext } from '../../context/AuthContext';
+import { useData } from '../../hooks/data.hook';
 
 import Pig from '../../assets/images/pig.svg';
 import Message from '../../components/elements/Message';
@@ -11,17 +12,19 @@ import Input from '../../components/elements/Forms/input';
 
 import './index.scss';
 const Login = () => {
-
+    const {fetchDataSingle} = useData();
     const {loading, error, request, clearError} = useHttp();
     const history = useHistory();
     const auth =  useContext(AuthContext);
     const [localError, setLocalError] = useState([]);
+    const [user, setUser] = useState();
 
     const [form, setForm] = useState({
         email: '',
         password: '',
         keep_logged: false,
     });
+
 
     useEffect(() => {
         setLocalError(error);
@@ -48,9 +51,16 @@ const Login = () => {
             auth.login(data.token, data.userId, form.keep_logged);
             localStorage.setItem('userName', data.userFirstName);
 
-            history.push('/dashboard/welcome/base-currency');
+            if(data.isInitialized) {
+                history.push('/dashboard');
+            } else {
+                history.push('/dashboard/welcome');
+            }
             
-        } catch (error) {}
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <section className='login'>

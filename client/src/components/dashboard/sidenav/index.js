@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 
 import DashboardLogo from '../logo';
+import HomeLogo from '../../home/logo';
 import BottomBar from './bottom-bar';
 
 import './index.scss';
@@ -15,7 +16,7 @@ const SideNav = () => {
     return (
         <aside className='dashboard-sidebar'>
             <div className="dashboard-sidebar__header d-flex justify-content-between align-items-center">
-                <DashboardLogo />
+                <HomeLogo />
                 <i onClick={toggleMenuHandler} className="toggle-menu fas fa-bars"></i>
             </div>
             <div className={`dashboard-sidebar__content ${isOpen ? 'open' : 'closed'}`}>

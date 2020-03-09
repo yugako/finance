@@ -1,10 +1,8 @@
-.home {
-    &-logo {
-        color: var(--light);
-        font-size: 20px;
-        font-weight: bold;
-        span {
-            color: var(--primary);
-        }
+.logo {
+    color: var(--light);
+    font-size: 20px;
+    font-weight: bold;
+    span {
+        color: var(--primary);
     }
 }

@@ -1,51 +1,53 @@
-import React, {useState, useContext, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {useHistory} from 'react-router-dom';
 
-import {useHttp} from '../../../../hooks/http.hook';
-import { AuthContext } from '../../../../context/AuthContext';
+import { useData } from '../../../hooks/data.hook';
 
-import WelcomeWrapper from '../../../../components/dashboard/welcome/wrapper';
+import WelcomeWrapper from '../../../components/dashboard/welcome/wrapper';
 
-import currencyList from '../../../../assets/data/currency.js';
-import Input from '../../../../components/elements/Forms/input';
-import Select from '../../../../components/elements/Forms/select';
+import currencyList from '../../../assets/data/currency.js';
+import accountTypeOptions from '../../../assets/data/accountTypeOptions.js';
+
+import Input from '../../../components/elements/Forms/input';
+import Select from '../../../components/elements/Forms/select';
 
 import './index.scss';
 
-const accountTypeOptions = [
-    {
-        value: 'Checking/Cash',
-        label: 'Checking/Cash',
-    },
-    {
-        value: 'Savings',
-        label: 'Savings',
-    },
-    {
-        value: 'Credit Card',
-        label: 'Credit Card',
-    },
-    {
-        value: 'Investment',
-        label: 'Investment',
-    },
-    {
-        value: 'Other',
-        label: 'Other',
-    }
-];
-
-const BaseCurrency = () => {
+const Welcome = () => {
 	const history = useHistory();
-    const auth = useContext(AuthContext);
-    const {request} = useHttp();
+    const {fetchDataSingle, updateSingleData, createData} = useData();
 
+	const [user, setUser] = useState();
     const [account, setAccount] = useState({
         accountName: '',
         accountType: accountTypeOptions[0].value,
         accountCurrency: currencyList[0].name,
         balance: 0,
     });
+
+    const getUser = useCallback(async () => {
+    	try {
+    		let userLocalData = null;
+    		if(localStorage.getItem('userData')) {
+    		 	userLocalData = JSON.parse(localStorage.getItem('userData'));
+    		} else {
+    			userLocalData = JSON.parse(sessionStorage.getItem('userData'));
+    		}
+    		
+    		const userId = userLocalData.userId;
+
+
+    		const user = await fetchDataSingle('auth', userId);
+
+    		setUser(user);
+    	} catch(e) {
+    		console.log(e);
+    	}
+    }, []);
+
+    useEffect(() => {
+    	getUser();
+    }, [getUser]);
 
     const changeHandler = event => {
         if(event.target.type === 'number') {
@@ -59,10 +61,8 @@ const BaseCurrency = () => {
         e.preventDefault();
 
         try {
-            const data = await request('/api/account/create', 'POST', {...account}, {
-                Authorization: `Bearer ${auth.token}`
-            });
-
+            await createData('account/create', {...account});
+			await updateSingleData('auth', user._id, {...user, isInitialized: true})
 
             setAccount({
                 accountName: '',
@@ -77,7 +77,6 @@ const BaseCurrency = () => {
             console.log(error);
         }
     };
-
 
 	return (
 		<WelcomeWrapper>
@@ -136,4 +135,4 @@ const BaseCurrency = () => {
 	);
 }
 
-export default BaseCurrency;
+export default Welcome;

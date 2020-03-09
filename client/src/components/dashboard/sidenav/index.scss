@@ -1,6 +1,6 @@
 .dashboard {
     &-sidebar {
-        padding: 28px 37px;
+        padding: 34px 37px;
         background-color: #dce1ee;
         box-shadow: inset -10px 0 30px 10px rgba(85, 99, 159, 0.02);
         flex-basis: 15%;
@@ -26,6 +26,10 @@
                @media (min-width: 768px) {
                     display: none;
                 }
+            }
+            .logo {
+                margin-bottom: 60px;
+                color: var(--text-primary);
             }
         }
         &__content {

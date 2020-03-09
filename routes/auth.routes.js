@@ -83,15 +83,43 @@ router.post(
 			const token = jwt.sign(
 				{userId: user.id},
 				config.get('jwtSecret'),
-				{expiresIn: '1d'}
+				{expiresIn: '1d'},
+
 			);
 
-			res.json({token, userId: user.id, userFirstName: user.first_name, userLastName: user.last_name,});
+			res.json({token, userId: user.id, userFirstName: user.first_name, userLastName: user.last_name, isInitialized: user.isInitialized});
 
 		
 		} catch(e) {
 			res.status(500).json({message: 'Something went wrong! Try again.'})
 		}	
+});
+
+/**
+*   Update user
+*/
+
+router.put('/:id', async(req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body);
+
+        res.json(user);
+    } catch {
+        res.status(500).json({message: 'Smth went wrong! Try again.'})
+    }
+});
+
+/**
+ * Get user by id
+ */
+router.get('/:id', async (req, res) => {
+    try {
+		const user = await User.findById(req.params.id);
+        res.json(user);
+		
+	} catch(e) {
+		res.status(500).json({message: 'Smth went wrong! Try again.'})
+	}
 });
 
 
