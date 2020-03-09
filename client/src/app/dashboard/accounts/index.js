@@ -1,56 +1,32 @@
-import React, { useState, useContext, useCallback, useEffect, createContext } from 'react';
 
-import { useHttp } from '../../../hooks/http.hook';
-import { AuthContext } from '../../../context/AuthContext';
-import { useData } from '../../../hooks/data.hook';
+import React, { useState, useCallback, useEffect } from 'react';
 import Loader from '../../../components/elements/Loader';
 import AccountList from './accountList';
 
+import { useData } from '../../../hooks/data.hook';
+
 const Accounts = () => {
     const [accounts, setAccounts] = useState();
-    const {loading, request} = useHttp();
-    const {fetchData} = useData();
+    const {fetchDataList} = useData();
 
-     const [account, setAccount] = useState();
-     const [activity, setActivity] = useState();
+    const getAccounts = useCallback(async () => {
+        const accountsList = await fetchDataList('account');
 
-    const {token} = useContext(AuthContext);
-
-    const fetchAccounts = useCallback(async () => {
-        try {
-            const accountsList = await request('/api/account', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-            setAccounts(accountsList);
-        } catch (e) {
-            
-        }
-    }, [token, request]);
-    
-    const data = useCallback(async () => {
-        const accountsList = await fetchData('account');
-        const activityList = await fetchData('activity');
-
-        setAccount(accountsList);
-        setActivity(activityList);
+        setAccounts(accountsList);
     }, []);
-   
-    useEffect(() => {
-        data();
-        fetchAccounts()
-    }, [fetchAccounts]);
 
-    if(loading) {
+    useEffect(() => {
+        getAccounts()
+    }, [getAccounts]);
+
+    if(!accounts) {
         return (
             <Loader />
         )
     }
 
     return (
-        
-        <>  {console.log(account, activity)}
-            { !loading && accounts && <AccountList accounts={accounts} /> }         
-        </>
+        <AccountList accounts={accounts} />
     );
 }
  

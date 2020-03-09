@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
-import { useAPI } from '../../../context/DataContext';
+import { useData } from '../../../hooks/data.hook';
 
+import Loader from '../../../components/elements/Loader';
 import ActivityList from './activityList';
 
 const Activity = () => {
+	const [activities, setActivities] = useState();
+    const {fetchDataList} = useData();
 
-    const { activities } = useAPI();
+    const getActivities = useCallback(async () => {
+        const actvityList = await fetchDataList('activity');
+
+        setActivities(actvityList);
+    }, []);
+
+    useEffect(() => {
+        getActivities()
+    }, [getActivities]);
+
+    if(!activities) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
-        
-        <>  
-            {activities && <ActivityList activities={activities} /> }         
-        </>
-        
+       <ActivityList activities={activities} />
     );
 }
  

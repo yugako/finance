@@ -5,12 +5,12 @@
         }
         
         &__item {
-            background-color: $light;
+            background-color: var(--light);
             margin-bottom: 15px;
             padding: 20px;
             &-title {
-                color: $text-secondary;
-                font-family: $ff;
+                color: var(--text-secondary);
+                font-family: var(--ff);
                 font-size: 15px;
                 font-weight: 600;
                 text-transform: capitalize;
@@ -18,21 +18,6 @@
                 line-height: 1.2;
                 margin: 0;
             }
-        }
-    }
-}
-
-.add-account {
-    &__form {
-        background-color: $light;
-        padding: 40px;
-        margin-top: 40px;
-        border-radius: 10px;
-        max-width: 576px;
-        width: 100%;
-        .submit {
-            width: 100%;
-            max-width: 100%;
         }
     }
 }

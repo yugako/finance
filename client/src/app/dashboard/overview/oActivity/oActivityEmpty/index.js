@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+
 import {NavLink} from 'react-router-dom';
-import { useAPI } from '../../../../../context/DataContext';
+
+import { useData } from '../../../../../hooks/data.hook';
+
 import './index.scss';
 
 const ActivityEmpty = () => {
-	const { accounts } = useAPI();
+	const [accounts, setAccounts] = useState();
+    const {fetchDataList} = useData();
+
+    const getAccounts = useCallback(async () => {
+        const accountsList = await fetchDataList('account');
+
+        setAccounts(accountsList);
+    }, []);
+
+    useEffect(() => {
+        getAccounts()
+    }, [getAccounts]);
 
 	return (
 		<div className='activity-empty'>
 			You don't have any activity
-			{accounts && accounts.length 
+			{accounts  
 				? <NavLink to='/dashboard/activity/add'>Add new</NavLink> 
 				: null
 			}

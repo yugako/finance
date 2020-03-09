@@ -7,6 +7,7 @@ import { AuthContext } from '../../../../context/AuthContext';
 import TopBar from '../../../../components/dashboard/top-bar';
 import Input from '../../../../components/elements/Forms/input';
 import Select from '../../../../components/elements/Forms/select';
+import './index.scss';
 
 const accountTypeOptions = [
     {

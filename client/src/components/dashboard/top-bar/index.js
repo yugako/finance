@@ -2,15 +2,26 @@ import React, {useContext, useState, useEffect, useCallback} from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { AuthContext } from '../../../context/AuthContext';
-import { useAPI } from '../../../context/DataContext';
+
+import { useData } from '../../../hooks/data.hook';
+
 
 import './index.scss';
 
 const TopBar = ({title}) => {
-    const { accounts } = useAPI();
+    const [accounts, setAccounts] = useState();
+    const auth = useContext(AuthContext);
+     const [fullName, setFullName] = useState('user');
+    const {fetchDataList} = useData();
 
-    const auth =  useContext(AuthContext);
-    const [fullName, setFullName] = useState('user');
+    const getAccounts = useCallback(async () => {
+        const accountsList = await fetchDataList('account');
+
+        setAccounts(accountsList);
+    }, []);
+
+    
+   
 
     const getFullName = useCallback(() => {    
         if(localStorage.getItem('userName')) {
@@ -21,7 +32,8 @@ const TopBar = ({title}) => {
 
     useEffect(() => {
        getFullName();
-    }, [getFullName]);
+        getAccounts();
+    }, [getFullName, getAccounts]);
    
 
     return (

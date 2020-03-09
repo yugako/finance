@@ -1,7 +1,7 @@
 .dashboard {
     display: flex;
     min-height: 100vh;
-    @include sm-size-max {
+    @media (max-width: 767px) {
         flex-wrap: wrap;
         min-height: initial;
     }
@@ -10,7 +10,7 @@
         padding: 34px 48px;
         background-color: #edeff2;
         flex: 1;
-        @include sm-size-max {
+        @media (max-width: 767px) {
             padding: 20px;
         }
     }
@@ -18,13 +18,8 @@
     &-logo {
         margin-bottom: 28px;
         display: block;
-        @include sm-size-max {
+        @media (max-width: 767px) {
             margin-bottom: 10px;
         }
     }     
 }
-
-@import 'sidebar';
-@import 'nav';
-
-@import 'accounts';

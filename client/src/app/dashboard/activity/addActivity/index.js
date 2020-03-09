@@ -3,34 +3,13 @@ import { useHistory } from 'react-router-dom';
 
 import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
-import { useAPI } from '../../../../context/DataContext';
+
+import { useData } from '../../../../hooks/data.hook';
 
 import TopBar from '../../../../components/dashboard/top-bar';
 import Input from '../../../../components/elements/Forms/input';
 import Select from '../../../../components/elements/Forms/select';
-
-const accountTypeOptions = [
-    {
-        value: 'Checking/Cash',
-        label: 'Checking/Cash',
-    },
-    {
-        value: 'Savings',
-        label: 'Savings',
-    },
-    {
-        value: 'Credit Card',
-        label: 'Credit Card',
-    },
-    {
-        value: 'Investment',
-        label: 'Investment',
-    },
-    {
-        value: 'Other',
-        label: 'Other',
-    }
-];
+import Loader from '../../../../components/elements/Loader';
 
 const activityTypeOptions = [
     {
@@ -53,8 +32,9 @@ const activityTypeOptions = [
 
 const AddActivity = () => {
     const history = useHistory();
-    const { accounts } = useAPI();
-    
+
+    const { fetchDataList } = useData();
+        
     const auth = useContext(AuthContext);
 
     const {loading,request} = useHttp();
@@ -67,7 +47,16 @@ const AddActivity = () => {
         activityDate: '',
     });
 
+    const [accounts, setAccounts] = useState();
+
     const changeHandler = event => setActivity({...activity, [event.target.name]: event.target.value});
+    
+    const getAccounts = useCallback(async () => {
+        const accountsList = await fetchDataList('account');
+
+        setAccounts(accountsList);
+    }, []);
+
 
     /* Handle changed data */
     const updateData = useCallback(() => {
@@ -88,7 +77,8 @@ const AddActivity = () => {
 
     useEffect(() => {
         updateData();
-    }, [updateData]);
+        getAccounts();
+    }, [updateData, getAccounts]);
     
 
     const submitHandler = async e => {
@@ -119,6 +109,12 @@ const AddActivity = () => {
 
         } catch (error) { console.log(error); }
     };
+
+     if(!accounts) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
         <div className='add-activity'>

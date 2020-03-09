@@ -71,7 +71,7 @@ const Register = () => {
                         </div>
                         <form onSubmit={registerHandler}>
                             <Input 
-                                name='text'
+                                name='first_name'
                                 isRequired={true}
                                 type='text'
                                 value={form.first_name}
@@ -79,7 +79,7 @@ const Register = () => {
                                 label='First Name'
                             />
                             <Input 
-                                name='text'
+                                name='last_name'
                                 isRequired={true}
                                 type='text'
                                 value={form.last_name}

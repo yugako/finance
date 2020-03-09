@@ -4,6 +4,8 @@ import {NavLink} from 'react-router-dom';
 import DashboardLogo from '../logo';
 import BottomBar from './bottom-bar';
 
+import './index.scss';
+
 const SideNav = () => {
     let [isOpen, setOpen] = useState(true);
 

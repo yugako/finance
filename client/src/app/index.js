@@ -3,7 +3,6 @@ import { BrowserRouter} from 'react-router-dom';
 
 import { useAuth } from '../hooks/auth.hook';
 import {AuthContext} from '../context/AuthContext';
-import { APIContextProvider } from "../context/DataContext";
 
 import { useRoutes } from './router';
 import Loader from '../components/elements/Loader';
@@ -21,13 +20,11 @@ const App = () => {
         <AuthContext.Provider value={{
             token, login, logout, userId, isAuthenticated, ready
         }}>
-            <APIContextProvider>
-                <BrowserRouter>
-                    <div className='finance-app'>
-                        {router}
-                    </div> 
-                </BrowserRouter>
-            </APIContextProvider>
+            <BrowserRouter>
+                <div className='finance-app'>
+                    {router}
+                </div> 
+            </BrowserRouter>
             
         </AuthContext.Provider>
         

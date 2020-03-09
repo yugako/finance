@@ -48,7 +48,7 @@ const Login = () => {
             auth.login(data.token, data.userId, form.keep_logged);
             localStorage.setItem('userName', data.userFirstName);
 
-            history.push('/dashboard');
+            history.push('/dashboard/welcome/base-currency');
             
         } catch (error) {}
     }
