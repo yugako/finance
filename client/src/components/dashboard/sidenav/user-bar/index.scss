@@ -1,0 +1,41 @@
+.user-bar {
+	display: flex;
+	align-items: center;
+	border-top: 2px solid var(--text-primary);
+	border-bottom: 2px solid var(--text-primary);
+	padding: 12px 0;
+	margin: 20px 0px;
+	&__image {
+		margin-right: 10px;
+		img {
+			max-width: 50px;
+			height: auto;
+			border-radius: 50%;
+		}
+	}
+	&__content {
+		&-name {
+			color: var(--text-primary);
+			font-size: 1rem;
+    		font-family: var(--primary-font);
+    		font-weight: 600;
+    		margin-bottom: 5px;
+		}
+		&-actions {
+			color: var(--text-primary);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			a, i {
+				color: inherit;
+				cursor: pointer;
+				transition: color 0.3s;
+				&:hover {
+					color: var(--primary);
+					transition: color 0.3s;
+				}
+			}
+		}
+	}
+	
+}

@@ -4,7 +4,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useParams } from 'react-router-dom';
 import { useData } from '../../../../hooks/data.hook';
 
-import TopBar from '../../../../components/dashboard/top-bar';
+import Headline from '../../../../components/dashboard/headline';
 import Loader from '../../../../components/elements/Loader';
 
 
@@ -56,7 +56,7 @@ const SingleAccount = () => {
 
     return (
          <section>
-            <TopBar title={`Account: ${account.accountName}`} />
+            <Headline title={`Account: ${account.accountName}`} />
             <ResponsiveContainer width="100%" height={400} >
                 <AreaChart
                     data={accountActivity(account.accountName, account.balance)}

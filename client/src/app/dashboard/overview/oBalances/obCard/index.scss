@@ -23,13 +23,6 @@
         }
         
     }
-    &__options {
-        i {
-            color: var(--text-secondary);
-            cursor: pointer;
-            transform: translateY(-15px);
-        }
-    }
     &__chart {
         position: relative;
         bottom: -5px;

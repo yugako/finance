@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TopBar from '../../../../components/dashboard/top-bar';
+import Headline from '../../../../components/dashboard/headline';
 import ActivitySingle from '../../overview/oActivity/oActivitySingle';
 
 const ActivityList = ({activities}) => {
     return (
         <section className='dashboard-activity'>
-            <TopBar title='Activities' />
+            <Headline title='Activities' />
             <div className="dashboard-activity__list">
                 {activities.map(a => {
                     return (

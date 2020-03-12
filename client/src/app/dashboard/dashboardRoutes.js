@@ -7,7 +7,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Overview from './overview';
 import Activity from './activity';
 import Accounts from './accounts';
-import History from './history';
+import Budgets from './budgets';
 import Settings from './settings';
 import Help from './help';
 import Welcome from './welcome';
@@ -47,8 +47,8 @@ const DashboardRoutes = () => {
                             component={Accounts}
                         />
                         <Route 
-                            path="/dashboard/history" exact 
-                            component={History}
+                            path="/dashboard/budgets" exact 
+                            component={Budgets}
                         />
                         <Route 
                             path="/dashboard/settings" exact 

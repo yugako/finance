@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import {useHttp} from '../../../../hooks/http.hook';
 import { AuthContext } from '../../../../context/AuthContext';
 
-import TopBar from '../../../../components/dashboard/top-bar';
+import Headline from '../../../../components/dashboard/headline';
 import Input from '../../../../components/elements/Forms/input';
 import Select from '../../../../components/elements/Forms/select';
 import './index.scss';
@@ -96,7 +96,7 @@ const AddAccount = () => {
 
     return (
         <div className='add-account'>
-            <TopBar title='Add account' />            
+            <Headline title='Add account' />            
             <form onSubmit={submitHandler} className='add-account__form'>
                 <div className="row">
                     <div className="col-12">

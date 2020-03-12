@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import DashboardLogo from '../logo';
 import HomeLogo from '../../home/logo';
 import BottomBar from './bottom-bar';
-
+import UserBar from './user-bar';
 import './index.scss';
 
 const SideNav = () => {
@@ -19,6 +19,7 @@ const SideNav = () => {
                 <HomeLogo />
                 <i onClick={toggleMenuHandler} className="toggle-menu fas fa-bars"></i>
             </div>
+            <UserBar />
             <div className={`dashboard-sidebar__content ${isOpen ? 'open' : 'closed'}`}>
                 <nav className="dashboard-nav">
                     <NavLink exact to='/dashboard'>
@@ -33,9 +34,9 @@ const SideNav = () => {
                         <i className="fas fa-chart-line"></i>
                         Activity
                     </NavLink>
-                    <NavLink to='/dashboard/history'>
-                        <i className="fas fa-history"></i>
-                        History
+                    <NavLink to='/dashboard/budgets'>
+                        <i class="fas fa-money-bill-alt"></i>
+                        Budgets
                     </NavLink>
                     <NavLink to='/dashboard/settings'>
                         <i className="fas fa-users-cog"></i>

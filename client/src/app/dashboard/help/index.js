@@ -1,13 +1,13 @@
 import React from 'react';
-import TopBar from '../../../components/dashboard/top-bar'; 
+import Headline from '../../../components/dashboard/headline'; 
 
-const History = () => {
+const Help = () => {
     return (
         <>
-            <TopBar title='Help' />
+            <Headline title='Help' />
         </>
         
     );
 }
  
-export default History;
+export default Help;

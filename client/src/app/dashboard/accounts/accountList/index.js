@@ -2,13 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import TopBar from '../../../../components/dashboard/top-bar';
+import Headline from '../../../../components/dashboard/headline';
 import './index.scss';
 
 const AccountList = ({accounts}) => {
     return (
         <section className='dashboard-accounts'>
-            <TopBar title='Accounts' />
+            <Headline title='Accounts' />
             <div className="dashboard-accounts__list row">
                 {
                     accounts.map(account => {

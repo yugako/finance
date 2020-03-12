@@ -6,7 +6,7 @@ import { AuthContext } from '../../../../context/AuthContext';
 
 import { useData } from '../../../../hooks/data.hook';
 
-import TopBar from '../../../../components/dashboard/top-bar';
+import Headline from '../../../../components/dashboard/headline';
 import Input from '../../../../components/elements/Forms/input';
 import Select from '../../../../components/elements/Forms/select';
 import Loader from '../../../../components/elements/Loader';
@@ -118,7 +118,7 @@ const AddActivity = () => {
 
     return (
         <div className='add-activity'>
-            <TopBar title='Add activity' />            
+            <Headline title='Add activity' />            
             <form onSubmit={submitHandler} className='add-account__form'>
                 <div className="row">
                     <div className="col-12">

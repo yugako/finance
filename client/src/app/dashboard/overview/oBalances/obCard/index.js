@@ -15,9 +15,6 @@ const BalancesCard = ({title, link, money, currency, datas}) => {
                     <div className="balances-card__title">
                         <NavLink to={`/dashboard/accounts/${link}`}>{title}</NavLink>
                     </div>
-                    <div className="balances-card__options">
-                        <i className="fas fa-ellipsis-h"></i>
-                    </div>
                 </div>
                 <div className="balances-card__content d-flex justify-content-between align-items-center">
                     <h2 className="balances-card__money">
