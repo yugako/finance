@@ -17,7 +17,7 @@ const OverviewActivity = () => {
         const activitiesList = await fetchDataList('activity');
 
         setActivities(activitiesList);
-    }, []);
+    }, [fetchDataList]);
 
     useEffect(() => {
         getActivities()

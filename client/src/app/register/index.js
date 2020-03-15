@@ -40,7 +40,7 @@ const Register = () => {
     const registerHandler = async (e) => {
         e.preventDefault();
         try {
-            const data = await request('/api/auth/register', 'POST', {
+            await request('/api/auth/register', 'POST', {
                 ...form
             });
 

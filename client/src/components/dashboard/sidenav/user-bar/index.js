@@ -1,23 +1,12 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { AuthContext } from '../../../../context/AuthContext';
-
-import { useData } from '../../../../hooks/data.hook';
 import './index.scss';
 
 const UserBar = () => {
-	const [accounts, setAccounts] = useState();
     const auth = useContext(AuthContext);
     const [fullName, setFullName] = useState('user');
-    const {fetchDataList} = useData();
-
-    const getAccounts = useCallback(async () => {
-        const accountsList = await fetchDataList('account');
-
-        setAccounts(accountsList);
-    }, []);
-
+    
     const getFullName = useCallback(() => {    
         if(localStorage.getItem('userName')) {
             const data = localStorage.getItem('userName');
@@ -27,8 +16,7 @@ const UserBar = () => {
 
     useEffect(() => {
        getFullName();
-        getAccounts();
-    }, [getFullName, getAccounts]);
+    }, [getFullName]);
 	return (
 		<div className='user-bar'>
 			<div className="user-bar__image">
@@ -42,7 +30,7 @@ const UserBar = () => {
 				<div className="user-bar__content-actions">
 					<i title='Search' className="fas fa-search-dollar"></i>
 					<NavLink to="/dashboard/edit-profile">
-						<i title='Edit profile' class="fas fa-user-edit"></i>
+						<i title='Edit profile' className="fas fa-user-edit"></i>
 					</NavLink>
 					<i title='Log Out' className="fas fa-door-open"  onClick={auth.logout}></i>
 				</div>

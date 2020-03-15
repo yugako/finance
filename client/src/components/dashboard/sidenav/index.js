@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 
-import DashboardLogo from '../logo';
 import HomeLogo from '../../home/logo';
 import BottomBar from './bottom-bar';
 import UserBar from './user-bar';
@@ -35,7 +34,7 @@ const SideNav = () => {
                         Activity
                     </NavLink>
                     <NavLink to='/dashboard/budgets'>
-                        <i class="fas fa-money-bill-alt"></i>
+                        <i className="fas fa-money-bill-alt"></i>
                         Budgets
                     </NavLink>
                     <NavLink to='/dashboard/settings'>

@@ -37,7 +37,7 @@ const AddActivity = () => {
         
     const auth = useContext(AuthContext);
 
-    const {loading,request} = useHttp();
+    const {request} = useHttp();
 
     const [activity, setActivity] = useState({
         activityName: '',
@@ -55,16 +55,17 @@ const AddActivity = () => {
         const accountsList = await fetchDataList('account');
 
         setAccounts(accountsList);
-    }, []);
-
+    }, [fetchDataList]);
 
     /* Handle changed data */
-    const updateData = useCallback(() => {
-        if (accounts) {
-            setActivity({...activity, accountName: accounts[0].accountName});
-        }
+    // const updateData = useCallback(() => {
+    //     if (accounts) {
+    //         setActivity(activity => {
+    //            return {...activity, accountName: accounts[0].accountName}; 
+    //         });
+    //     }
             
-    }, [accounts]);
+    // }, [accounts]);
 
     const transformAccountData = (data) => {
         return data.map(d => {
@@ -76,9 +77,9 @@ const AddActivity = () => {
     }
 
     useEffect(() => {
-        updateData();
+        // updateData();
         getAccounts();
-    }, [updateData, getAccounts]);
+    }, [getAccounts]);
     
 
     const submitHandler = async e => {
@@ -93,7 +94,7 @@ const AddActivity = () => {
                 Authorization: `Bearer ${auth.token}`
             });
 
-            const update = await request(`/api/account/${currentAccount._id}`, 'PUT', currentAccount, {
+            await request(`/api/account/${currentAccount._id}`, 'PUT', currentAccount, {
                 Authorization: `Bearer ${auth.token}`
             });
 
@@ -147,7 +148,7 @@ const AddActivity = () => {
                             <Select 
                                 name='accountName'
                                 options={transformAccountData(accounts)}
-                                value={accounts[0].accountName}
+                                value={activity.accountName}
                                 label='Account type'
                                 changeHandler={changeHandler}
                             />

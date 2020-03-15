@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {NavLink} from 'react-router-dom';
 
 import { useData } from '../../../hooks/data.hook';
@@ -10,6 +10,7 @@ const AddData = () => {
     let [isOpen, setOpen] = useState(false);
 
     const toggleMenuHandler = () => {
+
         setOpen(isOpen = !isOpen);
     }
 
@@ -17,7 +18,7 @@ const AddData = () => {
         const accountsList = await fetchDataList('account');
 
         setAccounts(accountsList);
-    }, []);
+    }, [fetchDataList]);
 
     useEffect(() => {
        getAccounts();
@@ -25,7 +26,7 @@ const AddData = () => {
 
 	return (
 		<div className="add-data">
-			<i onClick={toggleMenuHandler} class="fas fa-plus-circle"></i>
+			<i onClick={toggleMenuHandler} className="fas fa-plus-circle"></i>
 	     
 	        <ul className={`add-data__dropdown dropdown ${isOpen ? 'open' : 'closed'}`}>
 	            <li>

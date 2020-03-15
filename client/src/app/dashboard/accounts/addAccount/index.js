@@ -102,7 +102,7 @@ const AddAccount = () => {
                     <div className="col-12">
                         <Input 
                             name='accountName'
-                            isRequired='true'
+                            isRequired={true}
                             type='text'
                             value={account.accountName}
                             changeHandler={changeHandler}
@@ -130,7 +130,7 @@ const AddAccount = () => {
                     <div className="col-12">
                         <Input 
                             name='balance'
-                            isRequired='true'
+                            isRequired={true}
                             type='number'
                             value={account.balance}
                             changeHandler={changeHandler}

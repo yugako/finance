@@ -43,7 +43,7 @@ const Welcome = () => {
     	} catch(e) {
     		console.log(e);
     	}
-    }, []);
+    }, [fetchDataSingle]);
 
     useEffect(() => {
     	getUser();

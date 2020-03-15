@@ -18,13 +18,13 @@ const OverviewBalances = () => {
         const accountsList = await fetchDataList('account');
 
         setAccounts(accountsList);
-    }, []);
+    }, [fetchDataList]);
 
     const getActivity = useCallback(async () => {
         const activityList = await fetchDataList('activity');
 
         setActivities(activityList);
-    }, []);
+    }, [fetchDataList]);
 
     useEffect(() => {
         getAccounts();

@@ -14,7 +14,7 @@ const ActivityEmpty = () => {
         const accountsList = await fetchDataList('account');
 
         setAccounts(accountsList);
-    }, []);
+    }, [fetchDataList]);
 
     useEffect(() => {
         getAccounts()

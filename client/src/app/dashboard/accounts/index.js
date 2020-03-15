@@ -7,13 +7,13 @@ import { useData } from '../../../hooks/data.hook';
 
 const Accounts = () => {
     const [accounts, setAccounts] = useState();
-    const {fetchDataList, fetchDataSingle} = useData();
+    const {fetchDataList} = useData();
 
     const getAccounts = useCallback(async () => {
         const accountsList = await fetchDataList('account');
 
         setAccounts(accountsList);
-    }, []);
+    },[fetchDataList]);
 
 
     useEffect(() => {

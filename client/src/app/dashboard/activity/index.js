@@ -13,7 +13,7 @@ const Activity = () => {
         const actvityList = await fetchDataList('activity');
 
         setActivities(actvityList);
-    }, []);
+    }, [fetchDataList]);
 
     useEffect(() => {
         getActivities()
