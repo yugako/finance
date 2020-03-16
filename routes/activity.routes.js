@@ -18,10 +18,10 @@ router.post('/create', auth, async (req, res) => {
             owner: req.user.userId,
             
         });
-
+        console.log(req);
         await activity.save();
 
-        console.log(res.status);
+        
         res.status(200).json({activity});
 
 
