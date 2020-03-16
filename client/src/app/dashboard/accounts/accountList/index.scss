@@ -1,0 +1,23 @@
+.dashboard {
+    &-accounts {
+        &__list {
+            margin-top: 30px;
+        }
+        
+        &__item {
+            background-color: var(--light);
+            margin-bottom: 15px;
+            padding: 20px;
+            &-title {
+                color: var(--text-secondary);
+                font-family: var(--ff);
+                font-size: 15px;
+                font-weight: 600;
+                text-transform: capitalize;
+                opacity: 0.8;
+                line-height: 1.2;
+                margin: 0;
+            }
+        }
+    }
+}

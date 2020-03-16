@@ -1,0 +1,39 @@
+.home {
+    &-menu {
+        display: flex;
+        align-items: center;
+        @media screen and (max-width: 474px) {
+           margin-top: 20px;
+        }
+        &__list {
+            display: flex;
+            list-style: none;
+            margin-bottom: 0;
+            padding-left: 0;
+            margin-top: 0;
+        }
+        &__item {
+            margin-left: 40px;
+            @media screen and (max-width: 474px) {
+                margin-left: 0;
+                margin: 5px 15px;
+            }
+        }
+        &__link {
+            text-decoration: none;
+            color: var(--light);
+            font-size: 14px;
+            transition: color 0.3s;
+            &:hover {
+                color: var(--primary);
+                transition: color 0.3s;
+            }
+        }
+        &__button {
+            margin-left: 40px;
+            @media screen and (max-width: 576px) {
+                margin-left: 15px;
+            }
+        }
+    }
+}

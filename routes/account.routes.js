@@ -10,9 +10,9 @@ const router = Router();
  */
 router.post('/create', auth, async (req, res) => {
     try {
-        const {acountName, accountType, accountCurrency, balance} = req.body;
+        const {accountName, accountType, accountCurrency, balance} = req.body;
 
-        const existing =  await Account.findOne({acountName});
+        const existing =  await Account.findOne({accountName});
 
         if(existing) {
             return res.json({
@@ -21,7 +21,7 @@ router.post('/create', auth, async (req, res) => {
         }
 
         const account = new Account({
-            acountName, 
+            accountName, 
             owner: req.user.userId,
             accountType,
             accountCurrency,
@@ -34,6 +34,7 @@ router.post('/create', auth, async (req, res) => {
 
 
 	} catch(e) {
+        console.log(e);
 		res.status(500).json({message: 'Smth went wrong! Try again.'})
 	}
 });
@@ -49,6 +50,7 @@ router.get('/', auth, async (req, res) => {
         res.json(accounts);
 		
 	} catch(e) {
+        console.log(e);
 		res.status(500).json({message: 'Smth went wrong! Try again.'})
 	}
 });
@@ -66,5 +68,19 @@ router.get('/:id', auth, async (req, res) => {
 		res.status(500).json({message: 'Smth went wrong! Try again.'})
 	}
 });
+
+/**
+*   Update account
+*/
+
+router.put('/:id', auth, async(req, res) => {
+    try {
+        const account = await Account.findByIdAndUpdate(req.params.id, req.body);
+
+        res.json(account);
+    } catch {
+        res.status(500).json({message: 'Smth went wrong! Try again.'})
+    }
+})
 
 module.exports = router;

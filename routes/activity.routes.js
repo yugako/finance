@@ -20,13 +20,10 @@ router.post('/create', auth, async (req, res) => {
         });
         console.log(req);
         await activity.save();
-
-        
         res.status(200).json({activity});
 
 
 	} catch(e) {
-        console.log(e.message);
 		res.status(500).json({message: 'Smth went wrong! Try again.'})
 	}
 });

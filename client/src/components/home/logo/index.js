@@ -1,9 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+
+import './index.scss';
+
 const Logo = () => {
     return (
-        <NavLink to='/' className='home-logo'>
-            wallet
+        <NavLink to='/' className='logo'>
+            money
             <span>.on</span>
         </NavLink>
     );

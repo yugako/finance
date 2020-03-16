@@ -1,16 +1,19 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const BalancesCard = ({title, link, money, currency}) => {
+import { NavLink } from 'react-router-dom';
+import { AreaChart, Area, ResponsiveContainer, } from 'recharts';
+
+
+import './index.scss';
+
+const BalancesCard = ({title, link, money, currency, datas}) => {
     return (
         <div className='balances-card'>
             <div className="balances-card__main">
                 <div className="balances-card__header d-flex justify-content-between align-items-center">
                     <div className="balances-card__title">
                         <NavLink to={`/dashboard/accounts/${link}`}>{title}</NavLink>
-                    </div>
-                    <div className="balances-card__options">
-                        <i class="fas fa-ellipsis-h"></i>
                     </div>
                 </div>
                 <div className="balances-card__content d-flex justify-content-between align-items-center">
@@ -31,13 +34,34 @@ const BalancesCard = ({title, link, money, currency}) => {
                     </div>
                 </div>
             </div>
-            <div className="balances-card__img">
-                <img src={require('../../../../../assets/images/graph.png')} alt=""/>
-            </div>
+            {datas && datas.length && datas.length > 1
+                ? <div className="balances-card__chart">
+                    <ResponsiveContainer width="100%" height={70}>
+                        <AreaChart
+                          data={datas}
+                          margin={{
+                            top: 5, right: 0, left: 0, bottom: 0,
+                          }}
+                        >
+                        <Area type="monotone" dataKey="currentBalance" stroke="#8884d8" fill="#8884d8" />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+                : null
+            }
+            
             
 
         </div> 
     );
 }
- 
+
+BalancesCard.propTypes = {
+    title: PropTypes.string, 
+    link: PropTypes.string, 
+    money: PropTypes.string, 
+    currency: PropTypes.string, 
+    datas: PropTypes.array
+}
+
 export default BalancesCard;

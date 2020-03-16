@@ -1,62 +1,54 @@
-import React, { useState, useContext, useCallback, useEffect } from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
+import {NavLink} from 'react-router-dom';
 
-import { useHttp } from '../../../../hooks/http.hook';
-import { AuthContext } from '../../../../context/AuthContext';
-import Loader from '../../../../components/elements/Loader';
 
-import ActivitySingle from '../../../../components/dashboard/activitySingle';
+import ActivitySingle from './oActivitySingle';
+import ActivityEmpty from './oActivityEmpty';
+
+import { useData } from '../../../../hooks/data.hook';
+
+import './index.scss';
 
 const OverviewActivity = () => {
     const [activities, setActivities] = useState();
-    const { loading, request } = useHttp();
+    const {fetchDataList} = useData();
 
-    const { token } = useContext(AuthContext);
+    const getActivities = useCallback(async () => {
+        const activitiesList = await fetchDataList('activity');
 
-    const fetchActivities = useCallback(async () => {
-        try {
-            const activitiesList = await request('/api/activity', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-            setActivities(activitiesList);
-        } catch (e) {
-
-        }
-    }, [token, request]);
+        setActivities(activitiesList);
+    }, [fetchDataList]);
 
     useEffect(() => {
-        fetchActivities()
-    }, [fetchActivities]);
+        getActivities()
+    }, [getActivities]);
 
-    if (loading) {
-        return (
-            <Loader />
-        )
-    }
+
     return (
         <div className='dashboard-overview__activity'>
             <div className="dashboard-overview__activity-header d-flex justify-content-between">
                 <div className="dashboard-overview__activity-title">
                     Activity
                 </div>
-                <div className="dashboard-overview__activity-options">
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
             </div>
             <div className="dashboard-overview__activity-list">
-                {!loading && activities && activities.map( activity => 
-                    <ActivitySingle
-                        title={activity.activityName} 
-                        date={activity.activityDate}
-                        amount={activity.activitySpendings}
-                        account={activity.accountName} 
-                        key={activity._id} 
-                    />
-                )}
+                {activities && activities.length
+                    ? activities.map( activity => 
+                        <ActivitySingle
+                            title={activity.activityName} 
+                            date={activity.activityDate}
+                            amount={activity.activitySpendings}
+                            account={activity.accountName} 
+                            key={activity._id} 
+                        />
+                    )
+                    : <ActivityEmpty />
+                }
             </div>
-            <button className="dashboard-overview__activity-more">
-                Load More
-            </button>
-            
+            {activities && activities.length
+                ? <NavLink className='dashboard-overview__activity-more' to='/dashboard/activity'>View More</NavLink>
+                : null
+            }
             
         </div>
     );

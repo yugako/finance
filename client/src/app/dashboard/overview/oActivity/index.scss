@@ -1,0 +1,49 @@
+.dashboard-overview {
+    &__activity {
+        background-color: var(--light);
+        border-radius: 16px;
+        padding-bottom: 24px;
+        &-list {
+            max-height: 400px;
+            overflow: auto;
+            margin-right: 20px;
+        }
+        &-header {
+            padding: 24px;
+            padding-bottom: 0;
+        } 
+
+        &-title {
+            color: var(--text-secondary);
+            font-family: var(--primary-font);
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .activity {
+            margin-bottom: 0;
+            padding: 12px 24px;
+        }
+        &-options {
+            i {
+                cursor: pointer;
+                color: var(--text-secondary);
+            }
+        }
+        &-more {
+            color: var(--text-secondary);
+            font-family: var(--primary-font);
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            background-color: rgba(#dce1ee, .4);
+            padding: 7px;
+            cursor: pointer;
+            border: none;
+            display: block;
+            margin: 12px 24px; 
+            text-align: center;
+        } 
+    }
+}

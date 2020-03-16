@@ -1,0 +1,25 @@
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    @media (max-width: 767px) {
+        flex-wrap: wrap;
+        min-height: initial;
+    }
+    
+    &-main {
+        padding: 34px 48px;
+        background-color: #edeff2;
+        flex: 1;
+        @media (max-width: 767px) {
+            padding: 20px;
+        }
+    }
+
+    &-logo {
+        margin-bottom: 28px;
+        display: block;
+        @media (max-width: 767px) {
+            margin-bottom: 10px;
+        }
+    }     
+}

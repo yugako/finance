@@ -1,0 +1,76 @@
+.dashboard-top-bar {
+    flex-wrap: wrap;
+    &__options {
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
+        &-user {
+            color: var(--text-primary);
+            position: relative;
+            padding: 5px;
+            cursor: pointer;
+
+            .arrow {
+                transform: rotate(0);
+                transition: transform 0.5s;
+            }
+
+            $u: &;
+
+            &:hover {
+                .arrow {
+                    transform: rotate(180deg);
+                    transition: transform 0.5s;
+                }
+                transition: all 0.5s;
+                #{$u}-dropdown {
+                    padding: 10px;
+                    height: auto;
+                    max-height: 500px;
+                    overflow: visible;
+                    transition: all 0.5s;
+                    z-index: 50;
+                }
+            }
+            img {
+                margin-right: 7px;
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+            &-dropdown {
+                top: 100%;
+                left: 0;
+                transform: translateX(-50%);
+                height: 0;
+                max-height: 0;
+                margin: 0;
+                padding: 0;
+                @media screen and (max-width: 576px) {
+                    transform: translateX(0);
+                    right: 0;
+                    left: initial;
+                }
+            }
+            
+        }
+    
+        &-search {
+            margin-right: 32px;
+            cursor: pointer;
+        }
+    }
+
+    &__title {
+        color: var(--text-primary);
+        font-family: var(--primary-font);
+        font-size: 24px;
+        font-weight: 700;
+        @media screen and (max-width: 576px) {
+            margin-bottom: 20px;
+            display: block;
+        }
+    } 
+        
+}

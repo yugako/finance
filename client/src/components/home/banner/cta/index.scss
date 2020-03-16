@@ -1,0 +1,34 @@
+.home-header {
+    &__cta {
+        transform: translateY(50%);
+        color: var(--light);
+        @media screen and (max-width: 1440px) {
+            transform: translateY(30%);
+        }
+        @media screen and (max-width: 1200px) {
+            transform: translateY(0%);
+            margin-top: 50px;
+        }
+        &-image {
+            img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 20px;
+            }
+        }
+        &-text {
+            h1 {
+                font-size: 40px;
+                color: var(--light);
+                font-weight: normal;
+                line-height: 3rem;
+            }
+            p {
+                color: darken(#fff, 25%);
+                line-height: 1.5rem;
+                max-width: 490px;
+            }
+            
+        }
+    }
+}

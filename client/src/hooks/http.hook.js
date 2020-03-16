@@ -18,8 +18,8 @@ export const useHttp = () => {
             const data = await response.json();
 
             if (!response.ok) {
-                
-                throw new Error(data.message || 'Smth went wrong');
+                const errorResponse = JSON.stringify(data.errors) || data.message;
+                throw new Error(errorResponse || 'Smth went wrong');
             }
 
             setLoading(false);

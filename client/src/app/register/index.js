@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 
 import Pig from '../../assets/images/pig.svg';
 import { useHttp } from '../../hooks/http.hook';
-import { useMessage } from '../../hooks/message.hook';
+import Message from '../../components/elements/Message';
+import Input from '../../components/elements/Forms/input';
 
+import './index.scss';
 const Register = () => {
     const {loading, error, request, clearError} = useHttp();
-    const message = useMessage();
-
+    const [localError, setLocalError] = useState([]);
+    const history = useHistory();
+    
     const [form, setForm] = useState({
         first_name: '',
         last_name: '',
@@ -18,9 +21,13 @@ const Register = () => {
     });
 
     useEffect(() => {
-        // message(error);
-        clearError();
-    }, [error, message, clearError]);
+        setLocalError(error);
+
+        setTimeout(() => {
+            clearError();
+        }, 5000);
+
+    }, [error, clearError]);
 
     const changeHandler = event => {
         if(event.target.type === 'checkbox') {
@@ -33,7 +40,7 @@ const Register = () => {
     const registerHandler = async (e) => {
         e.preventDefault();
         try {
-            const data = await request('/api/auth/register', 'POST', {
+            await request('/api/auth/register', 'POST', {
                 ...form
             });
 
@@ -42,14 +49,17 @@ const Register = () => {
                 last_name: '',
                 email: '',
                 password: '',
-                terms: '',
+                terms: false,
             });
+
+            history.push(`/login`);
             
-        } catch (error) {}
+        } catch (error) { }
     }
 
     return (
         <section className='register'>
+            {!loading && localError ? <Message message={localError} />: null}
             <div className="container-fluid">
                 <div className="row align-items-center">
                     <div className="col-12 col-lg-6 h-100">
@@ -60,29 +70,38 @@ const Register = () => {
                                 Sign up 
                         </div>
                         <form onSubmit={registerHandler}>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.first_name} name='first_name' required type="text"/>
-                                <label htmlFor="input" className="control-label">First Name</label>
-                                <i className="bar"></i>
-                            </div>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.last_name} name='last_name' required type="text"/>
-                                <label htmlFor="input" className="control-label">Last Name</label>
-                                <i className="bar"></i>
-                            </div>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.email} name='email' required type="email"/>
-                                <label htmlFor="input" className="control-label">Email address</label>
-                                <i className="bar"></i>
-                            </div>
-                            <div className="form-group">
-                                <input onChange={changeHandler} value={form.password} name='password' required type="password"/>
-                                <label 
-                                    htmlFor="input" className="control-label">
-                                    Password
-                                </label>
-                                <i className="bar"></i>
-                            </div>
+                            <Input 
+                                name='first_name'
+                                isRequired={true}
+                                type='text'
+                                value={form.first_name}
+                                changeHandler={changeHandler}
+                                label='First Name'
+                            />
+                            <Input 
+                                name='last_name'
+                                isRequired={true}
+                                type='text'
+                                value={form.last_name}
+                                changeHandler={changeHandler}
+                                label='Last Name'
+                            />
+                            <Input 
+                                name='email'
+                                isRequired={true}
+                                type='email'
+                                value={form.email}
+                                changeHandler={changeHandler}
+                                label='Email address'
+                            />
+                            <Input 
+                                name='password'
+                                isRequired={true}
+                                type='password'
+                                value={form.password}
+                                changeHandler={changeHandler}
+                                label='Password'
+                            />
 
                             <div className="checkbox terms-label">
                                 <label>

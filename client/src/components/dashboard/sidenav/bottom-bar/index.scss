@@ -1,0 +1,22 @@
+.dashboard-bottom-bar {
+    margin-top: auto;
+    color: var(--text-primary);
+    @media screen and (max-width: 767px) {
+        margin-top: 10px;
+    }
+    &__help {
+        background-color: var(--light);
+        padding: 6px 12px;
+        border-radius: 10px;
+        a {
+            color: var(--text-primary);
+        }
+        i {
+            margin-right: 10px;
+        }
+    }
+
+    &__close {
+        cursor: pointer;
+    }
+}

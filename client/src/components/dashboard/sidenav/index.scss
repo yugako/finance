@@ -1,0 +1,125 @@
+.dashboard {
+    &-sidebar {
+        padding: 34px 37px;
+        background-color: #dce1ee;
+        box-shadow: inset -10px 0 30px 10px rgba(85, 99, 159, 0.02);
+        flex-basis: 15%;
+        max-width: 15%;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        height: 100vh;
+        top: 0;
+        @media (max-width: 767px) {
+            height: auto;
+            position: relative;
+        }
+
+        $s: &;
+
+        &__header {
+            .toggle-menu {
+                font-size: 24px;
+                color: var(--text-primary);
+                margin-top: -20px;
+                cursor: pointer;
+               @media (min-width: 768px) {
+                    display: none;
+                }
+            }
+            .logo {
+                color: var(--text-primary);
+            }
+        }
+        &__content {
+            &.closed {
+                max-height: 0;
+                overflow: hidden;
+                visibility: hidden;
+                transition: all 0.5s;
+                @media (min-width: 768px) {
+                    max-height: 10000px;
+                    overflow: visible;
+                    visibility: visible;
+                }
+            }
+            &.open {
+                max-height: 500px;
+                overflow: visible;
+                visibility: visible;
+                transition: all 0.5s;
+            }
+        }
+
+        @media (max-width: 1440px) {
+            flex-basis: 20%;
+            max-width: 20%;
+        }
+
+        @media (max-width: 1199px) {
+            max-width: 25%;
+            flex-basis: 25%;
+        }
+
+        @media (max-width: 991px) {
+            max-width: 35%;
+            flex-basis: 35%;
+        }
+
+       @media (max-width: 767px) {
+            max-width: 100%;
+            flex-basis: 100%;
+        }
+    }
+
+    &-nav {
+        a {
+            display: block;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: var(--ff);
+            font-weight: 600;
+            padding: 10px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s;
+            i {
+                margin-right: 20px;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                border-radius: 0 16px 16px 0;
+                background-color: transparent;
+                opacity: 0.5;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: -40px;
+                z-index: 1;
+                transition: all 0.5s;
+            }
+            &:hover {
+                color: #0fb269;
+                transition: all 0.5s;
+                &::before {
+                    content: '';
+                    background-color: #eef2f6;
+                    transition: all 0.5s;
+                }
+            }
+            &.active {
+                color: #0fb269;
+                transition: all 0.5s;
+                &::before {
+                    content: '';
+                    transition: all 0.5s;
+                    background-color: #eef2f6;
+                }
+                
+            }
+        }
+    }
+
+}

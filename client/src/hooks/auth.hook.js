@@ -14,20 +14,19 @@ export const useAuth = () => {
     /**
      * Login handler
      */
-    const login = useCallback((jwtToken, id, keep_logged = false, firstName, lastName) => {
+    const login = useCallback((jwtToken, id, keep_logged = false) => {
         setToken(jwtToken);
         setUserId(id);
 
         if (keep_logged) {
             localStorage.setItem(storageName, JSON.stringify({
-                userId: id, token: jwtToken, userFullName: `${firstName} ${lastName}`,
+                userId: id, token: jwtToken
             }));
         } else {
             sessionStorage.setItem(storageName, JSON.stringify({
                 userId: id, token: jwtToken
             }));
         }
-        
     }, []);
 
     /**
@@ -39,6 +38,9 @@ export const useAuth = () => {
 
         localStorage.removeItem(storageName);
         sessionStorage.removeItem(storageName);
+
+        localStorage.removeItem("userName");
+        sessionStorage.removeItem("userName");
     }, []);
 
     /**

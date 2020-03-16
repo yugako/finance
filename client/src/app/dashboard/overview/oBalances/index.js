@@ -1,78 +1,93 @@
-import React, { useState, useContext, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import BalancesCard from './obCard';
 
-import { useHttp } from '../../../../hooks/http.hook';
-import { AuthContext } from '../../../../context/AuthContext';
 import Loader from '../../../../components/elements/Loader';
+import AccountPlaceholder from '../../../../components/dashboard/account/placeholder';
 
-const options = [
-    { value: 'current_week', label: 'Current Week' },
-    { value: 'current_month', label: 'Current Month' },
-    { value: 'current_quater', label: 'Current Quater' }
-];
+import { useData } from '../../../../hooks/data.hook';
+
+import './index.scss';
 
 const OverviewBalances = () => {
     const [accounts, setAccounts] = useState();
-    const { loading, request } = useHttp();
+    const [activities, setActivities] = useState();
 
-    const { token } = useContext(AuthContext);
+    const { fetchDataList } = useData();
 
-    const fetchAccounts = useCallback(async () => {
-        try {
-            const accountsList = await request('/api/account', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            });
-            setAccounts(accountsList);
-        } catch (e) {
+    const getAccounts = useCallback(async () => {
+        const accountsList = await fetchDataList('account');
 
-        }
-    }, [token, request]);
+        setAccounts(accountsList);
+    }, [fetchDataList]);
+
+    const getActivity = useCallback(async () => {
+        const activityList = await fetchDataList('activity');
+
+        setActivities(activityList);
+    }, [fetchDataList]);
 
     useEffect(() => {
-        fetchAccounts()
-    }, [fetchAccounts]);
+        getAccounts();
+        getActivity();
+    }, [getAccounts, getActivity]);
 
-    if (loading) {
+    if(!accounts) {
         return (
             <Loader />
         )
     }
 
+    const accountActivity = (accountName, accountBalance) => {
+        const current = activities && activities.filter(activity =>  activity.accountName === accountName);
+
+        const data = current && current.map(c => {
+            return {
+                date: new Date(c.activityDate).getTime(),
+                currentBalance: parseFloat(accountBalance) - c.activitySpendings
+            };
+        }).sort((a,b) => a.date - b.date).reverse();
+
+        return data;
+    }
+
     return (
         <>
-            { !loading && accounts && 
-                <div className='dashboard-overview__balances'>
-                    <div className="dashboard-overview__balances-header d-flex justify-content-between align-items-center">
-                        <div className="dashboard-overview__balances-title">
-                            Balances
-                        </div>
-                        <div className="dashboard-overview__balances-period">
-                            <i class="far fa-calendar"></i>
-                            <select name="period" id="period">
-                                {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
-                            </select>
-                        </div>
+           <div className='dashboard-overview__balances'>
+                <div className="dashboard-overview__balances-header d-flex justify-content-between align-items-center flex-wrap">
+                    <div className="dashboard-overview__balances-title">
+                        Balances
                     </div>
-                    <div className="row">
-                        {accounts.map(account => {
+                    {accounts && !accounts.length
+                        ?  <div className="dashboard-overview__balances-subtitle">
+                                Seems you don't have an account yet. Let's create it.
+                            </div>
+                        : null
+                    }
+                </div>
+                <div className="row">
+                    { accounts 
+                        ? accounts.map(account => {
                             return (
                                 <div className="col-12 col-lg-4" key={account._id}>
                                     <BalancesCard
-                                        title={account.acountName}
+                                        title={account.accountName}
                                         link={account._id}
                                         money={account.balance}
-                                        currency={account.accountCurrency} />
+                                        currency={account.accountCurrency} 
+                                        datas={accountActivity(account.accountName, account.balance)}/>
                                 </div>
-                            );
-                        })}
-                    </div>
+                            )})
+                        : <>
+                                <AccountPlaceholder />
+                                <AccountPlaceholder />
+                                <AccountPlaceholder />
+                          </> 
+                    }
                 </div>
-            }
+            </div>
         </> 
         
     );
 }
-
-    
 
 export default OverviewBalances;
