@@ -61,7 +61,21 @@ const weekProgress = (data) => {
 };
 
 const monthProgress = (data) => {
-	console.log('month', data);
+	// console.log(data);
+
+	// 604800000 * 4
+	const lastDay = +data[data.length - 1].sortDate;
+
+	const monthActivities = data.reverse().filter(d => (lastDay - +d.sortDate) < 604800000 * 4);
+	const percentProgress = ((monthActivities[0].averageBalance / monthActivities[monthActivities.length - 1].averageBalance) * 100 - 100).toFixed(2);
+
+	console.log(monthActivities);
+
+	
+	return {
+		plotData: monthActivities.reverse(),
+		percentProgress
+	}
 };
 
 const fullProgress = (data, initBalance) => {
@@ -85,7 +99,7 @@ const toogleProgress = (period, data, initBalance = 1) => {
 			returnedData = weekProgress(data);
 			break;
 		case 'month':
-			returnedData = period;
+			returnedData = monthProgress(data);
 			break;
 		case 'full':
 			returnedData = fullProgress(data, initBalance);
