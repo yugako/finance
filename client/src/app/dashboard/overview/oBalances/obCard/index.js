@@ -47,7 +47,9 @@ const BalancesCard = ({title, link, money, currency, datas}) => {
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
-                : null
+                : <div className='balances-card__chart-empty'>
+                    No trend? Try to <NavLink to='/dashboard/activity/add'>add</NavLink>  a few activities
+                </div>
             }
             
             

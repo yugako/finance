@@ -26,6 +26,18 @@
     &__chart {
         position: relative;
         bottom: -5px;
+        &-empty {
+            color: var(--text-secondary);
+            font-family: var(--primary-font);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 27px;
+            margin-bottom: 27px;
+            a {
+                color: var(--primary);
+            }
+        }
     }
 
     &__money {
