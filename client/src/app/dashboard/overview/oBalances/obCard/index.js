@@ -24,14 +24,14 @@ const BalancesCard = ({title, link, money, currency, datas}) => {
                             {currency}
                         </span>
                     </h2>
-                    <div className="balances-card__progress">
+                    {/* <div className="balances-card__progress">
                        <div className="balances-card__progress-percent">
                            +40%
                         </div>
                        <div className="balances-card__progress-period">
                             this week
                         </div> 
-                    </div>
+                    </div> */}
                 </div>
             </div>
             {datas && datas.length && datas.length > 1
