@@ -1,15 +1,21 @@
 import React, { useState, useEffect, useCallback} from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 import { useParams } from 'react-router-dom';
 import { useData } from '../../../../hooks/data.hook';
 
 import toogleProgress from '../../../../hooks/progress.hook';
 
+import AccountActions from './accountComponents/actions';
+import AccountTrend from './accountComponents/trend';
+import AccountPie from './accountComponents/pie';
+
 import Headline from '../../../../components/dashboard/headline';
 import Loader from '../../../../components/elements/Loader';
 
 import './index.scss';
+
+
+
 
 const options = [
     { value: 'default', label: 'Choose period' },
@@ -23,8 +29,10 @@ const options = [
 const SingleAccount = () => {
     const [account , setAccount] = useState(null);
     const [activities , setActivities] = useState(null);
+
     const [progress, setProgress] = useState();
     const [plotData, setPlotData] = useState(); 
+    const [label, setLabel] = useState(); 
 
     const {fetchDataList, fetchDataSingle} = useData();
 
@@ -48,10 +56,11 @@ const SingleAccount = () => {
         if(account) {
             const result = accountActivity(account.accountName, account.balance);
        
-            const { plotData, percentProgress } = toogleProgress(event.target.value, result, account.balance);
+            const { plotData, percentProgress, label } = toogleProgress(event.target.value, result, account.balance);
 
             setPlotData(plotData);
             setProgress(percentProgress);
+            setLabel(label);
         }
     }
 
@@ -81,31 +90,40 @@ const SingleAccount = () => {
     }
 
     return (
-         <section>
-            <Headline title={`Account: ${account.accountName}`} />
-            <div className="account-period">
+         <section className='account'>
+             <div className="account-header">
+                <Headline title={`Account: ${account.accountName}`} />
+                <div className="account-balance">
+                    Current balance: {account.balance} {account.accountCurrency}
+                </div>
+                <AccountActions />
+                
+             </div>
+             <div className="account-period">
                 <i className="far fa-calendar"></i>
                 <select onChange={changeHandler} className='account-period__select' name="period" id="period">
                     {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
                 </select>
             </div>
-            {progress && <div>{progress}</div>}
-            {plotData && 
-                <ResponsiveContainer width="100%" height={400} >
-                    <AreaChart
-                        data={plotData}
-                        margin={{
-                            top: 10, right: 30, left: 0, bottom: 0,
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis dataKey="averageBalance"/>
-                        <Tooltip />
-                        <Area type="monotone" dataKey="averageBalance" stroke="#8884d8" fill="#8884d8" />
-                    </AreaChart>
-                </ResponsiveContainer>
-            }
+            <div className="row">
+                <div className="col-12 col-lg-6">
+                    
+                    {progress && 
+                        <div className='account-balance__progress'>
+                            <span className={progress < 0 ? 'negative': '' }>{progress}</span>&nbsp;
+                            {label}
+                        </div>
+                    }
+                    {plotData && <AccountTrend data={plotData} />}
+                    
+                </div>
+                <div className="col-12 col-lg-6 align-self-center">
+                   <AccountPie data={plotData} />
+                </div>
+            </div>
+            
+
+            
             
         </section>
     );

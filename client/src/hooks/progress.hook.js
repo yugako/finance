@@ -36,7 +36,9 @@ const dayProgress = (data) => {
 		const percentProgress = ((plotData[0].averageBalance / plotData[1].averageBalance) * 100 - 100).toFixed(2);
 		
 		return {
-			plotData: plotData.reverse(), percentProgress
+			plotData: plotData.reverse(), 
+			percentProgress,
+			label: 'from yesterday'
 		}
 		
 	}
