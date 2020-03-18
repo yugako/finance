@@ -1,6 +1,33 @@
 .account {
     &-balance  {
-        margin-top: 30px;
+        margin-top: 15px;
+        font-weight: 600;
+        color: var(--text-primary);
+        font-family: var(--primary-font);
+        span {
+            &.positive {
+                color: var(--primary);
+            }
+            &.negative {
+                color: var(--secondary);
+            }
+        }
+
+        &__progress {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-family: var(--primary-font);
+            margin-bottom: 10px;
+            span {
+                font-weight: bold;
+                &.positive {
+                    color: var(--primary);
+                }
+                &.negative {
+                    color: var(--secondary);
+                }
+            }
+        }
     }
     &-actions {
         margin-top: 15px;
@@ -20,19 +47,39 @@
         }
     }
     &-period {
-        position: relative;
         margin-top: 30px;
-        margin-bottom: 30px;
-        max-width: 400px;
-        i {
-            position: absolute;
-            z-index: 5;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-weight: 600;
+        &__title {
+            color: var(--text-primary);
+            letter-spacing: 0.2px;
+            font-family: var(--primary-font);
+            font-weight: 500;
+            margin-bottom: 10px;
+            max-width: 750px;
+            margin-right: auto;
+            line-height: 1.4;
+            h4 {
+                color: var(--primary);
+            }
+            span {
+                color: var(--primary);
+                font-weight: 600;
+            }
         }
+        &__dropdown {
+            position: relative;
+            margin-bottom: 30px;
+            max-width: 400px;
+            i {
+                position: absolute;
+                z-index: 5;
+                top: 50%;
+                left: 20px;
+                transform: translateY(-50%);
+                color: var(--text-secondary);
+                font-weight: 600;
+            }
+        }
+        
         &__select {
             font-size: 16px;
             font-family: var(--primary-font);
@@ -75,6 +122,17 @@
             &:focus, &:active {
                 outline: none;
             }
+        }
+    }
+
+    &-activity {
+        &__title {
+            color: var(--text-primary);
+        }
+        &__list {
+            padding-right: 40px;
+            max-height: 600px;
+            overflow-y: auto;
         }
     }
     

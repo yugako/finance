@@ -11,11 +11,10 @@ import AccountPie from './accountComponents/pie';
 
 import Headline from '../../../../components/dashboard/headline';
 import Loader from '../../../../components/elements/Loader';
+import ActivitySingle from '../../overview/oActivity/oActivitySingle';
 
 import './index.scss';
-
-
-
+import Tabs from '../../../../components/elements/Tabs';
 
 const options = [
     { value: 'default', label: 'Choose period' },
@@ -93,24 +92,37 @@ const SingleAccount = () => {
          <section className='account'>
              <div className="account-header">
                 <Headline title={`Account: ${account.accountName}`} />
-                <div className="account-balance">
-                    Current balance: {account.balance} {account.accountCurrency}
-                </div>
                 <AccountActions />
-                
+
+                <div className="account-balance">
+                    Current balance: <span className={account.balance >= 0 ? 'positive' : 'negative'}>{account.balance} {account.accountCurrency}</span> 
+                </div>
+                {/* <Tabs 
+                    headings={['Balance', 'Overview']} 
+                    content={[<AccountTrend data={plotData} />, <AccountPie data={plotData} />]} 
+                /> */}
              </div>
+
              <div className="account-period">
-                <i className="far fa-calendar"></i>
-                <select onChange={changeHandler} className='account-period__select' name="period" id="period">
-                    {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
-                </select>
+                 <div className="account-period__title">
+                    <h4>Note:</h4>
+                    Would you like to see some trends <span>about your spendings?</span> Then click on the dropdown below and recognize how much did you spend for different needs.
+                    <span>First graph</span> will show for you balance trend which is specific for some period of time. <span>Second</span> will show for you how much did you spend for specific type of activities. 
+                 </div>
+                 <div className="account-period__dropdown">
+                    <i className="far fa-calendar"></i>
+                    <select onChange={changeHandler} className='account-period__select' name="period" id="period">
+                        {options.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+                    </select>
+                 </div>
+                
             </div>
             <div className="row">
                 <div className="col-12 col-lg-6">
                     
                     {progress && 
                         <div className='account-balance__progress'>
-                            <span className={progress < 0 ? 'negative': '' }>{progress}</span>&nbsp;
+                            <span className={parseFloat(progress) < 0 ? 'negative': '' }>{progress}</span>&nbsp;
                             {label}
                         </div>
                     }
@@ -121,10 +133,28 @@ const SingleAccount = () => {
                    <AccountPie data={plotData} />
                 </div>
             </div>
-            
-
-            
-            
+           
+            <div className="account-activity">
+                <h3 className='account-activity__title'>Recent account activity: </h3>
+                {activities 
+                    ?
+                        <div className="account-activity__list">
+                            {activities.map(a => {
+                                return (
+                                    <ActivitySingle  key={a._id}
+                                        title={a.activityName}
+                                        date={a.activityDate}
+                                        amount={a.activitySpendings}
+                                        account={a.accountName}
+                                    />  
+                                );
+                            })}
+                        </div>
+                    : 
+                        <div>You don't have any activity for that account</div>
+                }
+            </div>
+                
         </section>
     );
 }

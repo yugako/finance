@@ -1,0 +1,30 @@
+.tabs {
+    &-header {
+        ul {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+            li {
+                margin: 0 10px;
+                cursor: pointer;
+            }
+        }
+       
+    }
+
+    .fadeIn {
+        animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from {
+            transform: scale(0);
+            transform-origin: 0 0;
+        }
+
+        to {
+            transform: scale(1);
+            transform-origin: 0 0;
+        }
+    }
+}

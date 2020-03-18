@@ -37,7 +37,7 @@ const dayProgress = (data) => {
 		
 		return {
 			plotData: plotData.reverse(), 
-			percentProgress,
+			percentProgress: `${percentProgress}%`,
 			label: 'from yesterday'
 		}
 		
@@ -45,49 +45,38 @@ const dayProgress = (data) => {
 };
 
 const weekProgress = (data) => {
-	// console.log(data);
-
-	// 604800000
 	const lastDay = +data[data.length - 1].sortDate;
 
 	const weekActivities = data.reverse().filter(d => (lastDay - +d.sortDate) < 604800000);
 	const percentProgress = ((weekActivities[0].averageBalance / weekActivities[weekActivities.length - 1].averageBalance) * 100 - 100).toFixed(2);
 
-	console.log(weekActivities);
-
-	
 	return {
 		plotData: weekActivities.reverse(),
-		percentProgress
+		percentProgress: `${percentProgress}%`,
+		label: 'from last week'
 	}
 };
 
 const monthProgress = (data) => {
-	// console.log(data);
-
-	// 604800000 * 4
 	const lastDay = +data[data.length - 1].sortDate;
 
 	const monthActivities = data.reverse().filter(d => (lastDay - +d.sortDate) < 604800000 * 4);
 	const percentProgress = ((monthActivities[0].averageBalance / monthActivities[monthActivities.length - 1].averageBalance) * 100 - 100).toFixed(2);
-
-	console.log(monthActivities);
-
 	
 	return {
 		plotData: monthActivities.reverse(),
-		percentProgress
+		percentProgress: `${percentProgress}%`,
+		label: 'from last month'
 	}
 };
 
 const fullProgress = (data, initBalance) => {
-	console.log(data, initBalance);
-
 	const percentProgress = ((data[data.length - 1].averageBalance / initBalance) * 100 - 100).toFixed(2);
 	
 	return {
 		plotData: data,
-		percentProgress
+		percentProgress: `${percentProgress}%`,
+		label: 'from past period'
 	}
 };
 
