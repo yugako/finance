@@ -30,12 +30,12 @@ const AddData = () => {
 	     
 	        <ul className={`add-data__dropdown dropdown ${isOpen ? 'open' : 'closed'}`}>
 	            <li>
-	                <NavLink to="/dashboard/accounts/add">Add account</NavLink>
+	                <NavLink onClick={toggleMenuHandler} to="/dashboard/accounts/add">Add account</NavLink>
 	            </li>
 
 	            {accounts && accounts.length ?
 	                <li>
-	                    <NavLink to="/dashboard/activity/add">Add activity</NavLink>
+	                    <NavLink onClick={toggleMenuHandler} to="/dashboard/activity/add">Add activity</NavLink>
 	                </li> : null
 	            }
 	            

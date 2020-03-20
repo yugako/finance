@@ -12,12 +12,18 @@
                 color: var(--secondary);
             }
         }
+        &__currency {
+            color: var(--primary-dark);
+            display: inline-block;
+            margin-left: 5px;
+        }
 
         &__progress {
             color: var(--text-primary);
             font-weight: 600;
             font-family: var(--primary-font);
-            margin-bottom: 10px;
+            display: block;
+            text-align: right;
             span {
                 font-weight: bold;
                 &.positive {
@@ -65,9 +71,11 @@
                 font-weight: 600;
             }
         }
+        &__bar {
+            margin-bottom: 20px;
+        }
         &__dropdown {
             position: relative;
-            margin-bottom: 30px;
             max-width: 400px;
             i {
                 position: absolute;
@@ -126,12 +134,10 @@
     }
 
     &-activity {
-        &__title {
-            color: var(--text-primary);
-        }
+        margin-top: 40px;
         &__list {
             padding-right: 40px;
-            max-height: 600px;
+            max-height: 500px;
             overflow-y: auto;
         }
     }

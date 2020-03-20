@@ -13,21 +13,89 @@ import Loader from '../../../../components/elements/Loader';
 
 const activityTypeOptions = [
     {
-        value: 'Food',
-        label: 'Food',
+        value: 'Food & Drinks',
+        label: 'Food & Drinks',
+        subOptions: [
+            {
+                value: 'Food & Drinks - General',
+                label: 'Food & Drinks - General',
+            },
+            {
+                value: 'Bar, cafe',
+                label: 'Bar, cafe',
+            },
+            {
+                value: 'Groceries',
+                label: 'Groceries',
+            },
+            {
+                value: 'Restaurant, fast-food',
+                label: 'Restaurant, fast-food',
+            }
+        ],
     },
     {
-        value: 'General',
-        label: 'General',
+        value: 'Shopping',
+        label: 'Shopping',
+        subOptions: [
+            {
+                value: 'Shopping - General',
+                label: 'Shopping - General',
+            },
+            {
+                value: 'Clothes & Shoes',
+                label: 'Clothes & Shoes',
+            },
+            {
+                value: 'Drug-store, chemist',
+                label: 'Drug-store, chemist',
+            },
+            {
+                value: 'Electronics, accessories',
+                label: 'Electronics, accessories',
+            },
+            {
+                value: 'Free Time',
+                label: 'Electronics, accessories',
+            }
+        ],
     },
     {
-        value: 'Bills',
-        label: 'Bills',
+        value: 'Housing',
+        label: 'Housing',
+    },
+    {
+        value: 'Transportation',
+        label: 'Transportation',
+    },
+    {
+        value: 'Vehicle',
+        label: 'Vehicle',
+    },
+    {
+        value: 'Life & Entertainment',
+        label: 'Life & Entertainment',
+    },
+    {
+        value: 'Communication, PC',
+        label: 'Communication, PC',
+    },
+    {
+        value: 'Financial Expenses',
+        label: 'Financial Expenses',
+    },
+    {
+        value: 'Investments',
+        label: 'Investments',
     },
     {
         value: 'Income',
         label: 'Income',
-    }
+    },
+    {
+        value: 'Others',
+        label: 'Others',
+    },
 ];
 
 const AddActivity = () => {
@@ -49,23 +117,23 @@ const AddActivity = () => {
 
     const [accounts, setAccounts] = useState();
 
-    const changeHandler = event => setActivity({...activity, [event.target.name]: event.target.value});
+    const changeHandler = event => {
+        console.log(activity);
+        
+       setActivity({...activity, [event.target.name]: event.target.value})
+    };
     
     const getAccounts = useCallback(async () => {
         const accountsList = await fetchDataList('account');
 
         setAccounts(accountsList);
+
+        accountsList && setActivity(activity => {
+            return {...activity, accountName: accountsList[0].accountName}; 
+        });
+
     }, [fetchDataList]);
 
-    /* Handle changed data */
-    // const updateData = useCallback(() => {
-    //     if (accounts) {
-    //         setActivity(activity => {
-    //            return {...activity, accountName: accounts[0].accountName}; 
-    //         });
-    //     }
-            
-    // }, [accounts]);
 
     const transformAccountData = (data) => {
         return data.map(d => {
@@ -77,7 +145,6 @@ const AddActivity = () => {
     }
 
     useEffect(() => {
-        // updateData();
         getAccounts();
     }, [getAccounts]);
     
