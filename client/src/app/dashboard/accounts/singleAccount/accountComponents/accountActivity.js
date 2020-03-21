@@ -4,7 +4,7 @@ import ActivitySingle from '../../../overview/oActivity/oActivitySingle';
 const AccountActivity = ({activities}) => {
     return (
         <div className="account-activity">
-                {activities 
+                {activities && activities.length
                     ?
                         <div className="account-activity__list">
                             {activities.map(a => {

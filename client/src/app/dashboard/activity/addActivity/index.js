@@ -11,92 +11,9 @@ import Input from '../../../../components/elements/Forms/input';
 import Select from '../../../../components/elements/Forms/select';
 import Loader from '../../../../components/elements/Loader';
 
-const activityTypeOptions = [
-    {
-        value: 'Food & Drinks',
-        label: 'Food & Drinks',
-        subOptions: [
-            {
-                value: 'Food & Drinks - General',
-                label: 'Food & Drinks - General',
-            },
-            {
-                value: 'Bar, cafe',
-                label: 'Bar, cafe',
-            },
-            {
-                value: 'Groceries',
-                label: 'Groceries',
-            },
-            {
-                value: 'Restaurant, fast-food',
-                label: 'Restaurant, fast-food',
-            }
-        ],
-    },
-    {
-        value: 'Shopping',
-        label: 'Shopping',
-        subOptions: [
-            {
-                value: 'Shopping - General',
-                label: 'Shopping - General',
-            },
-            {
-                value: 'Clothes & Shoes',
-                label: 'Clothes & Shoes',
-            },
-            {
-                value: 'Drug-store, chemist',
-                label: 'Drug-store, chemist',
-            },
-            {
-                value: 'Electronics, accessories',
-                label: 'Electronics, accessories',
-            },
-            {
-                value: 'Free Time',
-                label: 'Electronics, accessories',
-            }
-        ],
-    },
-    {
-        value: 'Housing',
-        label: 'Housing',
-    },
-    {
-        value: 'Transportation',
-        label: 'Transportation',
-    },
-    {
-        value: 'Vehicle',
-        label: 'Vehicle',
-    },
-    {
-        value: 'Life & Entertainment',
-        label: 'Life & Entertainment',
-    },
-    {
-        value: 'Communication, PC',
-        label: 'Communication, PC',
-    },
-    {
-        value: 'Financial Expenses',
-        label: 'Financial Expenses',
-    },
-    {
-        value: 'Investments',
-        label: 'Investments',
-    },
-    {
-        value: 'Income',
-        label: 'Income',
-    },
-    {
-        value: 'Others',
-        label: 'Others',
-    },
-];
+import activityTypeOptions from '../../../../data/activityTypeOptions';
+
+
 
 const AddActivity = () => {
     const history = useHistory();
@@ -222,13 +139,33 @@ const AddActivity = () => {
                         }
                     </div>
                     <div className="col-12 col-lg-6">
-                        <Select 
+                        <div className="form-group">
+                            <select value={activity.activityType} name='activityType' onChange={changeHandler} >
+                                {activityTypeOptions.map((option,index) => {
+                                    if(option.subOptions) {
+                                        return (
+                                            <optgroup label={option.label}>
+                                                {option.subOptions.map((sub, index) => {
+                                                   return <option key={index} value={sub.value}>{sub.label}</option>
+                                                })}
+                                                
+                                            </optgroup>
+                                        );
+                                    } else {
+                                        return <option key={index} value={option.value}>{option.label}</option>
+                                    }
+                                })}
+                            </select>
+                            <label htmlFor="select" className="control-label">Activity type</label>
+                            <i className="bar"></i>
+                        </div>
+                        {/* <Select 
                             name='activityType'
                             options={activityTypeOptions}
                             value={activity.activityType}
                             label='Activity type'
                             changeHandler={changeHandler}
-                        />
+                        /> */}
                     </div>
                     <div className="col-12">
                         <Input 

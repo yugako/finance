@@ -43,13 +43,15 @@ const SingleAccount = () => {
 
      const changeHandler = event => {
         if(account) {
+
             const {data} = accountActivity(account.accountName, account.balance);
        
             const { plotData, percentProgress, label } = toogleProgress(event.target.value, data, account.balance);
-
+            
             setPlotData(plotData);
             setProgress(percentProgress);
             setLabel(label);
+            
         }
     }
 
@@ -87,7 +89,6 @@ const SingleAccount = () => {
         )
     }
 
-    
     return (
          <section className='account'>
              <div className="account-header">
@@ -98,11 +99,18 @@ const SingleAccount = () => {
                     Current balance: <span className={account.balance >= 0 ? 'positive' : 'negative'}>{account.balance}</span>
                     <span className='account-balance__currency'>{account.accountCurrency}</span> 
                 </div>
+            
                 <Tabs 
                     headings={['Balance trends', 'Recent Activity']} 
                     content={
                         [
-                            <BalanceOveview plotData={plotData} progress={progress} label={label} changeHandler={changeHandler}  />, 
+                            <BalanceOveview 
+                                plotData={plotData} 
+                                isData={Array.isArray(getAccountActivities()) && getAccountActivities().length > 0 ? true : false} 
+                                progress={progress} 
+                                label={label} 
+                                changeHandler={changeHandler}  
+                            />, 
                             <AccountActivity activities={getAccountActivities()} />
                         ]
                     } 
