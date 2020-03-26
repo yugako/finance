@@ -141,6 +141,12 @@
             overflow-y: auto;
         }
     }
+
+    .custom-tooltip {
+        background-color: var(--light);
+        padding: 15px;
+        color: var(--text-primary);
+    }
     
 }
     

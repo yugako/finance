@@ -5,8 +5,8 @@ import { useData } from '../../../hooks/data.hook';
 
 import WelcomeWrapper from '../../../components/dashboard/welcome/wrapper';
 
-import currencyList from '../../../assets/data/currency.js';
-import accountTypeOptions from '../../../assets/data/accountTypeOptions.js';
+import currencyList from '../../../data/currency.js';
+import accountTypeOptions from '../../../data/accountTypeOptions.js';
 
 import Input from '../../../components/elements/Forms/input';
 import Select from '../../../components/elements/Forms/select';

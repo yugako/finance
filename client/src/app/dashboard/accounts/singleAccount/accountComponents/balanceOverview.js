@@ -12,7 +12,7 @@ const options = [
     
 ];
 
-const BalanceOverview = ({plotData, isData, progress, label, changeHandler}) => {
+const BalanceOverview = ({plotData, pieData, isData, progress, label, changeHandler}) => {
     return (
         <>
             <div className="account-period">
@@ -29,8 +29,9 @@ const BalanceOverview = ({plotData, isData, progress, label, changeHandler}) => 
                                 <div className="account-period__bar d-flex align-items-center justify-content-between">
                                     <div className="account-period__dropdown">
                                         <i className="far fa-calendar"></i>
-                                        <select onChange={changeHandler} value={options[0].value} className='account-period__select' name="period" id="period">
-                                            {options.map(option => <option disabled={option.disabled ? true : false} key={option.value} value={option.value}>{option.label}</option>)}
+                                        <select onChange={changeHandler} defaultValue={options[0].value} className='account-period__select' name="period" id="period">
+                                            {options.map(option => <option disabled={option.disabled ? true : false} key={option.value} value={option.value}>{option.label}
+                                            </option>)}
                                         </select>
                                     </div>
                                 
@@ -44,12 +45,8 @@ const BalanceOverview = ({plotData, isData, progress, label, changeHandler}) => 
                             : <div>Seems you don't have data to display. Try to add a few activities.</div>
 
                         }
-                        
                     </div>
                 </div>
-                
-                
-                
                     
             </div>
             <div className="row">
@@ -59,7 +56,7 @@ const BalanceOverview = ({plotData, isData, progress, label, changeHandler}) => 
                     
                 </div>
                 <div className="col-12 col-lg-6 align-self-center">
-                    <AccountPie data={plotData} />
+                    <AccountPie data={pieData} />
                 </div>
             </div>
         </>

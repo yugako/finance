@@ -13,7 +13,11 @@ import Tabs from '../../../../components/elements/Tabs';
 import BalanceOveview from './accountComponents/balanceOverview';
 import AccountActivity from './accountComponents/accountActivity';
 
+import activitySpendingsBar from '../../../../hooks/chart.hook';
+
+
 import './index.scss';
+
 
 const SingleAccount = () => {
     const [account , setAccount] = useState(null);
@@ -21,7 +25,8 @@ const SingleAccount = () => {
 
     const [progress, setProgress] = useState();
     const [plotData, setPlotData] = useState(); 
-    const [label, setLabel] = useState(); 
+    const [label, setLabel] = useState();
+    const [pieData, setPieData] = useState(); 
 
     const {fetchDataList, fetchDataSingle} = useData();
 
@@ -43,15 +48,17 @@ const SingleAccount = () => {
 
      const changeHandler = event => {
         if(account) {
-
-            const {data} = accountActivity(account.accountName, account.balance);
+            const {data, current} = accountActivity(account.accountName, account.balance);
        
-            const { plotData, percentProgress, label } = toogleProgress(event.target.value, data, account.balance);
+            const { plotData, percentProgress, label, initPieData } = toogleProgress(event.target.value, data, account.balance, current);
+
+            const pieData = activitySpendingsBar(initPieData);
             
+            console.log(pieData)
             setPlotData(plotData);
             setProgress(percentProgress);
             setLabel(label);
-            
+            setPieData(pieData);
         }
     }
 
@@ -76,7 +83,6 @@ const SingleAccount = () => {
             return current;
         }
     }
-
 
     useEffect(() => {
         getAccount();
@@ -105,7 +111,8 @@ const SingleAccount = () => {
                     content={
                         [
                             <BalanceOveview 
-                                plotData={plotData} 
+                                plotData={plotData}
+                                pieData={pieData}
                                 isData={Array.isArray(getAccountActivities()) && getAccountActivities().length > 0 ? true : false} 
                                 progress={progress} 
                                 label={label} 
