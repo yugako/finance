@@ -152,7 +152,9 @@ const AddActivity = () => {
                                             </optgroup>
                                         );
                                     } else {
-                                        return <option key={index} value={option.value}>{option.label}</option>
+                                        return <option key={index} value={option.value}>
+                                            {option.label}
+                                            </option>
                                     }
                                 })}
                             </select>

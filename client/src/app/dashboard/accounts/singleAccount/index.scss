@@ -142,10 +142,21 @@
         }
     }
 
-    .custom-tooltip {
-        background-color: var(--light);
-        padding: 15px;
-        color: var(--text-primary);
+    .text-label {
+        fill: #fff;
+        &__main {
+            fill: var(--text-primary);
+            font-size: 16px;
+            &-title {
+                font-weight: bold;
+            }
+            &-value {
+                fill: var(--secondary);
+            }
+            &-currency {
+                fill: var(--primary)
+            }
+        }
     }
     
 }

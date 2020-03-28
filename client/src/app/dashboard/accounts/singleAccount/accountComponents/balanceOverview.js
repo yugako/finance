@@ -12,7 +12,7 @@ const options = [
     
 ];
 
-const BalanceOverview = ({plotData, pieData, isData, progress, label, changeHandler}) => {
+const BalanceOverview = ({plotData, pieData, isData, progress, label, currency, changeHandler}) => {
     return (
         <>
             <div className="account-period">
@@ -56,7 +56,7 @@ const BalanceOverview = ({plotData, pieData, isData, progress, label, changeHand
                     
                 </div>
                 <div className="col-12 col-lg-6 align-self-center">
-                    <AccountPie data={pieData} />
+                    <AccountPie currency={currency} data={pieData} />
                 </div>
             </div>
         </>

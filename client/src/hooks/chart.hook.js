@@ -1,17 +1,19 @@
 import { _ } from 'underscore';
 
 
-const activitySpendingsBar = (activities) => {
+const activitySpendingsBar = (activities, currency) => {
     if(activities) {
+       
         const initialData = activities.map(a => {
             return {
                 type: a.activityType,
-                spending: Math.abs(+a.activitySpendings)
+                spending: Math.abs(+a.activitySpendings),
+                currency
             }
         });
 
         const groupedData = _.groupBy(initialData, 'type');
-        
+
         const finalData = [];
 
         for (const key in groupedData) {
@@ -24,10 +26,10 @@ const activitySpendingsBar = (activities) => {
             finalData.push({
                 type: key,
                 spending: spending,
-            })
-
+                currency: element[0].currency
+            });
         }
-
+         
         return finalData;
     }
 }

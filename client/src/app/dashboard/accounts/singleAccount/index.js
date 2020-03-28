@@ -52,9 +52,8 @@ const SingleAccount = () => {
        
             const { plotData, percentProgress, label, initPieData } = toogleProgress(event.target.value, data, account.balance, current);
 
-            const pieData = activitySpendingsBar(initPieData);
+            const pieData = activitySpendingsBar(initPieData, account.accountCurrency);
             
-            console.log(pieData)
             setPlotData(plotData);
             setProgress(percentProgress);
             setLabel(label);
@@ -79,7 +78,6 @@ const SingleAccount = () => {
         
         if(activities && account) {
             const {current} = accountActivity(account.accountName);
-
             return current;
         }
     }
@@ -116,6 +114,7 @@ const SingleAccount = () => {
                                 isData={Array.isArray(getAccountActivities()) && getAccountActivities().length > 0 ? true : false} 
                                 progress={progress} 
                                 label={label} 
+                                currency={account.accountCurrency}
                                 changeHandler={changeHandler}  
                             />, 
                             <AccountActivity activities={getAccountActivities()} />

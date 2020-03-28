@@ -8,6 +8,13 @@
     }
     &-content {
         width: 100%;
+        &__data {
+            flex: 1;
+        }
+
+        &__icon {
+            margin-right: 10px;
+        }
         &__title {
             color: var(--text-primary);
             font-family: var(--primary-font);
