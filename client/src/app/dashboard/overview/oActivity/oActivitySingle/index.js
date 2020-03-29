@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import './index.scss';
 
-const ActivitySingle = ({title, date, amount, account}) => {
+const ActivitySingle = ({title, date, amount, account, icon}) => {
     return (
         <div className='activity d-flex align-items-center'>
            <div className="activity-content d-flex justify-content-start flex-wrap align-items-center">
                 <div className="activity-content__icon">
-                    <img src={require('../../../../../assets/images/icons/grocery-bag.png')} alt=""/>
+                    <img src={icon} alt={title}/>
                 </div>
                 <div className="activity-content__data d-flex justify-content-start flex-wrap justify-content-sm-between align-items-center">
                     <div className="activity-content__info">

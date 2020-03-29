@@ -14,6 +14,7 @@ const AccountActivity = ({activities}) => {
                                         date={a.activityDate}
                                         amount={a.activitySpendings}
                                         account={a.accountName}
+                                        icon={a.icon}
                                     />  
                                 );
                             })}

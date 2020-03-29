@@ -262,27 +262,27 @@ const activityTypeOptions = [
             {
                 value: 'Holiday trips, hotel',
                 label: 'Holiday trips, hotel',
-                icon: '',
+                icon: require('../assets/images/icons/holidays.png'),
             },
             {
                 value: 'Life events',
                 label: 'Life events',
-                icon: '',
+                icon: require('../assets/images/icons/life-events.png'),
             },
             {
                 value: 'Lottery, gambling',
                 label: 'Lottery, gambling',
-                icon: '',
+                icon: require('../assets/images/icons/gambling.png'),
             },
             {
                 value: 'TV, streaming',
                 label: 'TV, streaming',
-                icon: '',
+                icon: require('../assets/images/icons/tv.png'),
             },
             {
                 value: 'Wellness, beauty',
                 label: 'Wellness, beauty',
-                icon: '',
+                icon: require('../assets/images/icons/wellness.png'),
             },
 
         ]
@@ -290,190 +290,190 @@ const activityTypeOptions = [
     {
         value: 'Communication, PC',
         label: 'Communication, PC',
-        icon: '',
+        icon: require('../assets/images/icons/communication.png'),
         subOptions: [
             {
                 value: 'Communication, PC - General',
                 label: 'Communication, PC - General',
-                icon: '',
+                icon: require('../assets/images/icons/communication.png'),
             },
             {
                 value: 'Internet',
                 label: 'Internet',
-                icon: '',
+                icon: require('../assets/images/icons/internet.png'),
             },
             {
                 value: 'Phone, cell phone',
                 label: 'Phone, cell phone',
-                icon: '',
+                icon: require('../assets/images/icons/cell-phone.png'),
             },
             {
                 value: 'Postal services',
                 label: 'Postal services',
-                icon: '',
+                icon: require('../assets/images/icons/postal.png'),
             },
             {
                 value: 'Software, apps, games',
                 label: 'Software, apps, games',
-                icon: '',
+                icon: require('../assets/images/icons/software.png'),
             },
         ]
     },
     {
         value: 'Financial Expenses',
         label: 'Financial Expenses',
-        icon: '',
+        icon: require('../assets/images/icons/financial-expenses.png'),
         subOptions: [
             {   
                 value: 'Financial Expenses - General',
                 label: 'Financial Expenses - General',
-                icon: '',
+                icon: require('../assets/images/icons/financial-expenses.png'),
             },
             {   
                 value: 'Advisory',
                 label: 'Advisory',
-                icon: '',
+                icon: require('../assets/images/icons/advisory.png'),
             },
             {   
                 value: 'Charges, Fees',
                 label: 'Charges, Fees',
-                icon: '',
+                icon: require('../assets/images/icons/fees.png'),
             },
             {   
                 value: 'Child Support',
                 label: 'Child Support',
-                icon: '',
+                icon: require('../assets/images/icons/child-support.png'),
             },
             {   
                 value: 'Fines',
                 label: 'Fines',
-                icon: '',
+                icon: require('../assets/images/icons/fines.png'),
             },
             {   
                 value: 'Insurances',
                 label: 'Insurances',
-                icon: '',
+                icon: require('../assets/images/icons/insurance.png'),
             },
             {   
                 value: 'Loan, interests',
                 label: 'Loan, interests',
-                icon: '',
+                icon: require('../assets/images/icons/loan.png'),
             },
             {   
                 value: 'Taxes',
                 label: 'Taxes',
-                icon: '',
+                icon: require('../assets/images/icons/taxes.png'),
             },
         ]
     },
     {
         value: 'Investments',
         label: 'Investments',
-        icon: '',
+        icon: require('../assets/images/icons/investments.png'),
         subOptions: [
             {
                 value: 'Investments - General',
                 label: 'Investments - General',
-                icon: '',
+                icon: require('../assets/images/icons/investments.png'),
             },
             {
                 value: 'Collections',
                 label: 'Collections',
-                icon: '',
+                icon: require('../assets/images/icons/collections.png'),
             },
             {
                 value: 'Financial Investments',
                 label: 'Financial Investments',
-                icon: '',
+                icon: require('../assets/images/icons/financial-investments.png'),
             },
             {
                 value: 'Realty',
                 label: 'Realty',
-                icon: '',
+                icon: require('../assets/images/icons/realty.png'),
             },
             {
                 value: 'Savings',
                 label: 'Savings',
-                icon: '',
+                icon: require('../assets/images/icons/savings.png'),
             },
             {
                 value: 'Vehicles, chattels',
                 label: 'Vehicles, chattels',
-                icon: '',
+                icon: require('../assets/images/icons/vehicles.png'),
             },
         ]
     },
     {
         value: 'Income',
         label: 'Income',
-        icon: '',
+        icon: require('../assets/images/icons/income.png'),
         subOptions: [
             {
                 value: 'Income - General',
                 label: 'Income - General',
-                icon: '',
+                icon: require('../assets/images/icons/income.png'),
             },
             {
                 value: 'Checks, coupons',
                 label: 'Checks, coupons',
-                icon: '',
+                icon: require('../assets/images/icons/coupons.png'),
             },
             {
                 value: 'Child Support',
                 label: 'Child Support',
-                icon: '',
+                icon: require('../assets/images/icons/child-support.png'),
             },
             {
                 value: 'Dues & Grants',
                 label: 'Dues & Grants',
-                icon: '',
+                icon: require('../assets/images/icons/grants.png'),
             },
             {
                 value: 'Gifts',
                 label: 'Gifts',
-                icon: '',
+                icon: require('../assets/images/icons/money-gifts.png'),
             },
             {
                 value: 'Interests, dividends',
                 label: 'Interests, dividends',
-                icon: '',
+                icon: require('../assets/images/icons/dividends.png'),
             },
             {
                 value: 'Lending, renting',
                 label: 'Lending, renting',
-                icon: '',
+                icon: require('../assets/images/icons/renting.png'),
             },
             {
                 value: 'Lottery, gambling',
                 label: 'Lottery, gambling',
-                icon: '',
+                icon: require('../assets/images/icons/gambling.png'),
             },
             {
                 value: 'Refunds (tax, purchase)',
                 label: 'Refunds (tax, purchase)',
-                icon: '',
+                icon: require('../assets/images/icons/refund.png'),
             },
             {
                 value: 'Rental income',
                 label: 'Rental income',
-                icon: '',
+                icon: require('../assets/images/icons/leasing.png'),
             },
             {
                 value: 'Sale',
                 label: 'Sale',
-                icon: '',
+                icon: require('../assets/images/icons/sale.png'),
             },
             {
                 value: 'Wage, invoices',
                 label: 'Wage, invoices',
-                icon: '',
+                icon: require('../assets/images/icons/wage.png'),
             }
         ]
     },
     {
         value: 'Others',
         label: 'Others',
-        icon: '',
+        icon: require('../assets/images/icons/other_spending.png'),
     },
 ];
 

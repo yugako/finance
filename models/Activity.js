@@ -6,6 +6,7 @@ const schema = new Schema({
     activitySpendings: {type: String, required: true},
     accountName: {type: String, required: true},
     activityDate: {type: String, required: true},
+    icon: {type: String, required: false},
     owner: {type: Types.ObjectId, ref: 'User'}
 });
 

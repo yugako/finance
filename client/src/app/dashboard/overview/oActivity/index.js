@@ -38,7 +38,8 @@ const OverviewActivity = () => {
                             title={activity.activityName} 
                             date={activity.activityDate}
                             amount={activity.activitySpendings}
-                            account={activity.accountName} 
+                            account={activity.accountName}
+                            icon={activity.icon} 
                             key={activity._id} 
                         />
                     )

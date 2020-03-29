@@ -5,9 +5,7 @@ function getTime(time) {
 }
 
 const dayProgress = (data, currentActivities) => {
-	if(data) {
-		
-		console.log(currentActivities);
+	if(data) {		
 		const groupedByDate =_.groupBy(data, 'date');
 
 		let daysArr = [];
@@ -55,13 +53,10 @@ const dayProgress = (data, currentActivities) => {
 const weekProgress = (data, currentActivities) => {
 	const lastDay = +data[data.length - 1].sortDate;
 
-	console.log(currentActivities);
-
-	
-	// sortDate: new Date(c.activityDate).getTime(),
-
 	const weekActivities = data.reverse().filter(d => (lastDay - +d.sortDate) < 604800000);
-	const weekActivitiesSpendings = currentActivities.filter(a => lastDay - +getTime(a.activityDate));
+
+	const weekActivitiesSpendings = currentActivities.filter(a => (lastDay - +getTime(a.activityDate)) < 604800000);
+
 	const percentProgress = ((weekActivities[0].averageBalance / weekActivities[weekActivities.length - 1].averageBalance) * 100 - 100).toFixed(2);
 
 	return {
@@ -76,7 +71,7 @@ const monthProgress = (data, currentActivities) => {
 	const lastDay = +data[data.length - 1].sortDate;
 
 	const monthActivities = data.reverse().filter(d => (lastDay - +d.sortDate) < 604800000 * 4);
-	const monthActivitiesSpendings = currentActivities.filter(a => lastDay - +getTime(a.activityDate));
+	const monthActivitiesSpendings = currentActivities.filter(a => (lastDay - +getTime(a.activityDate)) < 604800000 * 4);
 	const percentProgress = ((monthActivities[0].averageBalance / monthActivities[monthActivities.length - 1].averageBalance) * 100 - 100).toFixed(2);
 	
 	return {

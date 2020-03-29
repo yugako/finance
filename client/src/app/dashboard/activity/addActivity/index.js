@@ -30,14 +30,22 @@ const AddActivity = () => {
         activitySpendings: '',
         accountName: '',
         activityDate: '',
+        icon: activityTypeOptions[0].icon,
     });
+
+    const [icon, setIcon] = useState(activityTypeOptions[0].icon);
 
     const [accounts, setAccounts] = useState();
 
     const changeHandler = event => {
-        console.log(activity);
+    
+        if(event.target.name === 'activityType') {
+            setIcon(event.target.options[event.target.selectedIndex].dataset.icon);
+        }
         
-       setActivity({...activity, [event.target.name]: event.target.value})
+        setActivity({...activity, [event.target.name]: event.target.value, icon});
+
+        
     };
     
     const getAccounts = useCallback(async () => {
@@ -87,7 +95,8 @@ const AddActivity = () => {
                 activityType: '',
                 activitySpendings: '',
                 accountName: '',
-                activityDate: '', 
+                activityDate: '',
+                icon: '', 
             });
 
             history.push(`/dashboard/activity/${data.activity._id}`);
@@ -144,15 +153,15 @@ const AddActivity = () => {
                                 {activityTypeOptions.map((option,index) => {
                                     if(option.subOptions) {
                                         return (
-                                            <optgroup label={option.label}>
+                                            <optgroup key={index} label={option.label}>
                                                 {option.subOptions.map((sub, index) => {
-                                                   return <option key={index} value={sub.value}>{sub.label}</option>
+                                                   return <option key={index} data-icon={sub.icon} value={sub.value}>{sub.label}</option>
                                                 })}
                                                 
                                             </optgroup>
                                         );
                                     } else {
-                                        return <option key={index} value={option.value}>
+                                        return <option key={index} data-icon={option.icon} value={option.value}>
                                             {option.label}
                                             </option>
                                     }
