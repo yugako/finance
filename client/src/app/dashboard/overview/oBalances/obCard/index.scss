@@ -4,11 +4,14 @@
     border-radius: 16px;
     overflow: hidden;
     
+    
     &__main {
         padding: 24px;
         padding-bottom: 0;
+        
     }
     &__title {
+        
         a {
             color: var(--text-secondary);
             font-family: var(--primary-font);
@@ -16,6 +19,7 @@
             font-weight: 600;
             text-transform: uppercase;
             transition: color 0.3s;
+            
             &:hover {
                 color: var(--text-primary);
                 transition: color 0.3s;

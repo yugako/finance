@@ -1,18 +1,26 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../../context/AuthContext';
+import Search from '../../search';
+
 import './index.scss';
+
 
 const UserBar = () => {
     const auth = useContext(AuthContext);
-    const [fullName, setFullName] = useState('user');
+	const [fullName, setFullName] = useState('user');
+	const [searchOpen, setSearchOpen] = useState(false);
     
     const getFullName = useCallback(() => {    
         if(localStorage.getItem('userName')) {
             const data = localStorage.getItem('userName');
             setFullName(data);
         }
-    }, []);
+	}, []);
+	
+	const handleSearch = () => {
+		setSearchOpen(!searchOpen);
+	}
 
     useEffect(() => {
        getFullName();
@@ -28,13 +36,15 @@ const UserBar = () => {
 				</div>
 				
 				<div className="user-bar__content-actions">
-					<i title='Search' className="fas fa-search-dollar"></i>
+					<i title='Search' onClick={handleSearch} className="fas fa-search-dollar"></i>
 					<NavLink to="/dashboard/edit-profile">
 						<i title='Edit profile' className="fas fa-user-edit"></i>
 					</NavLink>
 					<i title='Log Out' className="fas fa-door-open"  onClick={auth.logout}></i>
 				</div>
 			</div>
+			{searchOpen ? <Search clickHandler={handleSearch} /> : null}
+			
 		</div>
 	);
 }

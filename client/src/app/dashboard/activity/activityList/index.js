@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Headline from '../../../../components/dashboard/headline';
-import ActivitySingle from '../../overview/oActivity/oActivitySingle';
+import ActivitySingle from '../../../../components/dashboard/activitySingle';
 
 const ActivityList = ({activities}) => {
     return (

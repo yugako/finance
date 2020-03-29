@@ -1,8 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 
-
-import ActivitySingle from './oActivitySingle';
+import ActivitySingle from '../../../../components/dashboard/activitySingle';
 import ActivityEmpty from './oActivityEmpty';
 
 import { useData } from '../../../../hooks/data.hook';

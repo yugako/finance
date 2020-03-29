@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/account', require('./routes/account.routes'));
 app.use('/api/activity', require('./routes/activity.routes'));
+app.use('/api/search', require('./routes/search.routes'));
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.

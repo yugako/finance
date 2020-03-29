@@ -1,5 +1,6 @@
 import React from 'react';
-import ActivitySingle from '../../../overview/oActivity/oActivitySingle';
+import ActivitySingle from '../../../../../components/dashboard/activitySingle';
+
 
 const AccountActivity = ({activities}) => {
     return (
