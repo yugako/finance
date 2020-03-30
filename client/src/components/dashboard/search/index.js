@@ -23,6 +23,7 @@ const Search = ({clickHandler}) => {
     const {request} = useHttp();
     const {token} = useContext(AuthContext);
 
+
     const changeHandler = async event => {
         try {
             setQuery(event.target.value);
@@ -41,10 +42,23 @@ const Search = ({clickHandler}) => {
         }
     }
 
-    const targetSearchHandler = (target, index) => {
+    const targetSearchHandler = async (target, index) => {
         setTarget(target);
         setTargetIndex(index);
         setResults([]);
+
+        try {
+            
+            const searchResults = await request(`/api/search/${query}`, 'GET', null, {
+                Authorization: `Bearer ${token}`,
+                Target: target
+            });
+            
+            setResults(searchResults);
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
