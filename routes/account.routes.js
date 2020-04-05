@@ -44,7 +44,6 @@ router.post('/create', auth, async (req, res) => {
  */
 router.get('/', auth, async (req, res) => {
     try {
-        console.log(req.user);
 		const accounts = await Account.find({
             owner: req.user.userId
         });

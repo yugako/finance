@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import renderActiveShape from './activeShape';
-
-import useWindowSize from '../../../../../../hooks/resize.hook';
-
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const AccountPie = ({currency, data}) => {
     const [index, setIndex] = useState(0);
-    const [width] = useWindowSize();
 
     const onPieEnter = (data, index) => setIndex(index);
 
-    const handleRadius = () => {
-        
-    }
-
-    useEffect(() => {
-        handleRadius();
-    }, [handleRadius]);
 
     return (
         <div className="account-pie">

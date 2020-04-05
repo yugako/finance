@@ -51,7 +51,7 @@ const SideNav = () => {
     }
     return (
         <>
-            {isOpen ? <Backdrop  clickHandler={toggleMenuHandler} /> : null }
+            {isOpen ? <Backdrop hideOnLargeScreen={true} clickHandler={toggleMenuHandler} /> : null }
             <aside className={`dashboard-sidebar ${isOpen ? 'open' : 'closed'}`}>
                 
                 <div className="dashboard-sidebar__header d-flex justify-content-between align-items-center">

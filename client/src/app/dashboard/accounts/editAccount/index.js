@@ -12,7 +12,7 @@ import currencyList from '../../../../data/currency';
 import accountTypeOptions from '../../../../data/accountTypeOptions';
 import './index.scss';
 
-const AddAccount = () => {
+const EditAccount = () => {
     const history = useHistory();
     const auth = useContext(AuthContext);
 
@@ -57,7 +57,7 @@ const AddAccount = () => {
 
     return (
         <div className='add-account'>
-            <Headline title='Add account' />            
+            <Headline title='Edit account' />            
             <form onSubmit={submitHandler} className='add-account__form'>
                 <div className="row">
                     <div className="col-12">
@@ -107,4 +107,4 @@ const AddAccount = () => {
     );
 }
  
-export default AddAccount;
+export default EditAccount;
