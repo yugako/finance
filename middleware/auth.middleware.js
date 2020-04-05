@@ -19,12 +19,12 @@ module.exports = (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, config.get('jwtSecret'));
+
         req.user = decoded;
 
         next();
 
     } catch (e) {
-        console.log(e);
         res.status(401).json({
             message: 'You are not authorized!'
         });

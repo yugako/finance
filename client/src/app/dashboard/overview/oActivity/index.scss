@@ -7,6 +7,9 @@
             max-height: 400px;
             overflow: auto;
             margin-right: 20px;
+            @media screen and (max-width: 767px) {
+                margin-right: 0;
+            }
         }
         &-header {
             padding: 24px;

@@ -25,7 +25,6 @@ const App = () => {
                     {router}
                 </div> 
             </BrowserRouter>
-            
         </AuthContext.Provider>
         
     );

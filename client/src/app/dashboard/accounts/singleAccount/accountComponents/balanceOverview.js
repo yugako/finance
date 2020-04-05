@@ -26,7 +26,7 @@ const BalanceOverview = ({plotData, pieData, isData, progress, label, currency, 
                     <div className="col-12 col-lg-6">
                         {isData
                             ? 
-                                <div className="account-period__bar d-flex align-items-center justify-content-between">
+                                <div className="account-period__bar d-flex flex-wrap align-items-center justify-content-between">
                                     <div className="account-period__dropdown">
                                         <i className="far fa-calendar"></i>
                                         <select onChange={changeHandler} defaultValue={options[0].value} className='account-period__select' name="period" id="period">

@@ -19,6 +19,7 @@ export const useHttp = () => {
 
             if (!response.ok) {
                 const errorResponse = JSON.stringify(data.errors) || data.message;
+
                 throw new Error(errorResponse || 'Smth went wrong');
             }
 
@@ -29,6 +30,7 @@ export const useHttp = () => {
         } catch (error) {            
             setLoading(false);
             setError(error.message);
+        
             throw error;
         }
     }, []);

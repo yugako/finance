@@ -1,15 +1,15 @@
 .dashboard {
     display: flex;
     min-height: 100vh;
-    @media (max-width: 767px) {
-        flex-wrap: wrap;
-        min-height: initial;
+    @media (max-width: 1024px) {
+        display: block;
     }
     
     &-main {
         padding: 34px 48px;
         background-color: #edeff2;
         flex: 1;
+        min-height: 100vh;
         @media (max-width: 767px) {
             padding: 20px;
         }

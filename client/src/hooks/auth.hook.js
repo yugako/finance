@@ -3,10 +3,10 @@ import { useState, useCallback, useEffect } from "react";
 const storageName = 'userData';
 
 export const useAuth = () => {
+
     /**
      * Set local state
      */
-
     const [token, setToken] = useState(null);
     const [userId, setUserId] = useState(null);
     const [ready, setReady] = useState(false);

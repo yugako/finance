@@ -86,6 +86,10 @@
                 color: var(--text-secondary);
                 font-weight: 600;
             }
+
+            @media (max-width: 767px) {
+                margin-bottom: 20px;
+            }
         }
         
         &__select {
@@ -136,7 +140,6 @@
     &-activity {
         margin-top: 40px;
         &__list {
-            padding-right: 40px;
             max-height: 500px;
             overflow-y: auto;
         }

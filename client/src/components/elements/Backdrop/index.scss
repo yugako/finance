@@ -1,0 +1,14 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--dark);
+    opacity: 0.8;
+    z-index: 20;
+    transition: all 0.3s;
+    @media (min-width: 1025px) {
+        display: none;
+    }
+}

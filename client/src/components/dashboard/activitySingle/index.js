@@ -10,7 +10,7 @@ const ActivitySingle = ({title, date, amount, account, icon}) => {
                 <div className="activity-content__icon">
                     <img src={icon} alt={title}/>
                 </div>
-                <div className="activity-content__data d-flex justify-content-start flex-wrap justify-content-sm-between align-items-center">
+                <div className="activity-content__data d-flex justify-content-between flex-wrap align-items-center">
                     <div className="activity-content__info">
                         <div className="activity-content__title">
                             {title}

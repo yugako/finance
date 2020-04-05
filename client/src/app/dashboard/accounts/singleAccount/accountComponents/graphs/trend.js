@@ -1,11 +1,15 @@
 import React from 'react';
+
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import useWindowSize from '../../../../../../hooks/resize.hook';
 
 const AccountTrend = ({data}) => {
+    const [width] = useWindowSize();
+
     return (
         <>
             {data && 
-                <ResponsiveContainer width="100%" height={400} >
+                <ResponsiveContainer debounce='1' width="100%" height={width > 400 ?  400 : width / 1.5} >
                     <AreaChart
                         data={data}
                         margin={{
