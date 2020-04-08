@@ -97,7 +97,7 @@ const SingleAccount = () => {
          <section className='account'>
              <div className="account-header">
                 <Headline title={`Account: ${account.accountName}`} />
-                <AccountActions />
+                <AccountActions account={account} />
 
                 <div className="account-balance">
                     Current balance: <span className={account.balance >= 0 ? 'positive' : 'negative'}>{account.balance}</span>

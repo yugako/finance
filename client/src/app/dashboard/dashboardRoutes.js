@@ -13,12 +13,7 @@ import Help from './help';
 import Welcome from './welcome';
 
 /** Account */
-import AddAccount from './accounts/addAccount';
 import SingleAccount from './accounts/singleAccount';
-
-/** Activity */
-import AddActivity from './activity/addActivity';
-
 
 const DashboardRoutes = () => {
     let location = useLocation();
@@ -64,20 +59,14 @@ const DashboardRoutes = () => {
                         />
                 
                         {/* Account routes */}
-                        <Route 
-                            path="/dashboard/accounts/add" exact 
-                            component={AddAccount}
-                        />
+                        
                         <Route 
                             path="/dashboard/accounts/:id" exact 
                             component={SingleAccount}
                         />
 
                         {/* Activity routes */}
-                        <Route 
-                            path="/dashboard/activity/add" exact 
-                            component={AddActivity}
-                        />
+
 
                         <Route render={() => <h1 style={{color: 'red', textAlign: 'center'}}>404 not found</h1>} />
                     </Switch>

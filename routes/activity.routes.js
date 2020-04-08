@@ -57,4 +57,14 @@ router.get('/:id', auth, async (req, res, next) => {
 	}
 });
 
+router.put('/:id', auth, async(req, res) => {
+    try {
+        const activity = await Activity.findByIdAndUpdate(req.params.id, req.body);
+
+        res.json(activity);
+    } catch {
+        res.status(500).json({message: 'Smth went wrong! Try again.'})
+    }
+});
+
 module.exports = router;

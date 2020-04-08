@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
-import Backdrop from '../Backdrop';
+import React from 'react';
 
 import './index.scss';
+
 const Popup = ({open, children}) => {
-    let [isOpen, setOpen] = useState(open);
-
-    const togglePopupHandler = () => {
-        setOpen(isOpen = !isOpen);
-    }
-
-    if (isOpen) {
+    if (open) {
         return (
             <>
                <div className="popup">
@@ -17,15 +11,11 @@ const Popup = ({open, children}) => {
                        {children}
                    </div>
                </div>
-               <Backdrop clickHandler={togglePopupHandler} />
            </>
        );
     }
-
+    
     return null;
-    
-   
-    
 }
  
 export default Popup;

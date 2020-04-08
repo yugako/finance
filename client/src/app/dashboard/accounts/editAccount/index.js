@@ -1,8 +1,5 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
-
-import {useHttp} from '../../../../hooks/http.hook';
-import { AuthContext } from '../../../../context/AuthContext';
 
 import Headline from '../../../../components/dashboard/headline';
 import Input from '../../../../components/elements/Forms/input';
@@ -10,21 +7,22 @@ import Select from '../../../../components/elements/Forms/select';
 
 import currencyList from '../../../../data/currency';
 import accountTypeOptions from '../../../../data/accountTypeOptions';
-import './index.scss';
+import { useData } from '../../../../hooks/data.hook';
 
-const EditAccount = () => {
+// import './index.scss';
+
+const EditAccount = ({currentAccount}) => {
     const history = useHistory();
-    const auth = useContext(AuthContext);
+    const {updateSingleData} = useData(); 
 
     const [account, setAccount] = useState({
-        accountName: '',
-        accountType: accountTypeOptions[0].value,
-        accountCurrency: currencyList[0].name,
-        balance: 0,
+        accountName: currentAccount.accountName,
+        accountType: currentAccount.accountType,
+        accountCurrency: currentAccount.accountCurrency,
+        balance: currentAccount.balance
     });
 
-    const {request} = useHttp();
-
+    console.log(currentAccount);
     const changeHandler = event => {
         if(event.target.type === 'number') {
             setAccount({...account, [event.target.name]: +event.target.value});
@@ -37,9 +35,7 @@ const EditAccount = () => {
         e.preventDefault();
 
         try {
-            const data = await request('/api/account/create', 'POST', {...account}, {
-                Authorization: `Bearer ${auth.token}`
-            });
+            updateSingleData('account', currentAccount._id, {...account})
 
             setAccount({
                 accountName: '',
@@ -48,7 +44,7 @@ const EditAccount = () => {
                 balance: 0
             });
 
-            history.push(`/dashboard/accounts/${data.account._id}`);
+            history.push(`/dashboard/accounts/${currentAccount._id}`);
 
         } catch (error) {
             console.log(error);
@@ -56,9 +52,9 @@ const EditAccount = () => {
     };
 
     return (
-        <div className='add-account'>
-            <Headline title='Edit account' />            
+        <div className='add-account'>         
             <form onSubmit={submitHandler} className='add-account__form'>
+                <Headline title='Edit account' /> 
                 <div className="row">
                     <div className="col-12">
                         <Input 
@@ -100,7 +96,7 @@ const EditAccount = () => {
                             label='Balance'
                         />
                     </div>
-                    <input type="submit" className='submit' value="Add Account"/>
+                    <input type="submit" className='submit' value="Edit Account"/>
                 </div>
             </form>
         </div>

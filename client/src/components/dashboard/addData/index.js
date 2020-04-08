@@ -1,34 +1,28 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {NavLink} from 'react-router-dom';
 
 import Popup from '../../elements/Popup';
 import AddAccount from '../../../app/dashboard/accounts/addAccount';
 import AddActivity from '../../../app/dashboard/activity/addActivity';
+import Backdrop from '../../elements/Backdrop';
 
 import { useData } from '../../../hooks/data.hook';
 import './index.scss';
 
-const popupContent = [
-	{
-		component: <AddAccount />,
-		label: 'Add account',
-	},
-	// {
-	// 	component: <AddActivity />,
-	// 	label: 'Add activity',
-	// }
-];
-
-
-
 const AddData = () => {
 	const [accounts, setAccounts] = useState();
-    const {fetchDataList} = useData();
+	const {fetchDataList} = useData();
+	
 	let [isOpen, setOpen] = useState(false);
 	let [isPopupOpen, setPopupOpen] = useState(false);
+	
+	const[currentComponent, setCurrentComponent] = useState(<AddAccount />);
 
-    const toggleMenuHandler = () => setOpen(isOpen = !isOpen);
-    const togglePopupHandler = () => setPopupOpen(isPopupOpen = !isPopupOpen);
+	const toggleMenuHandler = () => setOpen(isOpen = !isOpen);
+	
+    const togglePopupHandler = (component = currentComponent) => {
+		setPopupOpen(isPopupOpen = !isPopupOpen);
+		setCurrentComponent(component);
+	}
 
     const getAccounts = useCallback( async () => {
         const accountsList = await fetchDataList('account');
@@ -47,24 +41,23 @@ const AddData = () => {
 			
 				<ul className={`add-data__dropdown dropdown ${isOpen ? 'open' : 'closed'}`}>
 					<li>
-						<span onClick={togglePopupHandler}>Add Account</span>
-						{/* <NavLink onClick={toggleMenuHandler} to="/dashboard/accounts/add"></NavLink> */}
+						<span onClick={() => togglePopupHandler(<AddAccount />)}>Add account</span>
 					</li>
-					
-
-					{/* {accounts && accounts.length ?
+					{accounts && accounts.length ?
 						<li>
-							<NavLink onClick={toggleMenuHandler} to="/dashboard/activity/add">Add activity</NavLink>
+							<span onClick={() => togglePopupHandler(<AddActivity />)}>Add activity</span>
 						</li> : null
-					} */}
-					
+					}	
 				</ul>
 			</div>
 			{isPopupOpen 
-				? 
-					<Popup open={isPopupOpen}>
-						<AddAccount />
-					</Popup>
+				? 	
+					<>
+						<Popup open={isPopupOpen}>
+							{currentComponent}
+						</Popup>
+						<Backdrop clickHandler={togglePopupHandler} />
+					</>
 				:
 					null
 			}

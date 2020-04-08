@@ -56,9 +56,9 @@ const AddAccount = () => {
     };
 
     return (
-        <div className='add-account'>
-            <Headline title='Add account' />            
+        <div className='add-account'>       
             <form onSubmit={submitHandler} className='add-account__form'>
+                <Headline title='Add account' /> 
                 <div className="row">
                     <div className="col-12">
                         <Input 

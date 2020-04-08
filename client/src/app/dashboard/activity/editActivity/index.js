@@ -13,21 +13,22 @@ import Loader from '../../../../components/elements/Loader';
 
 import activityTypeOptions from '../../../../data/activityTypeOptions';
 
-const AddActivity = () => {
+const EditActivity = ({id, title, date, amount, account, type}) => {
     const history = useHistory();
 
-    const { fetchDataList } = useData();
+    const { fetchDataList, updateSingleData } = useData();
         
     const auth = useContext(AuthContext);
 
     const {request} = useHttp();
-
+    
+    console.log(type);
     const [activity, setActivity] = useState({
-        activityName: '',
-        activityType: activityTypeOptions[0].value,
-        activitySpendings: '',
-        accountName: '',
-        activityDate: '',
+        activityName: title,
+        activityType: type,
+        activitySpendings: amount,
+        accountName: account,
+        activityDate: date,
         icon: activityTypeOptions[0].icon,
     });
 
@@ -78,9 +79,7 @@ const AddActivity = () => {
 
             currentAccount.balance = parseFloat(currentAccount.balance) + parseFloat(activity.activitySpendings);
 
-            const data = await request('/api/activity/create', 'POST', {...activity}, {
-                Authorization: `Bearer ${auth.token}`
-            });
+            updateSingleData('activity', id, {...activity});
 
             await request(`/api/account/${currentAccount._id}`, 'PUT', currentAccount, {
                 Authorization: `Bearer ${auth.token}`
@@ -95,7 +94,7 @@ const AddActivity = () => {
                 icon: '', 
             });
 
-            history.push(`/dashboard/activity/${data.activity._id}`);
+            history.push(`/dashboard/activity`);
 
         } catch (error) { console.log(error); }
     };
@@ -109,7 +108,7 @@ const AddActivity = () => {
     return (
         <div className='add-activity'>      
             <form onSubmit={submitHandler} className='add-account__form'>
-                <Headline title='Add activity' />  
+                <Headline title='Edit activity' />  
                 <div className="row">
                     <div className="col-12">
                         <Input 
@@ -184,7 +183,7 @@ const AddActivity = () => {
                             label='Activity date'
                         />
                     </div>
-                    <input type="submit"  className='submit' value="Add Account"/>
+                    <input type="submit"  className='submit' value="Edit Activity"/>
                 </div>
                 
             </form>
@@ -192,4 +191,4 @@ const AddActivity = () => {
     );
 }
  
-export default AddActivity;
+export default EditActivity;

@@ -10,13 +10,16 @@ const ActivityList = ({activities}) => {
             <Headline title='Activities' />
             <div className="dashboard-activity__list">
                 {activities.map(a => {
+                    
                     return (
                         <ActivitySingle  key={a._id}
+                            activityID={a._id}
                             title={a.activityName}
                             date={a.activityDate}
                             amount={a.activitySpendings}
                             account={a.accountName}
                             icon={a.icon}
+                            activityType={a.activityType}
                         />  
                     );
                 })}

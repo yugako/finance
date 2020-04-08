@@ -37,13 +37,14 @@
     }
     &-actions {
         margin-top: 15px;
-        a {
+        div {
             color: var(--light);
             font-weight: 600;
             display: inline-block;
             padding: 12px;
             background-color: var(--primary);
             margin-right: 10px;
+            cursor: pointer;
             &.remove {
                 background-color: var(--secondary);
             }
