@@ -15,6 +15,7 @@ import Welcome from './welcome';
 /** Account */
 import SingleAccount from './accounts/singleAccount';
 
+
 const DashboardRoutes = () => {
     let location = useLocation();
 
@@ -41,6 +42,7 @@ const DashboardRoutes = () => {
                             path="/dashboard/accounts" exact 
                             component={Accounts}
                         />
+                        
                         <Route 
                             path="/dashboard/budgets" exact 
                             component={Budgets}
