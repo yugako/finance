@@ -1,1 +1,3 @@
-# Finance App(Code name: Wallet On)
+# Finance App(Code name: Cash.On)
+
+App based on MERN stack
